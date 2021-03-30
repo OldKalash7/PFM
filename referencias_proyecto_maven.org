@@ -1,0 +1,13 @@
+#+TITLE: Referencias y enlaces usados en el proyecto
+
+
+1. [[https://docs.godotengine.org/es/stable/tutorials/io/saving_games.html][Tutorial de guardar la partida en la documentación oficial de Godot]]
+2. [[https://kidscancode.org/godot_recipes/2d/grid_movement/][Tutorial Grid Movement en Kids can code]]
+3. [[https://docs.godotengine.org/es/stable/tutorials/misc/instancing_with_signals.html][Instanciado con señales en Docs Godot]]
+4. [[https://www.youtube.com/watch?v=Ep3tsI-MWIw&lc=UgxHschYB6hPHUbXwUB4AaABAg][Video rich text effects]]
+5. [[https://www.youtube.com/watch?v=kkLqW8WhCgg][Tutorial Emilio Dialog Box]]
+6. [[https://kidscancode.org/godot_recipes/basics/tree_ready_order/][El tree de Godot de KCC]]
+7. [[https://kidscancode.org/godot_recipes/basics/node_communication/][Comunicación entre nodos KCC]]
+8. [[https://www.youtube.com/watch?v=HmnwNadwHWI][Video Grid movement Emilio]]
+9. [[https://www.youtube.com/watch?v=MMa9MMxueiE][Video ItemList]]
+10. [[https://www.youtube.com/watch?v=ML-hiNytIqE][Video save system GDQuest]]

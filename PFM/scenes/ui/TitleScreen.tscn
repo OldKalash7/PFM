@@ -1,0 +1,84 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/TitleScreen.gd" type="Script" id=1]
+
+[node name="TitleScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_right = 637.0
+margin_bottom = 148.0
+text = "PROJECT MAVEN"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_top = 0.225
+anchor_bottom = 0.225
+margin_left = 30.2906
+margin_top = 0.199997
+margin_right = 299.291
+margin_bottom = 263.2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Play" type="Button" parent="VBoxContainer"]
+margin_right = 269.0
+margin_bottom = 20.0
+text = "PLAY"
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+margin_top = 24.0
+margin_right = 269.0
+margin_bottom = 44.0
+text = "LOAD GAME"
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+margin_top = 48.0
+margin_right = 269.0
+margin_bottom = 68.0
+text = "OPTIONS"
+
+[node name="Button3" type="Button" parent="VBoxContainer"]
+margin_top = 72.0
+margin_right = 269.0
+margin_bottom = 92.0
+text = "EXIT"
+
+[node name="PopupDialog" type="PopupDialog" parent="."]
+visible = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -118.5
+margin_top = -65.5
+margin_right = 118.5
+margin_bottom = 65.5
+
+[node name="Button" type="Button" parent="PopupDialog"]
+margin_left = 37.0
+margin_top = 87.0
+margin_right = 78.0
+margin_bottom = 107.0
+
+[node name="Button2" type="Button" parent="PopupDialog"]
+margin_left = 142.359
+margin_top = 87.0
+margin_right = 183.359
+margin_bottom = 107.0
+[connection signal="button_up" from="VBoxContainer/Button3" to="." method="_on_Exit"]

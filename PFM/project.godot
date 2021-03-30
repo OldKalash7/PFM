@@ -1,0 +1,81 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "Actor",
+"language": "GDScript",
+"path": "res://src/Actor.gd"
+}, {
+"base": "Observer",
+"class": "ConcreteObserver",
+"language": "GDScript",
+"path": "res://src/ConcreteObserver.gd"
+}, {
+"base": "Control",
+"class": "DialogDisplay",
+"language": "GDScript",
+"path": "res://src/DialogDisplayer.gd"
+}, {
+"base": "Node2D",
+"class": "DialogManager",
+"language": "GDScript",
+"path": "res://src/DialogManager.gd"
+}, {
+"base": "Node2D",
+"class": "Observer",
+"language": "GDScript",
+"path": "res://src/Observer.gd"
+}, {
+"base": "Node",
+"class": "State",
+"language": "GDScript",
+"path": "res://src/State.gd"
+} ]
+_global_script_class_icons={
+"Actor": "",
+"ConcreteObserver": "",
+"DialogDisplay": "",
+"DialogManager": "",
+"Observer": "",
+"State": ""
+}
+
+[application]
+
+config/name="ProyectoMaven"
+run/main_scene="res://scenes/ui/TitleScreen.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+Main="*res://src/Main.gd"
+
+[display]
+
+window/size/height=768
+window/vsync/use_vsync=false
+
+[input]
+
+save={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777248,"unicode":0,"echo":false,"script":null)
+ ]
+}
+enter={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777221,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
