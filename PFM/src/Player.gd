@@ -1,6 +1,7 @@
 extends Actor
 
 signal entered_level
+signal player_ready(self_instance)
 
 # Determina el camino que realizara el personaje
 var path  = PoolVector2Array() 
@@ -12,8 +13,11 @@ func _ready():
 	set_physics_process(false)
 
 	load_data()
-	
 
+
+	connect("player_ready",DialogDisplay,"on_player_ready")
+	emit_signal("player_ready",self)
+	
 # TODO
 # Para realizar acciones de movimiento sobre personajes cinematicos 
 # Comprobar los DOCS

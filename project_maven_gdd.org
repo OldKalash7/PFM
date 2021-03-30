@@ -1,4 +1,12 @@
 #+TITLE: Project Maven Game Design Document
 #+AUTHOR: Rafael Carrió Pérez "Kalaix"
 
+* High concept 
+/Project Maven/ consiste en un juego de terror psicológico, aventura y puzzles en 2D. El juego está ambientado en un pueblo pequeño y transcurre en su mayor parte en una casa grande apartada y situada en las afueras. El protagonista, atraido en busca de respuestas acerca de una extraña desaparición, despierta en la casa sin tener claro que una siniestra fuerza le acecha y la realidad parece mutable y alterable a su alrededor, nada es seguro. Para hacer progresar el juego, el jugador deberá navegar la casa abandonada e ir resolviendo puzzles que le darán las pistas necesarias para completar la investigación y descubrir el misterio. No hay enemigos físicos presentes en el escenario pero si hay situaciones que pueden hacer que el personaje muera y termine la partida, además de una cosntante sensación de peligro. El elemento de horror se construiría a través de evocar un escenario siniestro en el que el jugador se sienta indefenso. Las principales mecánicas del juego serán el movimiento, 
+
+* Detalles técnicos
+
+** Renderizado y perspectiva
+
+
 

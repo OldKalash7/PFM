@@ -16,6 +16,8 @@ var _character_name : RichTextLabel
 # Linea de dialogo
 var _dialog_line : String
 
+
+
 var _vbox_decisiones : VBoxContainer
 
 var modo_decisiones : bool = false
@@ -134,13 +136,19 @@ func _unhandled_key_input(event):
 
 	if event.is_action_pressed("enter") && modo_decisiones:
 		
+		
+		
 		print($Control/ItemList.get_selected_items()[0])
 		print(_test_dialog.get(_dialog_pointer).get("decisiones").get($Control/ItemList.get_selected_items()[0])[2])
 		
 		#.get($Control/ItemList.get_selected_items()).get(2)
 		# TODO Sacar a funcion
 		_dialog_pointer = _test_dialog.get(_dialog_pointer).get("decisiones").get($Control/ItemList.get_selected_items()[0])[2]
-
+		# TODO FIX THIS
+		if _dialog_pointer == -1:
+			emit_signal("dialog_completed")
+			set_process_unhandled_key_input(false)
+			return
 		# Comprobar si tiene decisiones
 		if _test_dialog.get(_dialog_pointer).get("decisiones").get($Control/ItemList.get_selected_items()[0])[1]:
 			
@@ -172,6 +180,9 @@ func _unhandled_key_input(event):
 func callback_test() -> void:
 	print("Callback")
 
+
+func on_player_ready(player_instance : KinematicBody2D) -> void:
+	print(player_instance.global_position)
 
 func update_dialog(new_line : String) -> void:
 	pass
