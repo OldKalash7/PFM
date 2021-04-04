@@ -22,6 +22,8 @@ func _ready():
 func on_dialog_completed() -> void:
 	dialog_display.set_process_unhandled_key_input(false)
 	dialog_display.visible = 0
+
+	get_tree().paused = false
 	print("DialogManager --> DIALOGO COMPLETADO")
 	
 

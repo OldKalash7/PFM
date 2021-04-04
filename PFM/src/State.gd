@@ -4,7 +4,9 @@ extends Node
 
 class_name State
 
-func _enter( args : Dictionary) -> void:
+var name : String
+
+func enter( args : Dictionary) -> void:
     pass
 
 func exit() -> void:

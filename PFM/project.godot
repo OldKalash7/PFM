@@ -30,6 +30,11 @@ _global_script_classes=[ {
 "path": "res://src/DialogManager.gd"
 }, {
 "base": "Node",
+"class": "Events",
+"language": "GDScript",
+"path": "res://src/Events.gd"
+}, {
+"base": "Node",
 "class": "Level",
 "language": "GDScript",
 "path": "res://src/Level.gd"
@@ -43,15 +48,28 @@ _global_script_classes=[ {
 "class": "State",
 "language": "GDScript",
 "path": "res://src/State.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://src/StateMachine.gd"
+}, {
+"base": "Node",
+"class": "StatePool",
+"language": "GDScript",
+"path": "res://src/StatePool.gd"
 } ]
 _global_script_class_icons={
 "Actor": "",
 "ConcreteObserver": "",
 "DialogDisplay": "",
 "DialogManager": "",
+"Events": "",
 "Level": "",
 "Observer": "",
-"State": ""
+"State": "",
+"StateMachine": "",
+"StatePool": ""
 }
 
 [application]

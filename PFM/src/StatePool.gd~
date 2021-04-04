@@ -1,0 +1,6 @@
+extends Node
+
+class_name StatePool
+
+
+var _states_pool : Dictionary

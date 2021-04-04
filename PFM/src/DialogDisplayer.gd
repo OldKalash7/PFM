@@ -28,7 +28,7 @@ onready var _test_dialog : Dictionary = {
 
 	0: {	
 			"nombre":"prueba",
-			"line"	:"Bloque numero uno",
+			"line"	:"Este es el bloque numero uno de texto, aparece la primera vez",
 			"decisiones":{},
 			"pointer": 1
 		} ,
@@ -58,6 +58,8 @@ onready var _test_dialog : Dictionary = {
 
 }
 
+
+
 var _dialog : Dictionary
 
 
@@ -70,20 +72,21 @@ func _ready():
 	_vbox_decisiones = $Control/VBoxDecisiones
 	#set_process_unhandled_input(false)
 	set_process_unhandled_key_input(false)
+
+	### PRUEBA DEL MODO PAUSA ###
+	get_tree().paused = true
 	load_dialog()
 	
 
 
 func load_dialog() -> void:
 	# Texto dialogo
-		##$RichTextLabel.bbcode_text = dialog.get(dialog_keys[key_pointer]).get("text")
 		# Nombre del personaje
-		##$CharacterName.bbcode_text = dialog.get(dialog_keys[key_pointer]).get("name")
 		# Animacion de escribir el texto
 		$CharacterName.text = _test_dialog.get(_dialog_pointer).get("nombre")
 		$CharacterLine.percent_visible = 0
 		$CharacterLine.text = _test_dialog.get(_dialog_pointer).get("line")
-		$Tween.interpolate_property($CharacterLine, "percent_visible", 0, 1, 3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		$Tween.interpolate_property($CharacterLine, "percent_visible", 0, 1, 1.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$Tween.start()
 
 		yield($Tween,"tween_all_completed")
@@ -150,10 +153,10 @@ func _unhandled_key_input(event):
 			set_process_unhandled_key_input(false)
 			return
 		# Comprobar si tiene decisiones
-		if _test_dialog.get(_dialog_pointer).get("decisiones").get($Control/ItemList.get_selected_items()[0])[1]:
+		#if _test_dialog.get(_dialog_pointer).get("decisiones").get($Control/ItemList.get_selected_items()[0])[1]:
 			
-			var f = funcref(self, "callback_test")
-			f.call_func()
+		#	var f = funcref(self, "callback_test")
+		#	f.call_func()
 
 		$Control/ItemList.clear()
 		load_dialog()

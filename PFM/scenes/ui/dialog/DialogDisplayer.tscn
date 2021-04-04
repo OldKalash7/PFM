@@ -19,8 +19,13 @@ __meta__ = {
 }
 
 [node name="Background" type="TextureRect" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 1.25995
+margin_top = -1.25989
+margin_right = 1.26001
+margin_bottom = -1.25989
 texture = ExtResource( 1 )
 expand = true
 stretch_mode = 1
@@ -33,7 +38,7 @@ margin_left = 20.0
 margin_top = 20.0
 margin_right = 128.0
 margin_bottom = 64.0
-custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
 text = "TEST"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -47,7 +52,7 @@ margin_left = 20.0
 margin_top = 0.0639992
 margin_right = -20.0
 margin_bottom = -20.0
-custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
 text = "ESTO ES UN TEXTO DE PRUEBA PARA EL SISTEMA DE DIALOGO"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -73,19 +78,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxDecisiones" type="VBoxContainer" parent="Control"]
-margin_right = 408.0
-margin_bottom = 192.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ItemList" type="ItemList" parent="Control/VBoxDecisiones"]
-margin_right = 408.0
-max_text_lines = 2
-
 [node name="ItemList" type="ItemList" parent="Control"]
 margin_left = -208.0
 margin_top = 40.0
 margin_right = 352.0
 margin_bottom = 152.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
