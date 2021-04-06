@@ -74,8 +74,8 @@ func _ready():
 	set_process_unhandled_key_input(false)
 
 	### PRUEBA DEL MODO PAUSA ###
-	get_tree().paused = true
-	load_dialog()
+	#get_tree().paused = true
+	#load_dialog()
 	
 
 

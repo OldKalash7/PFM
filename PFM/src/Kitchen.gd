@@ -1,2 +1,2 @@
-extends Level
+extends Node
 

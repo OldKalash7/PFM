@@ -5,16 +5,15 @@ extends Node2D
 class_name DialogManager
 
 var registered_observers : Array
-
-
-
 var dialog_display : DialogDisplay
+
+
+
 
 func _ready():
 	# Referencia al dialog display
 	dialog_display = $DialogDisplay
 
-	
 	var concrete : ConcreteObserver = ConcreteObserver.new()
 
 	registered_observers.append(concrete)
@@ -34,3 +33,7 @@ func on_milestone_reached(milestone) -> void:
 func init_dialog() -> void:
 	pass
 
+
+func on_dialog_started() -> void:
+	
+	print("on_dialog_started")

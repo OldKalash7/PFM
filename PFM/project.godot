@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Actor",
 "language": "GDScript",
-"path": "res://src/Actor.gd"
+"path": "res://src/actors/Actor.gd"
 }, {
 "base": "Observer",
 "class": "ConcreteObserver",
@@ -34,15 +34,35 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Events.gd"
 }, {
+"base": "PlayerState",
+"class": "IdleState",
+"language": "GDScript",
+"path": "res://src/actors/player_states/IdleState.gd"
+}, {
 "base": "Node",
 "class": "Level",
 "language": "GDScript",
 "path": "res://src/Level.gd"
 }, {
+"base": "PlayerState",
+"class": "MoveState",
+"language": "GDScript",
+"path": "res://src/actors/player_states/MoveState.gd"
+}, {
 "base": "Node2D",
 "class": "Observer",
 "language": "GDScript",
 "path": "res://src/Observer.gd"
+}, {
+"base": "Actor",
+"class": "Player",
+"language": "GDScript",
+"path": "res://src/actors/Player.gd"
+}, {
+"base": "State",
+"class": "PlayerState",
+"language": "GDScript",
+"path": "res://src/actors/player_states/PlayerState.gd"
 }, {
 "base": "Node",
 "class": "State",
@@ -65,8 +85,12 @@ _global_script_class_icons={
 "DialogDisplay": "",
 "DialogManager": "",
 "Events": "",
+"IdleState": "",
 "Level": "",
+"MoveState": "",
 "Observer": "",
+"Player": "",
+"PlayerState": "",
 "State": "",
 "StateMachine": "",
 "StatePool": ""
@@ -84,7 +108,8 @@ Main="*res://src/Main.gd"
 
 [display]
 
-window/size/height=768
+window/size/width=1920
+window/size/height=1080
 window/vsync/use_vsync=false
 window/stretch/mode="2d"
 
@@ -98,6 +123,26 @@ save={
 enter={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777221,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move_up={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move_down={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move_left={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"unicode":0,"echo":false,"script":null)
  ]
 }
 

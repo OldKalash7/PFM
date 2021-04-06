@@ -1,0 +1,12 @@
+
+{
+    "0":{
+            "nombre":"Mesa", 
+            "line":"Esto es una mesa, no creo que sea importante ahora.",
+            "decisiones":{},
+            "pointer": -1
+        }
+    
+    
+}
+

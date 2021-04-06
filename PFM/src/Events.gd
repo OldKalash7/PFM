@@ -5,4 +5,5 @@ extends Node
 class_name Events
 
 
+# Aqui hariamos un preload o load de un script que solo contenga declaraciones de Señales ya que no se pueden declarar en runtime
 signal event_signal(msg)

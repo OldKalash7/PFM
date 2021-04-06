@@ -1,0 +1,19 @@
+#+TITLE: Dev Diary
+
+
+* 04/04/2021
+He decidido empezar este diario para detallar las decisiones y el procesod e razonamiento que sigo a la hora de encarar el Proyecto Maven.
+
+Primera cuestión, hay que decidir sbore si utilizar nodos hijos con scripts attached para la maquina de estados como se plantea en el tutorial o hacerlo todo vía código como estaba pensado en un principio. De la primera manera se puede utilizar =owner= para acceder a las propiedades que nos interesan de Player como su velocidad y etc... De la otra hace falta si o si pasar una referencia de player para poder hacer el =move_and_slide=. Creo que tomaré la primera vía a ver que tal ya que se refleja más el espíritu de Godot de utilizar los nodos para una representación visual y queda más claro, en otro engine/situación utilizaría una solución más programática.
+
+Eliminar =StatePool= no hace falta ese patrón y es complicarlo demasiado, la propia =StateMachine= se hará cargo de contener los estados que hagan falta
+
+Tras resolver algunos problemas lo he implementado tengo =idle= y =move= tengo que depurar como capta el movimiento
+
+
+* 06/04/2021
+Apunte rápido, intento de cargar un dialogo desde un json y formatearlo a un diccionario de GDScript.
+
+En GDScript no hay interfaces, quiero crear una especie de interfaz =interactuable= que permita al objeto que se acople seleccionar, cargar dialgos al objeto que se le acople. En principio iba a por una estructura de tipo herencia tal que =ACTION > ITEM= pero luego he pensado que tal vez no solo un item lance dialogos y acciones, tal vez lo haga un NPC y no queremos colocar un NPC en la categoría de =ITEM= y tampoco puede tener herencia de =ACTION= porque a lo mejor necesita heredar de =KinematicBody2D= y no puede haber herencia múltiple ni =implements= al estilo Java. Pues le attacheamos un nodo extra que tenga esa responsabilidad aprovechando la estructura de escenas y nodos de Godot.
+
+Pensando en la posibilidad de crear un objeto de tipo =Dialogo= con una maquina de estados asociada para manejar los dialogos de manera más reutilizable y controlada.
