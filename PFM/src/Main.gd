@@ -3,13 +3,13 @@ extends Node
 
 
 const save_path : String = "res://savegame.dat"
-var  events_list : Events
 
-func _ready():
-	events_list = Events.new()
+onready var EVENTS_LIST : Events = Events.new()
 
 func exit() -> void:
-	get_tree()
+	get_tree().quit()
+
+
 
 
 func change_scene() -> void:

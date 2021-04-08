@@ -17,3 +17,14 @@ Apunte rápido, intento de cargar un dialogo desde un json y formatearlo a un di
 En GDScript no hay interfaces, quiero crear una especie de interfaz =interactuable= que permita al objeto que se acople seleccionar, cargar dialgos al objeto que se le acople. En principio iba a por una estructura de tipo herencia tal que =ACTION > ITEM= pero luego he pensado que tal vez no solo un item lance dialogos y acciones, tal vez lo haga un NPC y no queremos colocar un NPC en la categoría de =ITEM= y tampoco puede tener herencia de =ACTION= porque a lo mejor necesita heredar de =KinematicBody2D= y no puede haber herencia múltiple ni =implements= al estilo Java. Pues le attacheamos un nodo extra que tenga esa responsabilidad aprovechando la estructura de escenas y nodos de Godot.
 
 Pensando en la posibilidad de crear un objeto de tipo =Dialogo= con una maquina de estados asociada para manejar los dialogos de manera más reutilizable y controlada.
+
+* 07/05/2021
+
+Acabar de rediseñar el event bus, sacarlo del Main como service locator y convertirlo en un singleton. Nota, al final he usado lo del service locator porque con el autoload en Godot no funciona bien. He creado el Objeto Dialogo que representa un dialogo concreto a cargadoa partir de un fichero JSON, he probado la función para parsearlo y funciona bien. 
+
+Lo que le he paso por la señal a dialog manager es la referencia de la interfaz Actionable, que contiene el objeto dialogo ya preparado y con todo lo que necesito.
+
+He actualizado un poco el tablero necesito documentarlo mejor y empezar con el GDD
+
+Me he dado cuenta de que al declarar un nuevo tipo de clase en el IDE hace falta reiniciar el servidor de Godot para que el autocomplentado no la muestre como fallo.
+

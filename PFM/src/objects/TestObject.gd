@@ -13,5 +13,5 @@ func _ready():
 func on_player_interaction(body) -> void:
 	if body.name == "Player":
 		print("DEBUG " + name + " --> " + body.name + " ha entrado en el area")
-		$Actionable.emit_signal("start_dialog")
+		Main.EVENTS_LIST.emit_signal("dialog_started",$Actionable.dialog, $Actionable)
 

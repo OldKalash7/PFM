@@ -4,19 +4,24 @@ extends Node2D
 
 class_name DialogManager
 
-var registered_observers : Array
+
 var dialog_display : DialogDisplay
+var actionable : Actionable
+
 
 
 
 
 func _ready():
+
+	Main.EVENTS_LIST.connect("dialog_started",self,"on_dialog_started")
+
 	# Referencia al dialog display
 	dialog_display = $DialogDisplay
 
-	var concrete : ConcreteObserver = ConcreteObserver.new()
+	# Desconectar process al inicio
+	set_process(false)
 
-	registered_observers.append(concrete)
 
 func on_dialog_completed() -> void:
 	dialog_display.set_process_unhandled_key_input(false)
@@ -26,14 +31,24 @@ func on_dialog_completed() -> void:
 	print("DialogManager --> DIALOGO COMPLETADO")
 	
 
-func on_milestone_reached(milestone) -> void:
-	for observer in registered_observers:
-		observer.onNotify(self,milestone)
+
+
 
 func init_dialog() -> void:
 	pass
 
 
-func on_dialog_started() -> void:
+func on_dialog_started(actionable) -> void:
 	
-	print("on_dialog_started")
+	self.actionable = actionable	
+	print(actionable.name)
+	
+	
+	
+
+
+
+
+
+
+	
