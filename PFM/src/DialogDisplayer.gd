@@ -7,7 +7,6 @@ signal dialog_completed
 
 signal milestone_reached
 
-class_name DialogDisplay
 
 enum DIALOG_STATE {FINISHED,DISPLAYING,DEFAULT}
 var milestones = preload("res://resources/Milestones.gd")

@@ -12,14 +12,14 @@ func _ready():
 
 
 func enter( args : Dictionary) -> void:
+	print("Entrado en MOVE STATE")
+	#print("MoveState debug -> se ha entrado en el moveState")
 
-	print("MoveState debug -> se ha entrado en el moveState")
-	print(owner.name)
 	
 
 func exit() -> void:
-	print("MoveState debug -> se ha salido en el moveState")
-
+	#print("MoveState debug -> se ha salido en el moveState")
+	pass
 
 func handle_input(event) -> void:
 	pass

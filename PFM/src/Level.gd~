@@ -1,7 +1,0 @@
-extends Node
-
-# Clase base para todos los niveles que da soporte a la navegacion
-# y otras funcionalidades
-
-class_name Level
-

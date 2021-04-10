@@ -4,9 +4,14 @@
             "nombre":"Mesa", 
             "line":"Esto es una mesa, no creo que sea importante ahora.",
             "decisiones":{},
+            "pointer": 1
+        },
+    "1":{
+            "nombre":"Mesa", 
+            "line":"Creo que no sirve de nada, debería dejarlo por ahora",
+            "decisiones":{},
             "pointer": -1
+
         }
-    
-    
 }
 

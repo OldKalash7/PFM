@@ -5,42 +5,26 @@ extends Node2D
 class_name DialogManager
 
 
-var dialog_display : DialogDisplay
 var actionable : Actionable
-
-
-
 
 
 func _ready():
 
 	Main.EVENTS_LIST.connect("dialog_started",self,"on_dialog_started")
 
-	# Referencia al dialog display
-	dialog_display = $DialogDisplay
-
 	# Desconectar process al inicio
-	set_process(false)
+	print("works")
 
 
 func on_dialog_completed() -> void:
-	dialog_display.set_process_unhandled_key_input(false)
-	dialog_display.visible = 0
 
 	get_tree().paused = false
 	print("DialogManager --> DIALOGO COMPLETADO")
 	
 
-
-
-
-func init_dialog() -> void:
-	pass
-
-
-func on_dialog_started(actionable) -> void:
-	
-	self.actionable = actionable	
+func on_dialog_started(new_actionable) -> void:
+	print("works")
+	self.actionable = new_actionable	
 	print(actionable.name)
 	
 	

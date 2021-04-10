@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/background_rain.wav-75c8d8291eab40d6c502921e9c1b6aa2.sample"
+
+[deps]
+
+source_file="res://assets/raw/background_rain.wav"
+dest_files=[ "res://.import/background_rain.wav-75c8d8291eab40d6c502921e9c1b6aa2.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
