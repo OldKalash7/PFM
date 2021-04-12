@@ -111,7 +111,7 @@ _global_script_class_icons={
 [application]
 
 config/name="ProyectoMaven"
-run/main_scene="res://scenes/ui/TitleScreen.tscn"
+run/main_scene="res://scenes/levels/test.tscn"
 config/icon="res://icon.png"
 
 [autoload]

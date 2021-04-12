@@ -12,8 +12,8 @@ func _ready():
 	set_process_unhandled_key_input(false)
 	# Obtener la referencia de los componentes
 	choices = $DialogLayer/Choices
-	actor_name = $DialogLayer/ActorName
-	actor_line = $DialogLayer/CharacterLine
+	actor_name = $ActorName
+	actor_line = $CharacterLine
 	tween = $Tween
 
 	# Poner el control ItemList Choices a invisible al principio

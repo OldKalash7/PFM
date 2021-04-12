@@ -10,6 +10,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ActorName" type="RichTextLabel" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CharacterLine" type="RichTextLabel" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="DialogLayer" type="CanvasLayer" parent="."]
 
 [node name="Choices" type="ItemList" parent="DialogLayer"]
@@ -21,20 +35,6 @@ focus_neighbour_right = NodePath(".")
 focus_neighbour_bottom = NodePath(".")
 focus_next = NodePath(".")
 focus_previous = NodePath(".")
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ActorName" type="RichTextLabel" parent="DialogLayer"]
-margin_right = 40.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CharacterLine" type="RichTextLabel" parent="DialogLayer"]
-margin_right = 40.0
-margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

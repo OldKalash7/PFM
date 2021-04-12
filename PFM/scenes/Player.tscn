@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://src/actors/Player.gd" type="Script" id=2]
 [ext_resource path="res://src/StateMachine.gd" type="Script" id=3]
 [ext_resource path="res://src/actors/player_states/MoveState.gd" type="Script" id=4]
 [ext_resource path="res://src/actors/player_states/IdleState.gd" type="Script" id=5]
+[ext_resource path="res://scenes/components/DialogManager.tscn" type="PackedScene" id=6]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -22,6 +23,8 @@ extents = Vector2( 32.2809, 30.8903 )
 ]]
 collision_mask = 2
 script = ExtResource( 2 )
+
+[node name="DialogManager" parent="." instance=ExtResource( 6 )]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
@@ -43,3 +46,5 @@ script = ExtResource( 5 )
 
 [node name="MOVE_STATE" type="Node" parent="StateMachine"]
 script = ExtResource( 4 )
+
+[editable path="DialogManager"]
