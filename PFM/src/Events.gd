@@ -14,3 +14,6 @@ signal dialog_started(dialog, actioanable)
 signal player_pause # Pausa al proceso del input del jugador
 signal player_resume # Reanudar proceso del input del jugador
 signal change_animation(new_animation,flip)
+
+
+signal line_displayed # Se ha dibujado una linea de texto en pantalla para DialogDisplay y DialogManager

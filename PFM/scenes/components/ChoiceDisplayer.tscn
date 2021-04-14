@@ -1,0 +1,17 @@
+[gd_scene format=2]
+
+[node name="ChoiceDisplayer" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ChoicesLayer" type="CanvasLayer" parent="."]
+
+[node name="Choices" type="ItemList" parent="ChoicesLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}

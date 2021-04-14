@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/raw/wood_floor_2.jpg" type="Texture" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/objects/Test.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/components/DialogManager.tscn" type="PackedScene" id=4]
 
 [sub_resource type="TileSet" id=1]
 0/name = "wood_floor_2.jpg 0"
@@ -20,7 +21,11 @@
 0/shapes = [  ]
 0/z_index = 0
 
+[sub_resource type="AnimationNodeStateMachinePlayback" id=2]
+
 [node name="TestLevel" type="Node2D"]
+
+[node name="DialogManager" parent="." instance=ExtResource( 4 )]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
@@ -31,61 +36,26 @@ tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 576.502, 434.944 )
 
-[node name="DialogManager" parent="Player" index="0"]
-pause_mode = 2
-
-[node name="ActorName" parent="Player/DialogManager/DialogDisplayer" index="0"]
-margin_left = -239.385
-margin_top = -70.5555
-margin_right = -111.385
-margin_bottom = 7.44446
-
-[node name="CharacterLine" parent="Player/DialogManager/DialogDisplayer" index="1"]
-margin_left = -165.693
-margin_top = -124.0
-margin_right = 171.307
-margin_bottom = -32.0
-text = "TEST
-"
-
-[node name="DialogLayer" parent="Player/DialogManager/DialogDisplayer" index="2"]
-layer = 30
-
-[node name="Choices" parent="Player/DialogManager/DialogDisplayer/DialogLayer" index="0"]
-anchor_top = 0.995
-anchor_bottom = 0.995
-margin_top = -241.6
-margin_right = 705.0
-margin_bottom = 5.3999
-
-[node name="AnimatedSprite" parent="Player" index="1"]
-frame = 3
-
-[node name="Camera2D" parent="Player" index="3"]
+[node name="Camera2D" parent="Player" index="2"]
 limit_left = 0
 limit_top = 0
+
+[node name="ActorLine" parent="Player/PlayerDisplay" index="0"]
+margin_left = -149.0
+margin_top = -140.944
+margin_right = 148.0
+margin_bottom = -34.944
+
+[node name="AnimationTree" parent="Player" index="6"]
+parameters/playback = SubResource( 2 )
 
 [node name="TestObject" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1038.29, 431.574 )
 
-[node name="Display" parent="TestObject/Actionable" index="0"]
-anchor_left = 0.54
-anchor_top = 0.352
-anchor_right = 0.54
-anchor_bottom = 0.352
-margin_left = -271.8
-margin_top = -126.16
-margin_right = 279.2
-margin_bottom = -1.16003
-
 [editable path="Player"]
 
-[editable path="Player/DialogManager"]
-
-[editable path="Player/DialogManager/DialogDisplayer"]
+[editable path="Player/PlayerDisplay"]
 
 [editable path="TestObject"]
 
 [editable path="TestObject/Actionable"]
-
-[editable path="TestObject/Actionable/Display"]

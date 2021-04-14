@@ -6,6 +6,7 @@ const save_path : String = "res://savegame.dat"
 
 onready var EVENTS_LIST : Events = Events.new()
 
+
 func exit() -> void:
 	get_tree().quit()
 
@@ -31,3 +32,11 @@ func save_game() -> void:
 			var save_dictionary = node.save()
 
 
+
+
+func get_node_by_name(nodes : Array, node_name : String) -> Node:
+	for i in nodes:
+		if i.name == node_name:
+			return i
+	# TODO mirar una solucion mejor que devolver null
+	return null

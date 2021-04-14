@@ -1,13 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://scenes/components/Actionable.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/objects/TestObject.gd" type="Script" id=3]
+[ext_resource path="res://scenes/components/Display.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 117.996, 116.57 )
 
-[node name="TestObject" type="Node2D"]
+[node name="TableObject" type="Node2D"]
 script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -21,3 +22,5 @@ shape = SubResource( 1 )
 
 [node name="Actionable" parent="." instance=ExtResource( 2 )]
 loaded_dialog = "res://assets/dialogs/test.json"
+
+[node name="TableDisplay" parent="." instance=ExtResource( 4 )]

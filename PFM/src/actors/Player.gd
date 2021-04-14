@@ -72,18 +72,20 @@ func set_path(value) -> void:
 	#	set_physics_process(true)
 
 func on_animation_change(new_animation : String, flip : bool) -> void:
+	
 	var animation : AnimatedSprite = get_node("AnimatedSprite")
 
 	assert(animation != null)
 	print(new_animation)
 
 	if !flip and animation.flip_h == true:
-		print("idle_animation_fliped")
-		animation.flip_h = false
-	elif flip and animation.flip_h == false:
+		animation.play(new_animation)
+		#animation.flip_h = false
+	elif flip:
 		animation.flip_h = true
+		animation.play(new_animation)
 
-	animation.play(new_animation)
+	#animation.play(new_animation)
 
 
 func _unhandled_key_input(event):

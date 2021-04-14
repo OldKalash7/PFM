@@ -48,8 +48,10 @@ func handle_physics_process(delta) -> void:
 func _calculate_linear_velocity() -> void:
 	player.linear_velocity = Vector2.ZERO
 	if Input.is_action_pressed("move_up"):
+		Main.EVENTS_LIST.emit_signal("change_animation","up_walk",false)
 		player.linear_velocity.y -= 1
 	if Input.is_action_pressed("move_down"):
+		Main.EVENTS_LIST.emit_signal("change_animation","down_walk",false)
 		player.linear_velocity.y += 1
 	if Input.is_action_pressed("move_right"):
 		Main.EVENTS_LIST.emit_signal("change_animation","side_walk",true)
