@@ -1,6 +1,6 @@
 extends State
 
-
+signal change_animation(new_animation,flip)
 class_name PlayerState
 
 var player : Player
@@ -17,3 +17,5 @@ func _ready():
 	# Comprobar que no es null en tiempo de compilacion
 	
 	assert (player != null)
+
+

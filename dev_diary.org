@@ -18,7 +18,7 @@ En GDScript no hay interfaces, quiero crear una especie de interfaz =interactuab
 
 Pensando en la posibilidad de crear un objeto de tipo =Dialogo= con una maquina de estados asociada para manejar los dialogos de manera más reutilizable y controlada.
 
-* 07/05/2021
+* 07/04/2021
 
 Acabar de rediseñar el event bus, sacarlo del Main como service locator y convertirlo en un singleton. Nota, al final he usado lo del service locator porque con el autoload en Godot no funciona bien. He creado el Objeto Dialogo que representa un dialogo concreto a cargadoa partir de un fichero JSON, he probado la función para parsearlo y funciona bien. 
 
@@ -28,3 +28,5 @@ He actualizado un poco el tablero necesito documentarlo mejor y empezar con el G
 
 Me he dado cuenta de que al declarar un nuevo tipo de clase en el IDE hace falta reiniciar el servidor de Godot para que el autocomplentado no la muestre como fallo.
 
+* 12/04/2021
+En los días anteriores he estado haciendo cosas pero no lo he anotado porque se me olvidó. En cualquier caso he estado haciendo un poco de todo. He empezado a redactar un resumen de la idea que tengo para argumento del juego

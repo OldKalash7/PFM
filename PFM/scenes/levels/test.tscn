@@ -31,6 +31,9 @@ tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 576.502, 434.944 )
 
+[node name="DialogManager" parent="Player" index="0"]
+pause_mode = 2
+
 [node name="ActorName" parent="Player/DialogManager/DialogDisplayer" index="0"]
 margin_left = -239.385
 margin_top = -70.5555
@@ -55,12 +58,25 @@ margin_top = -241.6
 margin_right = 705.0
 margin_bottom = 5.3999
 
+[node name="AnimatedSprite" parent="Player" index="1"]
+frame = 3
+
 [node name="Camera2D" parent="Player" index="3"]
 limit_left = 0
 limit_top = 0
 
 [node name="TestObject" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1038.29, 431.574 )
+
+[node name="Display" parent="TestObject/Actionable" index="0"]
+anchor_left = 0.54
+anchor_top = 0.352
+anchor_right = 0.54
+anchor_bottom = 0.352
+margin_left = -271.8
+margin_top = -126.16
+margin_right = 279.2
+margin_bottom = -1.16003
 
 [editable path="Player"]
 
@@ -69,3 +85,7 @@ position = Vector2( 1038.29, 431.574 )
 [editable path="Player/DialogManager/DialogDisplayer"]
 
 [editable path="TestObject"]
+
+[editable path="TestObject/Actionable"]
+
+[editable path="TestObject/Actionable/Display"]

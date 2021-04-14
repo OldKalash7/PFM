@@ -20,8 +20,9 @@ func _ready():
 	set_physics_process(false)
 	load_data()
 	#$StateMachine._state = $StateMachine/IdleState
-	
-
+	Main.EVENTS_LIST.connect("player_pause",self,"on_player_pause")
+	Main.EVENTS_LIST.connect("player_resume",self,"on_player_resume")
+	Main.EVENTS_LIST.connect("change_animation",self,"on_animation_change")
 	#connect("player_ready",DialogDisplay,"on_player_ready")
 	#emit_signal("player_ready",self)
 	
@@ -54,6 +55,15 @@ func move_along_path(distance : float) -> void:
 	#	current_point = path[0]
 	#	path.remove(0)
 
+func on_player_pause() -> void:
+	var state_machine = get_node("StateMachine")
+	#state_machine.set_process(false)
+	state_machine.set_process_input(false)
+
+func on_player_resume() -> void:
+	var state_machine = get_node("StateMachine")
+	#state_machine.set_process(false)
+	state_machine.set_process_input(true)
 
 func set_path(value) -> void:
 	#path = value
@@ -61,7 +71,19 @@ func set_path(value) -> void:
 	#if path.size() != 0:
 	#	set_physics_process(true)
 
+func on_animation_change(new_animation : String, flip : bool) -> void:
+	var animation : AnimatedSprite = get_node("AnimatedSprite")
 
+	assert(animation != null)
+	print(new_animation)
+
+	if !flip and animation.flip_h == true:
+		print("idle_animation_fliped")
+		animation.flip_h = false
+	elif flip and animation.flip_h == false:
+		animation.flip_h = true
+
+	animation.play(new_animation)
 
 
 func _unhandled_key_input(event):

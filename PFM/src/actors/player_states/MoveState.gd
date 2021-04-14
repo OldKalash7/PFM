@@ -13,6 +13,12 @@ func _ready():
 
 func enter( args : Dictionary) -> void:
 	print("Entrado en MOVE STATE")
+	# TODO rework con un animation player
+	#var animation = get_parent()#.get_node("AnimatedSprite")
+
+
+
+	#animation.play("side_walk")
 	#print("MoveState debug -> se ha entrado en el moveState")
 
 	
@@ -46,8 +52,10 @@ func _calculate_linear_velocity() -> void:
 	if Input.is_action_pressed("move_down"):
 		player.linear_velocity.y += 1
 	if Input.is_action_pressed("move_right"):
+		Main.EVENTS_LIST.emit_signal("change_animation","side_walk",true)
 		player.linear_velocity.x += 1
 	if Input.is_action_pressed("move_left"):
+		Main.EVENTS_LIST.emit_signal("change_animation","side_walk",false)
 		player.linear_velocity.x -= 1
 	if player.linear_velocity == Vector2.ZERO:
 		get_parent().change_state_to("IDLE_STATE",{"transicion de estado": "test"})
