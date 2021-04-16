@@ -6,64 +6,66 @@ extends Node2D
 class_name DialogManager
 
 
+var dialog_state : Node
+var avaliable_states : Node
+
 var actionable : Actionable
 var dialog_displays : Array
+var choices_displayer : ChoicesDisplayer
 
 func _ready():
 
+	choices_displayer = get_node("ChoiceDisplayer")
+	avaliable_states = get_node("States")
+
+	assert (avaliable_states != null)
+	assert (choices_displayer != null)
+
+
 	Main.EVENTS_LIST.connect("dialog_started",self,"on_dialog_started")
-	Main.EVENTS_LIST.connect("line_displayed",self,"on_line_displayed")
+	Main.EVENTS_LIST.connect("dialog_finished",self,"on_dialog_started")
 
-	# TODO remove esto es solo debug
-	dialog_displays = get_tree().get_nodes_in_group("displays")
+	# Get estado inicial
+	dialog_state = avaliable_states.get_node("IDLE_STATE")
 
-	assert (dialog_displays != null)
+	print(dialog_state)
+	assert (dialog_state != null)
+	
 
-	for i in dialog_displays:
-		print(i.name)
 
-	set_process_input(false)
+# Cambia a un nuevo estado
+func transition() -> void:
+	
+	# Logica de los dialogos aqui
+
+	if actionable.dialog.has_finished():
+		print("DIALOGO ACABADO O NO HAY DIALOGO")
+	elif actionable.dialog.current_entrie_has_choices():
+		print("Este dialogo tiene decisiones")
+	else:
+		print("Dialogo normal al que le quedan entradas")
+		dialog_state = avaliable_states.get_node("NORMAL_STATE")
+
+	dialog_state.enter(actionable.dialog)
+	dialog_state.process_dialog()
 
 
 
 	# TODO quitar el primer parametro
 func on_dialog_started(dialog_item,new_actionable) -> void:
-	refresh_displays()
 	self.actionable = new_actionable
 	Main.EVENTS_LIST.emit_signal("player_pause")
-	process_dialog()
+	print("ACTIONABLE NAME --> " + new_actionable.name)
 
-
-func process_dialog() -> void:
-	# Pausar el jugador
-	var display = Main.get_node_by_name(dialog_displays,"PlayerDisplay")
-
-	if actionable.dialog.current_entrie_has_choices():
-		print("has_choices")
-	elif actionable.dialog.get_current_pointer() != -1:
-		#dialog_displayer.display("test", actionable.dialog.get_curent_entrie_line())
-		
-		display.display("test", actionable.dialog.get_curent_entrie_line())
-		#pass
-	else:
-		print("Se ha acabado el dialogo")
-		display.hide_text()
-		Main.EVENTS_LIST.emit_signal("player_resume")
+	transition()
+	
 	
 
-func _input(event) -> void:
-	if Input.is_action_just_released("enter"):
-		actionable.dialog.advance_entrie()
-		set_process_input(false)
-		process_dialog()
-	
-
-func on_line_displayed() -> void:
-	set_process_input(true)
 
 
-# Refresca el array que contiene los nodos display activos actualmente en el tree
-func refresh_displays() -> void:
-	dialog_displays = get_tree().get_nodes_in_group("displays")
+
+# Called when a dialog is finished, Unpauses player
+func on_dialog_finished() -> void:
+	Main.EVENTS_LIST.emit_signal("player_resume")
 
 	

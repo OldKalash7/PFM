@@ -15,7 +15,7 @@ func _ready():
 
 	if loaded_dialog != null:
 		dialog = Dialog.new(parse_dialog(loaded_dialog))
-
+		print(dialog)
 
 
 

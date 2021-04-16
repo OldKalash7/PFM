@@ -1,15 +1,18 @@
 
 {
     "0":{
-            "nombre":"Mesa", 
+            "type":"normal",
+            "display":"Player", 
             "line":"Esto es una mesa, no creo que sea importante ahora.",
-            "decisiones":{},
+            "callbacks": [],
+            "disregard": false,
             "pointer": 1
         },
-    "1":{
-            "nombre":"Mesa", 
-            "line":"Creo que no sirve de nada, debería dejarlo por ahora",
-            "decisiones":{},
+    "1":{   "type":"normal",
+            "display":"Player", 
+            "line":"Debería dejarlo por ahora",
+            "callbacks": [],
+            "disregard": false,
             "pointer": -1
 
         }

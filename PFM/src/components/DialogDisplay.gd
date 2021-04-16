@@ -21,7 +21,7 @@ func _ready():
 
 
 # Pinta la linea en pantalla
-func display(character_name : String, line : String) -> void:
+func display(line : String) -> void:
 	#actor_line.percent_visible = 0
 	actor_line.text = line
 	_draw_text()
