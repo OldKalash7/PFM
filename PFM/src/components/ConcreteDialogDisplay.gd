@@ -25,7 +25,7 @@ func _ready():
 	choices.connect("item_activated",self,"on_decisions_activated")
 
 	# Conectar con parent las señales de line_displayed
-	self.connect("line_displayed",get_parent(),"on_line_displayed")
+	#self.connect("line_displayed",get_parent(),"on_line_displayed")
 
 func display(character_name : String, line : String) -> void:
 	# Reiniciar la propiedad de visibilidad del label para que no se vea la anterior linea cuando empieze el dialogo
@@ -42,8 +42,6 @@ func display(character_name : String, line : String) -> void:
 	emit_signal("line_displayed")
 
 
-func display_to_specific_label(display_node : Control, line : String) -> void:
-	pass
 
 func change_display_visibility(mode : bool) -> void:
 	actor_name.visible = mode
@@ -61,6 +59,10 @@ func draw_text(tween_node : Tween, label : RichTextLabel, line : String) -> void
 	yield(tween,"tween_all_completed")
 
 	
+
+
+
+
 func display_choices(choices_list : Array) -> void:
 	
 	# Hacer visible Choices

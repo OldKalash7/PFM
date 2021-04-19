@@ -76,7 +76,7 @@ func on_animation_change(new_animation : String, flip : bool) -> void:
 	var animation : AnimatedSprite = get_node("AnimatedSprite")
 
 	assert(animation != null)
-	print(new_animation)
+	#print(new_animation)
 
 	if !flip and animation.flip_h == true:
 		animation.play(new_animation)

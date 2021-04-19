@@ -7,7 +7,7 @@ class_name NormalDialogState
 
 # Funciona a modo de _ready() para el estado
 func enter(dialog: Dialog) -> void:
-	
+	Main.EVENTS_LIST.connect("line_displayed",self,"on_line_displayed")
 	set_process_input(false)
 	# Save entrie
 	self.dialog = dialog
@@ -19,7 +19,9 @@ func enter(dialog: Dialog) -> void:
 
 # Funciona a modo de "destructor", 
 func exit() -> void:
-	pass
+	if Main.EVENTS_LIST.is_connected("line_displayed",self,"on_line_displayed"):
+		Main.EVENTS_LIST.disconnect("line_displayed",self,"on_line_displayed")
+	
 
 
 # Función para el procesamiento del dialogo

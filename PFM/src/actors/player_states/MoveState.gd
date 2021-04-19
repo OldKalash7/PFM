@@ -12,11 +12,11 @@ func _ready():
 
 
 func enter( args : Dictionary) -> void:
-	print("Entrado en MOVE STATE")
+	#print("Entrado en MOVE STATE")
 	# TODO rework con un animation player
 	#var animation = get_parent()#.get_node("AnimatedSprite")
 
-
+	pass
 
 	#animation.play("side_walk")
 	#print("MoveState debug -> se ha entrado en el moveState")

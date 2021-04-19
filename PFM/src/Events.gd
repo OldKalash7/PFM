@@ -13,6 +13,8 @@ signal event_signal(msg)
 signal dialog_started(dialog, actioanable)
 signal dialog_finished
 signal dialog_transition
+signal line_displayed # Se ha dibujado una linea de texto en pantalla para DialogDisplay y DialogManager
+signal choice_selected(index)
 
 
 ## Player
@@ -21,4 +23,4 @@ signal player_resume # Reanudar proceso del input del jugador
 signal change_animation(new_animation,flip)
 
 
-signal line_displayed # Se ha dibujado una linea de texto en pantalla para DialogDisplay y DialogManager
+

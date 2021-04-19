@@ -11,9 +11,7 @@
                 
             },
 
-            "disregard": false,
             "pointer": 1
-
         },
 
     "1":{   
@@ -21,8 +19,9 @@
             "display":"Player", 
             "line":"Dejas la llave donde está, sientes una sensación extraña.",
             "callbacks": [],
-            "disregard": true,
-            "pointer": 0
+            "repete": false,
+            "restart": false,
+            "pointer": -1
 
         },
     "2":{
@@ -30,7 +29,8 @@
             "display":"Player", 
             "line":"Recoges la llave del suelo, pesa más de lo que aparenta.",
             "callbacks": [],
-            "disregard": false,
+            "repete": false,
+            "restart": false,
             "pointer": -1
 
         }

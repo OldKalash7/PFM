@@ -28,7 +28,7 @@ func _ready():
 	# LOOP AUDIO
 	#_current_audio_player.set_loop(true)
 	#_current_audio_player.stream.set_loop(true)
-	_current_audio_player.play()
+	#_current_audio_player.play()
 
 func play_audio(audio_player_name : String, loop : bool) -> void:
 	

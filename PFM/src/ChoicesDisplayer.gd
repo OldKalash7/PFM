@@ -11,24 +11,28 @@ func _ready():
 	_choices_display = get_node("ChoicesLayer/Choices")
 	assert(_choices_display != null)
 	# Conectar señales del nodo ItemList para cuando el jugador elija alguna de las opciones
-	#connect("",self,"on_choice_selected")
+	_choices_display.connect("item_activated",self,"_on_choice_selected")
 	change_choices_display_visibility(false)
 
 
-func _on_choice_selected() -> void:
-	pass
+func _on_choice_selected(index : int) -> void:
+	Main.EVENTS_LIST.emit_signal("choice_selected",index)
+	# Ocultar las decisiones
+	change_choices_display_visibility(false)
+	# Vaciar el contenido del ItemList
+	_choices_display.clear()
 
 
 func change_choices_display_visibility(display : bool) -> void:
 	_choices_display.visible = display
 
 
-func display_choiches(choices_entrie : Dictionary) -> void:
+func display_choiches(values : Dictionary) -> void:
 	
 	# Focus en el control de la UI
 	_choices_display.grab_focus()
 	
-	var values : Dictionary = choices_entrie.get("decisiones")
+	#var values : Dictionary = choices_entrie.get("decisiones")
 	var choice_contents : Array
 
 	for i in values:

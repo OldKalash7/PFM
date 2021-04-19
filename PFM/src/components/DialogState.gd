@@ -15,7 +15,7 @@ var default_display # TODO
 
 
 func _ready():
-	Main.EVENTS_LIST.connect("line_displayed",self,"on_line_displayed")
+	set_process_input(false)
 	
 # Funciona a modo de _ready() para el estado
 func enter(dialog : Dialog) -> void:
@@ -44,7 +44,7 @@ func process_callbacks() -> void:
 
 # Callback para cuando termina la animación de dibujado de una linea
 func on_line_displayed() -> void:
-	set_process_input(true)
+	pass
 
 # Obtiene un array con todos los objetos de tipo Display presentes en el treee
 func get_available_displays() -> Array:

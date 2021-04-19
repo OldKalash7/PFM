@@ -5,6 +5,8 @@ class_name Dialog
 
 enum DIALOG_STATES {DISPLAYING, IDLE, IDLE_DECISION,FINISHED, PAUSED}
 
+const DECISION_POINTER : int = 2
+
 var _current_state 
 var _dialog_tree : Dictionary
 var _current_entrie : Dictionary
@@ -34,6 +36,9 @@ func set_dialog_pointer(index : int) -> void:
 func get_current_entrie() -> Dictionary:
 	return _current_entrie
 
+func get_current_entrie_decisions() -> Dictionary:
+	return _current_entrie.get("decisiones")
+
 func get_name_for_current_display() -> String:
 	return _current_entrie.get("display") + "Display"
 
@@ -46,6 +51,8 @@ func get_dialog_tree() -> Dictionary:
 
 func is_repeated_mode() -> bool:
 	
+	# Repted mode es una flag que tiene la ultima entrie de dialogo y indica
+	# si se va mostrar en bucle por pantalla la opción repetida
 	if get_current_pointer() == -1:
 		return _current_entrie["repete"] == true
 	else:
@@ -71,6 +78,14 @@ func advance_entrie() -> void:
 	# TODO revisar esto
 	_current_entrie = _dialog_tree[String(_current_entrie["pointer"])]
 	_dialog_pointer = _current_entrie["pointer"]
+	
+	if _dialog_pointer == -1:
+		_finished = true
+
+# Situa el pointer a la entrada especifica de una decision
+func advance_specific_entrie(decision_index : int) -> void:
+	#_current_entrie = _dialog_tree[String(_current_entrie["pointer"])]["decisiones"][String(decision_index)][DECISION_POINTER]
+	_current_entrie = _dialog_tree[String((_current_entrie["decisiones"][String(decision_index)][DECISION_POINTER] ))]
 	
 	if _dialog_pointer == -1:
 		_finished = true
