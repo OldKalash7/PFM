@@ -12,6 +12,7 @@ signal event_signal(msg)
 # Dialog
 signal dialog_started(dialog, actioanable)
 signal dialog_finished
+signal dialog_transition
 
 
 ## Player

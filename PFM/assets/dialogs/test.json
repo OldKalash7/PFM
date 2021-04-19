@@ -5,14 +5,13 @@
             "display":"Player", 
             "line":"Esto es una mesa, no creo que sea importante ahora.",
             "callbacks": [],
-            "disregard": false,
             "pointer": 1
         },
     "1":{   "type":"normal",
             "display":"Player", 
             "line":"Debería dejarlo por ahora",
             "callbacks": [],
-            "disregard": false,
+            "repete": true,
             "pointer": -1
 
         }

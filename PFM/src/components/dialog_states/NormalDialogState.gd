@@ -50,14 +50,27 @@ func process_callbacks() -> void:
 
 
 func _input(event) -> void:
-	if Input.is_action_just_released("enter"):
+	
+	if Input.is_action_pressed("enter"):
+		
 		# Desconecta el input para que el jugador solo pulse enter una vez
 		set_process_input(false)
-		# Avanzar la entrada del dialogo en base al puntero de la entrada actual the fuck is that
-		dialog.advance_entrie()
-		# Llamar a DialogManager para que genere
-		print(get_parent().name)
-		get_parent().transition()
+		
+		# Llamar a DialogManager para que se ocupe de la transicion al siguiente estado
+
+		if !dialog.has_finished():
+			dialog.advance_entrie()
+			Main.EVENTS_LIST.emit_signal("dialog_transition")
+		else:
+			print("dialogo_acabado")
+			
+			for i in displays:
+				i.hide_text()
+			
+				Main.EVENTS_LIST.emit_signal("dialog_finished")
+		
+			
+		
 		
 
 

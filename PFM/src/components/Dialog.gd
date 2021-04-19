@@ -43,6 +43,14 @@ func get_current_pointer() -> int:
 func get_dialog_tree() -> Dictionary:
 	return _dialog_tree
 
+
+func is_repeated_mode() -> bool:
+	
+	if get_current_pointer() == -1:
+		return _current_entrie["repete"] == true
+	else:
+		return false
+
 func current_entrie_has_choices() -> bool:
 	return _current_entrie["type"] == "decision"
 		
@@ -63,3 +71,6 @@ func advance_entrie() -> void:
 	# TODO revisar esto
 	_current_entrie = _dialog_tree[String(_current_entrie["pointer"])]
 	_dialog_pointer = _current_entrie["pointer"]
+	
+	if _dialog_pointer == -1:
+		_finished = true

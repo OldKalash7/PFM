@@ -23,7 +23,8 @@ func _ready():
 
 
 	Main.EVENTS_LIST.connect("dialog_started",self,"on_dialog_started")
-	Main.EVENTS_LIST.connect("dialog_finished",self,"on_dialog_started")
+	Main.EVENTS_LIST.connect("dialog_finished",self,"on_dialog_finished")
+	Main.EVENTS_LIST.connect("dialog_transition",self,"on_dialog_advance")
 
 	# Get estado inicial
 	dialog_state = avaliable_states.get_node("IDLE_STATE")
@@ -35,12 +36,10 @@ func _ready():
 
 # Cambia a un nuevo estado
 func transition() -> void:
-	
+	print("DEBUG --> TRANSITION")
 	# Logica de los dialogos aqui
 
-	if actionable.dialog.has_finished():
-		print("DIALOGO ACABADO O NO HAY DIALOGO")
-	elif actionable.dialog.current_entrie_has_choices():
+	if actionable.dialog.current_entrie_has_choices():
 		print("Este dialogo tiene decisiones")
 	else:
 		print("Dialogo normal al que le quedan entradas")
@@ -49,15 +48,21 @@ func transition() -> void:
 	dialog_state.enter(actionable.dialog)
 	dialog_state.process_dialog()
 
-
+func on_dialog_advance() -> void:
+	print("on_dialog_advance")
+	transition()
 
 	# TODO quitar el primer parametro
 func on_dialog_started(dialog_item,new_actionable) -> void:
+
 	self.actionable = new_actionable
-	Main.EVENTS_LIST.emit_signal("player_pause")
 	print("ACTIONABLE NAME --> " + new_actionable.name)
 
-	transition()
+	if actionable.dialog.has_finished() && !actionable.dialog.is_repeated_mode():
+		print("No se repite el dialogo")	
+	else:
+		Main.EVENTS_LIST.emit_signal("player_pause")
+		transition()
 	
 	
 
@@ -67,5 +72,9 @@ func on_dialog_started(dialog_item,new_actionable) -> void:
 # Called when a dialog is finished, Unpauses player
 func on_dialog_finished() -> void:
 	Main.EVENTS_LIST.emit_signal("player_resume")
+
+	# Hide all displays
+
+	# Hide choiceDisplayer
 
 	
