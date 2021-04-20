@@ -6,7 +6,7 @@
             
             "decisiones":
             {
-                "0":["Recoger la llave del suelo",[],2],
+                "0":["Recoger la llave del suelo",["vanish_test"],2],
                 "1":["Dejar la llave donde está",[],1]
                 
             },

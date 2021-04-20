@@ -10,7 +10,7 @@ func enter( args : Dictionary) -> void:
 	#player.linear_velocity = Vector2.ZERO This fails
 	owner.linear_velocity = Vector2.ZERO
 	#print("Entrado en IDLE STATE")
-	Main.EVENTS_LIST.emit_signal("change_animation","side_idle",false)
+	#Main.EVENTS_LIST.emit_signal("change_animation","side_idle",false)
 
 func exit() -> void:
 	pass

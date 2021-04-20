@@ -50,8 +50,16 @@ func process_dialog() -> void:
 	display.display(dialog.get_curent_entrie_line())
 
 
-func process_callbacks() -> void:
-	print("Override this function")
+func process_decision_callbacks(decision_index) -> void:
+
+	var callbacks : Array = dialog.get_entrie_callbacks_for_decision(decision_index)
+
+	# Procesa las callbacks si hay
+	if callbacks != null && !callbacks.empty():
+		
+		for i in callbacks:
+			# Procesar
+			Main.EVENTS_GAME.emit_signal(i)
 
 
 # Callback para cuando termina la animación de dibujado de una linea
@@ -69,5 +77,6 @@ func on_timeout() -> void:
 
 
 func on_choice_selected(index : int) -> void:
+	process_decision_callbacks(index)
 	dialog.advance_specific_entrie(index)
 	Main.EVENTS_LIST.emit_signal("dialog_transition")

@@ -12,6 +12,7 @@
             "line":"Debería dejarlo por ahora",
             "callbacks": [],
             "repete": true,
+	    "restart":false,
             "pointer": -1
 
         }

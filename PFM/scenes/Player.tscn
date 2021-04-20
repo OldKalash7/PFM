@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://src/actors/Player.gd" type="Script" id=2]
@@ -13,170 +13,223 @@
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
-atlas = ExtResource( 9 )
+atlas = ExtResource( 7 )
 region = Rect2( 0, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
-atlas = ExtResource( 9 )
+atlas = ExtResource( 7 )
 region = Rect2( 64, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=3]
 flags = 4
-atlas = ExtResource( 9 )
+atlas = ExtResource( 7 )
 region = Rect2( 128, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=4]
 flags = 4
-atlas = ExtResource( 9 )
+atlas = ExtResource( 7 )
 region = Rect2( 192, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=5]
 flags = 4
-atlas = ExtResource( 9 )
+atlas = ExtResource( 7 )
 region = Rect2( 0, 64, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=6]
 flags = 4
-atlas = ExtResource( 9 )
-region = Rect2( 64, 64, 64, 64 )
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=7]
 flags = 4
-atlas = ExtResource( 8 )
-region = Rect2( 0, 0, 64, 64 )
+atlas = ExtResource( 6 )
+region = Rect2( 64, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=8]
 flags = 4
-atlas = ExtResource( 8 )
-region = Rect2( 64, 0, 64, 64 )
+atlas = ExtResource( 6 )
+region = Rect2( 128, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=9]
 flags = 4
-atlas = ExtResource( 8 )
-region = Rect2( 128, 0, 64, 64 )
+atlas = ExtResource( 6 )
+region = Rect2( 192, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=10]
 flags = 4
-atlas = ExtResource( 8 )
-region = Rect2( 192, 0, 64, 64 )
+atlas = ExtResource( 6 )
+region = Rect2( 0, 64, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=11]
 flags = 4
-atlas = ExtResource( 8 )
-region = Rect2( 0, 64, 64, 64 )
+atlas = ExtResource( 6 )
+region = Rect2( 64, 64, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=12]
 flags = 4
 atlas = ExtResource( 8 )
-region = Rect2( 64, 64, 64, 64 )
+region = Rect2( 0, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=13]
 flags = 4
-atlas = ExtResource( 6 )
-region = Rect2( 0, 0, 64, 64 )
+atlas = ExtResource( 8 )
+region = Rect2( 64, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=14]
 flags = 4
-atlas = ExtResource( 6 )
-region = Rect2( 64, 0, 64, 64 )
+atlas = ExtResource( 8 )
+region = Rect2( 128, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=15]
 flags = 4
-atlas = ExtResource( 6 )
-region = Rect2( 128, 0, 64, 64 )
+atlas = ExtResource( 8 )
+region = Rect2( 192, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=16]
 flags = 4
-atlas = ExtResource( 6 )
-region = Rect2( 192, 0, 64, 64 )
+atlas = ExtResource( 8 )
+region = Rect2( 0, 64, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=17]
 flags = 4
-atlas = ExtResource( 6 )
-region = Rect2( 0, 64, 64, 64 )
+atlas = ExtResource( 8 )
+region = Rect2( 64, 64, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=18]
 flags = 4
-atlas = ExtResource( 6 )
-region = Rect2( 64, 64, 64, 64 )
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=19]
 flags = 4
-atlas = ExtResource( 7 )
-region = Rect2( 0, 0, 64, 64 )
+atlas = ExtResource( 9 )
+region = Rect2( 64, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=20]
 flags = 4
-atlas = ExtResource( 7 )
-region = Rect2( 64, 0, 64, 64 )
+atlas = ExtResource( 9 )
+region = Rect2( 128, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=21]
 flags = 4
-atlas = ExtResource( 7 )
-region = Rect2( 128, 0, 64, 64 )
+atlas = ExtResource( 9 )
+region = Rect2( 192, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=22]
 flags = 4
-atlas = ExtResource( 7 )
-region = Rect2( 192, 0, 64, 64 )
+atlas = ExtResource( 9 )
+region = Rect2( 0, 64, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=23]
 flags = 4
-atlas = ExtResource( 7 )
+atlas = ExtResource( 9 )
+region = Rect2( 64, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=24]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=25]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=26]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=27]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=28]
+flags = 4
+atlas = ExtResource( 8 )
 region = Rect2( 0, 64, 64, 64 )
 
-[sub_resource type="SpriteFrames" id=24]
+[sub_resource type="AtlasTexture" id=29]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 64, 64, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=30]
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
 "loop": true,
-"name": "down_walk",
+"name": "side_idle",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
-"loop": true,
-"name": "side_walk",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ) ],
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
 "loop": true,
 "name": "up_walk",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ) ],
+"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
 "loop": true,
-"name": "side_idle",
+"name": "side_walk",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ) ],
+"loop": true,
+"name": "down_walk",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
 "name": "test",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ) ],
+"loop": true,
+"name": "left_walk",
+"speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=25]
+[sub_resource type="RectangleShape2D" id=31]
 extents = Vector2( 32.2809, 30.8903 )
 
-[sub_resource type="Animation" id=26]
-length = 3.0
+[sub_resource type="Animation" id=32]
+resource_name = "left_idle"
+length = 2.0
 loop = true
+step = 0.3
 tracks/0/type = "value"
-tracks/0/path = NodePath("Animations/side_idle:frame")
+tracks/0/path = NodePath("Animations/left_idle:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1, 2, 3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 1, 1, 1, 1 ]
+"values": [ 0, 1, 2, 3, 4 ]
 }
 
-[sub_resource type="Animation" id=27]
-resource_name = "test"
+[sub_resource type="Animation" id=36]
+resource_name = "right_idle"
+length = 3.0
+loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Animations/side_idle:frame")
+tracks/0/path = NodePath("Animations/right_idle:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8, 1.2, 1.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4 ]
+}
+
+[sub_resource type="Animation" id=33]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Animations/left_idle:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -188,9 +241,9 @@ tracks/0/keys = {
 "values": [  ]
 }
 
-[sub_resource type="AnimationNodeStateMachine" id=28]
+[sub_resource type="AnimationNodeStateMachine" id=34]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=29]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=35]
 
 [node name="Player" type="KinematicBody2D" groups=[
 "persistencia",
@@ -200,12 +253,14 @@ script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 1.5, 1.5 )
-frames = SubResource( 24 )
-animation = "down_walk"
+frames = SubResource( 30 )
+animation = "left_walk"
+frame = 2
 playing = true
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 25 )
+shape = SubResource( 31 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -221,33 +276,69 @@ script = ExtResource( 5 )
 script = ExtResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/side_idle = SubResource( 26 )
-anims/test = SubResource( 27 )
+anims/left_idle = SubResource( 32 )
+anims/right_idle = SubResource( 36 )
+anims/test = SubResource( 33 )
 
 [node name="PlayerDisplay" parent="." instance=ExtResource( 10 )]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 28 )
-parameters/playback = SubResource( 29 )
+tree_root = SubResource( 34 )
+parameters/playback = SubResource( 35 )
 
 [node name="Animations" type="Node" parent="."]
 
-[node name="side_idle" type="Sprite" parent="Animations"]
+[node name="left_idle" type="Sprite" parent="Animations"]
 visible = false
 texture = ExtResource( 7 )
 vframes = 2
 hframes = 4
-frame = 1
 
-[node name="side_idle_flip" type="Sprite" parent="Animations"]
+[node name="right_idle" type="Sprite" parent="Animations"]
 visible = false
 texture = ExtResource( 7 )
 flip_h = true
 vframes = 2
 hframes = 4
 
-[node name="side_move" type="Sprite" parent="Animations"]
+[node name="top_idle" type="Sprite" parent="Animations"]
 visible = false
+texture = ExtResource( 7 )
+vframes = 2
+hframes = 4
+frame = 1
 
-[node name="side_move_flip" type="Sprite" parent="Animations"]
+[node name="bot_idle" type="Sprite" parent="Animations"]
 visible = false
+texture = ExtResource( 7 )
+vframes = 2
+hframes = 4
+frame = 1
+
+[node name="right_walk" type="Sprite" parent="Animations"]
+visible = false
+texture = ExtResource( 7 )
+vframes = 2
+hframes = 4
+frame = 1
+
+[node name="left_walk" type="Sprite" parent="Animations"]
+visible = false
+texture = ExtResource( 7 )
+vframes = 2
+hframes = 4
+frame = 1
+
+[node name="top_walk" type="Sprite" parent="Animations"]
+visible = false
+texture = ExtResource( 7 )
+vframes = 2
+hframes = 4
+frame = 1
+
+[node name="bot_walk" type="Sprite" parent="Animations"]
+visible = false
+texture = ExtResource( 7 )
+vframes = 2
+hframes = 4
+frame = 1

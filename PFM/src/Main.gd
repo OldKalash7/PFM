@@ -5,7 +5,7 @@ extends Node
 const save_path : String = "res://savegame.dat"
 
 onready var EVENTS_LIST : Events = Events.new()
-
+onready var EVENTS_GAME : GameEvents = GameEvents.new()
 
 func exit() -> void:
 	get_tree().quit()

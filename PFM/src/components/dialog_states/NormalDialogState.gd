@@ -46,9 +46,9 @@ func process_callbacks() -> void:
 	# Procesa las callbacks si hay
 	if callbacks != null && !callbacks.empty():
 		
-		for callback in callbacks:
+		for i in callbacks:
 			# Procesar
-			pass
+			Main.EVENTS_GAME.emit_signal(i)
 
 
 func _input(event) -> void:
@@ -68,8 +68,12 @@ func _input(event) -> void:
 			
 			for i in displays:
 				i.hide_text()
-			
 				Main.EVENTS_LIST.emit_signal("dialog_finished")
+
+				# Si ha terminado el dialogo pero tiene el modo repeat, prepararlo para que se repita la siguiente vez
+				if dialog.is_restart_mode_on():
+					dialog.restart()
+				
 		
 			
 		

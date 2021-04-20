@@ -42,6 +42,10 @@ func process_dialog() -> void:
 func process_callbacks() -> void:
 	print("Override this function")
 
+
+func process_decision_callbacks(decision_index) -> void:
+	print("Override this function")
+
 # Callback para cuando termina la animación de dibujado de una linea
 func on_line_displayed() -> void:
 	pass

@@ -3,16 +3,19 @@ extends Node
 
 class_name Dialog
 
-enum DIALOG_STATES {DISPLAYING, IDLE, IDLE_DECISION,FINISHED, PAUSED}
-
 const DECISION_POINTER : int = 2
+const DECISION_CALLBACKS : int = 1
 
-var _current_state 
+
+var _current_state
+
+
 var _dialog_tree : Dictionary
 var _current_entrie : Dictionary
 var _dialog_pointer : int
 var _finished : bool
 
+# Constructor
 
 func _init(dialog_tree):
 	_dialog_pointer = 0
@@ -21,7 +24,7 @@ func _init(dialog_tree):
 	_finished = false
 
 
-
+# Métodos públicos
 
 
 func has_finished() -> bool:
@@ -58,6 +61,18 @@ func is_repeated_mode() -> bool:
 	else:
 		return false
 
+func is_restart_mode_on() -> bool:
+	if get_current_pointer() == -1:
+		return _current_entrie["restart"] == true
+	else:
+		return false
+	
+func restart() -> void:
+	_finished = false
+	_current_entrie = _dialog_tree["0"]
+
+	
+
 func current_entrie_has_choices() -> bool:
 	return _current_entrie["type"] == "decision"
 		
@@ -68,7 +83,8 @@ func get_entrie_callbacks() -> Array:
 
 # Devuelve las callbacks de una decision de una entrada de tipo decision
 func get_entrie_callbacks_for_decision(decision_index) -> Array:
-	return _current_entrie["decisiones"][decision_index as String][1]
+		return _current_entrie["decisiones"][decision_index as String][DECISION_CALLBACKS]
+
 
 
 func get_curent_entrie_line() -> String:
@@ -77,6 +93,7 @@ func get_curent_entrie_line() -> String:
 func advance_entrie() -> void:
 	# TODO revisar esto
 	_current_entrie = _dialog_tree[String(_current_entrie["pointer"])]
+	# TOOD cambiar dialog pointer, creo que no es necesario deberia irse fuera
 	_dialog_pointer = _current_entrie["pointer"]
 	
 	if _dialog_pointer == -1:
@@ -84,8 +101,8 @@ func advance_entrie() -> void:
 
 # Situa el pointer a la entrada especifica de una decision
 func advance_specific_entrie(decision_index : int) -> void:
-	#_current_entrie = _dialog_tree[String(_current_entrie["pointer"])]["decisiones"][String(decision_index)][DECISION_POINTER]
+
 	_current_entrie = _dialog_tree[String((_current_entrie["decisiones"][String(decision_index)][DECISION_POINTER] ))]
-	
+	_dialog_pointer = _current_entrie["pointer"]
 	if _dialog_pointer == -1:
 		_finished = true

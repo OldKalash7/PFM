@@ -1,0 +1,6 @@
+extends Node
+
+# Singleton para controlar los callbacks
+
+class_name GameEvents
+
