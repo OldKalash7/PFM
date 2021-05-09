@@ -1,0 +1,7 @@
+extends Node
+
+
+class_name Save
+
+var current_level
+var visited_levels

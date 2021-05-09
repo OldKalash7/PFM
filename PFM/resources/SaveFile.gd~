@@ -1,0 +1,8 @@
+extends Resource
+
+
+class_name SaveFile
+
+
+export (String) var game_version : String
+export (Dictionary) var data : Dictionary

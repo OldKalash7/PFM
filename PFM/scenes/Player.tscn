@@ -12,27 +12,22 @@
 [ext_resource path="res://scenes/components/Display.tscn" type="PackedScene" id=10]
 
 [sub_resource type="AtlasTexture" id=1]
-flags = 4
 atlas = ExtResource( 7 )
 region = Rect2( 0, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=2]
-flags = 4
 atlas = ExtResource( 7 )
 region = Rect2( 64, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=3]
-flags = 4
 atlas = ExtResource( 7 )
 region = Rect2( 128, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=4]
-flags = 4
 atlas = ExtResource( 7 )
 region = Rect2( 192, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=5]
-flags = 4
 atlas = ExtResource( 7 )
 region = Rect2( 0, 64, 64, 64 )
 
@@ -67,92 +62,74 @@ atlas = ExtResource( 6 )
 region = Rect2( 64, 64, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=12]
-flags = 4
 atlas = ExtResource( 8 )
 region = Rect2( 0, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=13]
-flags = 4
 atlas = ExtResource( 8 )
 region = Rect2( 64, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=14]
-flags = 4
 atlas = ExtResource( 8 )
 region = Rect2( 128, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=15]
-flags = 4
 atlas = ExtResource( 8 )
 region = Rect2( 192, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=16]
-flags = 4
 atlas = ExtResource( 8 )
 region = Rect2( 0, 64, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=17]
-flags = 4
 atlas = ExtResource( 8 )
 region = Rect2( 64, 64, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=18]
-flags = 4
 atlas = ExtResource( 9 )
 region = Rect2( 0, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=19]
-flags = 4
 atlas = ExtResource( 9 )
 region = Rect2( 64, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=20]
-flags = 4
 atlas = ExtResource( 9 )
 region = Rect2( 128, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=21]
-flags = 4
 atlas = ExtResource( 9 )
 region = Rect2( 192, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=22]
-flags = 4
 atlas = ExtResource( 9 )
 region = Rect2( 0, 64, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=23]
-flags = 4
 atlas = ExtResource( 9 )
 region = Rect2( 64, 64, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=24]
-flags = 4
 atlas = ExtResource( 8 )
 region = Rect2( 0, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=25]
-flags = 4
 atlas = ExtResource( 8 )
 region = Rect2( 64, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=26]
-flags = 4
 atlas = ExtResource( 8 )
 region = Rect2( 128, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=27]
-flags = 4
 atlas = ExtResource( 8 )
 region = Rect2( 192, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=28]
-flags = 4
 atlas = ExtResource( 8 )
 region = Rect2( 0, 64, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=29]
-flags = 4
 atlas = ExtResource( 8 )
 region = Rect2( 64, 64, 64, 64 )
 
@@ -210,7 +187,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4 ]
 }
 
-[sub_resource type="Animation" id=36]
+[sub_resource type="Animation" id=33]
 resource_name = "right_idle"
 length = 3.0
 loop = true
@@ -227,7 +204,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4 ]
 }
 
-[sub_resource type="Animation" id=33]
+[sub_resource type="Animation" id=34]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Animations/left_idle:frame")
 tracks/0/interp = 1
@@ -241,21 +218,18 @@ tracks/0/keys = {
 "values": [  ]
 }
 
-[sub_resource type="AnimationNodeStateMachine" id=34]
+[sub_resource type="AnimationNodeStateMachine" id=35]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=35]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=36]
 
-[node name="Player" type="KinematicBody2D" groups=[
-"persistencia",
-]]
+[node name="Player" type="KinematicBody2D"]
 collision_mask = 2
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 1.5, 1.5 )
 frames = SubResource( 30 )
 animation = "left_walk"
-frame = 2
+frame = 1
 playing = true
 flip_h = true
 
@@ -277,68 +251,68 @@ script = ExtResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/left_idle = SubResource( 32 )
-anims/right_idle = SubResource( 36 )
-anims/test = SubResource( 33 )
+anims/right_idle = SubResource( 33 )
+anims/test = SubResource( 34 )
 
 [node name="PlayerDisplay" parent="." instance=ExtResource( 10 )]
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 34 )
-parameters/playback = SubResource( 35 )
+tree_root = SubResource( 35 )
+parameters/playback = SubResource( 36 )
 
 [node name="Animations" type="Node" parent="."]
 
 [node name="left_idle" type="Sprite" parent="Animations"]
 visible = false
 texture = ExtResource( 7 )
-vframes = 2
 hframes = 4
+vframes = 2
 
 [node name="right_idle" type="Sprite" parent="Animations"]
 visible = false
 texture = ExtResource( 7 )
 flip_h = true
-vframes = 2
 hframes = 4
+vframes = 2
 
 [node name="top_idle" type="Sprite" parent="Animations"]
 visible = false
 texture = ExtResource( 7 )
-vframes = 2
 hframes = 4
+vframes = 2
 frame = 1
 
 [node name="bot_idle" type="Sprite" parent="Animations"]
 visible = false
 texture = ExtResource( 7 )
-vframes = 2
 hframes = 4
+vframes = 2
 frame = 1
 
 [node name="right_walk" type="Sprite" parent="Animations"]
 visible = false
 texture = ExtResource( 7 )
-vframes = 2
 hframes = 4
+vframes = 2
 frame = 1
 
 [node name="left_walk" type="Sprite" parent="Animations"]
 visible = false
 texture = ExtResource( 7 )
-vframes = 2
 hframes = 4
+vframes = 2
 frame = 1
 
 [node name="top_walk" type="Sprite" parent="Animations"]
 visible = false
 texture = ExtResource( 7 )
-vframes = 2
 hframes = 4
+vframes = 2
 frame = 1
 
 [node name="bot_walk" type="Sprite" parent="Animations"]
 visible = false
 texture = ExtResource( 7 )
-vframes = 2
 hframes = 4
+vframes = 2
 frame = 1

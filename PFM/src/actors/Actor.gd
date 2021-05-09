@@ -9,3 +9,9 @@ var speed : float = 200
 
 
 
+func save(save_file : Resource) -> void:
+	pass
+
+
+func load(save_file : Resource) -> void:
+	pass

@@ -3,6 +3,7 @@ extends Actor
 signal entered_level
 signal player_ready(self_instance)
 
+export (String) var URI = "current_player_instance_" + name
 # const UID : String = "PLAYER" # TODO no hace falta porque ya tenemos el nombre de la "clase" de gdscript
 
 # Determina el camino que realizara el personaje
@@ -95,8 +96,8 @@ func _unhandled_key_input(event):
 		
 
 # Funciones de guardado
-
-func save() -> Dictionary:
+# DEPRECATED
+func save_this() -> Dictionary:
 
 	var save_dictionary = {
 		player_position = global_position
@@ -104,8 +105,7 @@ func save() -> Dictionary:
 
 	return save_dictionary
 
-func load() -> void:
-	pass
+
 
 
 func save_data() -> void:
@@ -138,3 +138,20 @@ func load_data() -> bool:
 		return true
 	 
 	return false
+
+
+func save(save_file : Resource) -> void:
+	var save_dic : Dictionary
+
+	save_dic['pos_x'] = self.global_position.x
+	save_dic['pos_y'] = self.global_position.y
+
+	# Store on save_file dictionary
+	save_file.data[URI] = save_dic
+
+func load(save_file : Resource) -> void:
+	var save_dic : Dictionary = save_file.data[URI]
+
+	# TODO look if this can be automated with a loop
+	self.global_position.x = save_dic['pos_x']
+	self.global_position.x = save_dic['pos_y']
