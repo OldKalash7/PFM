@@ -1,0 +1,196 @@
+* Borrador Trabajo Final de Módulo
+** Introducción
+** Singleton y ServiceLocator, construyendo Main y otros sistemas
+   
+** La interfaz /Actionable/
+
+   Los diferentes items presentes en el juego han de producir algún tipo de respuesta o desencadenar un comportamiento según como el jugador interactúe con ellos. Para construir este diseño, la idea inicial podría pasar por dotar a una clase base a la que llamaremos *Item* de una serie de métodos y señales para que todos los demás items puedan sobreescribir esos métodos según como procedan. Este diseño inicial presenta dos problemas (incluidos muchos otros efectos secundarios que solo se podrían dejar ver en fases tardías del desarrollo).
+
+   En primer lugar, si se establecen los métodos en la clase base, estamos dotando obligatoriamente a todos los items de esos métodos de interacción, aunque no los sobresescriban. Resulta innecesario y además abre la puerta a posibles errores o comportamientos no esperados en cuanto se llame a uno de esos métodos en un item que no los sobrescribe. Se podría crear una clase de item distinta, no interactuable, pero llevaría a una duplicidad innecesaria
+
+   El segundo problema surge cuando necesitamos que otros objetos y o clases dispongan también de una API que les permita interactuar con el jugador, por ejemplo, NPC's. La solución inicial de la herencia ya no es válida puesto que todos los personajes heredan de Actor y este de KinematicBody2D y no existe herencia múltiple en GDScript.
+
+   Una solución a este problema es implementar una interfaz o clase abstracta a la manera de implements de Java o delegate de C# Sin embargo, GDScript no proporciona esta funcionalidad. En su lugar recurre a un paradigma conocido como "duck typing" que consiste en preguntar a una clase si dispone de X método y en caso afirmativo, llamarlo, para evitar un error.
+
+   #+BEGIN_SRC gdscript
+   if node.has_method('test'):
+       node.test()
+   else:
+       print(node.name + ' No tiene el método solicitado')   
+   #+END_SRC+
+   
+** El patrón Observer, las Signals de Godot y su uso en la clase Events
+
+   El patrón de diseño /Observer/ es uno de los más utilizados en el desarrollo de videojuegos. Se basa en el siguiente principio:
+
+   [cita de GameDesignPatterns]
+
+   El diseño básico es de el objeto observado o interesado se le proporciona un objeto que extiende Observer, es decir un Observador concreto. Observer dispone de un método abstracto onNotify, que cada observador concreto sobreescribe según sus necesidades. En cuanto se cumpla la condición requerida en el objeto Observado, esté llamará a su observador y le pedirá que ejecuté onNotify a modo de callback.
+
+   Su gran utilidad reside en que permite separar y desacoplar código o sistemas de los que depende un mismo sujeto, pero no es ideal que vayan necesariamente juntos. O cuando se trabaja a más bajo nivel, separar código del motor (físicas, renderizado, input) del código de la lógica del juego o scripting. Algunos ejemplos paradigmáticos son un sistema de logros que registra determinados hitos alcanzados por el jugador o el HUD y otros elementos de la UI que no se quieren hacer dependientes de Player
+
+   Supongamos este último caso. Tenemos un personaje jugador que tiene un método para recibir daño que se llama cada vez que un NPC alcanza al personaje.
+
+   #+BEGIN_SRC gdscript
+     func get_hit(damage : int) -> void:
+
+	# Procesar la lógica
+	if (life_points - damage) <= 0:
+	   ## Mostrar en el hud que los puntos de vida del jugador han bajado
+	   # Si ha muerto la puntuación es o 0 o negativa, en cuyo caso hay que convertirla
+	   # a 0 porqué no se puede tener -2 de vida. Se necesita un cast a String porque los controles
+	   # de la interfaz no aceptan enteros
+	   health_display.text = 0 as String
+	   die()
+	else:
+	   life_points -= damage
+	   health_display.text = life_points as String
+   #+END_SRC
+
+   Como podemos ver, a nuestro método de procesar la lógica de recibir daño se le suman dos líneas repetidas (o colocar otra estructura de selección antes de la que procesa la lógica) para actualizar por pantalla los puntos de vida que le quedan al personaje y así el jugador pueda saberlo para tener feedback. De este pequeño fragmento se pueden extraer tres conclusiones rápidas. Primero: health_display no deja de ser un frontend de life_points para mostrarlo por pantalla cuando cambia, hay relación pero es más bien un relación pasiva que directa e inmediata. Segundo: esta manera de escribirlo requiere tener una referencia directa a esa porción de interfaz, por lo que ya se está generado dependencia. Tercero: aunque parezca un ejemplo inocente, la cantidad de código del método puede crecer rápidamente a medida que se sumen otros sistemas o componentes, volviendo la clase Player inmantenible, puesto que cada vez que se quiera hacer un pequeño cambio en la lógica es necesario navegar por un mar de código que referencia cosas distintas y no tiene nada que ver con como se procesa esa lógica. Ahora comparemos el siguiente ejemplo implementado con signals de Godot.
+
+
+      #+BEGIN_SRC gdscript
+
+	signal damaged(damage)
+
+	class_name Player
+
+	    func get_hit(damage : int) -> void:
+
+		self.emit_signal("damaged",damage)
+
+		if (life_points - damage) <= 0:
+		    die()
+		else:
+		    life_points -= damage
+		
+   #+END_SRC
+
+
+ #+BEGIN_SRC gdscript
+
+
+   class_name HealthDisplayer
+
+   func _ready():
+
+	get_tree().get_current_scene().get_node("Player").connect("damaged",self,"_on_damaged")
+
+   func _on_damaged(damage : int):
+	if (life_label.text as int - damage) <=0:
+		 damage = 0
+	life_label.text = damage as String
+#+END_SRC
+
+Aunque todavía no hemos introducido el concepto de las señales de Godot, se puede apreciar el cambio notable. Ahora tenemos separado el código en dos clases distintas sin referencias fuertes entre ellas. Cuando se produce el impacto y se llama al método =hit()= lo primer que este hace es lanzar al aire una aviso (en forma de señal) diciendo que ha recibido daño y cuanto daño ha recibido. En este punto, la clase =HealthDisplayer= que cuando entró en escena, ejecutó su método =ready()= (NOTA SOBRE READY) y conectó la señal a su método =_on_damaged=, ejecuta dicho método y hace la actualización pertinente en el hud. Rápidamente, vemos que:
+
+1. El código está mucho más compartimentado y organizado, ahora cada sistema se ocupa solo de lo que tiene que hacer y solo recibe la información que necesita.
+
+2. Se pueden conectar a la señal todos los objetos que se quiera, por lo que se puede añadir más funcionalidad sin hacer crecer la base de código de la clase Player.
+
+3. Si por alguna razón la conexión fallase porque en la escena no se encuentra el nodo Player, no se produciría ninguna excepción ni crash, el juego seguiria funcionando sin esa conexión. Este acoplamiento débil permite que pueda existir ambas clases por separado sin que esten las dos presentes en todo momento en la escena.
+
+*** Signals
+
+Ya hemos visto brevemente la importancia de Observer en el contexto para el desarrollo de videojuegos, junto con una pequeña introducción al concepto de /Signal/ o señal. Las /Signals/ de Godot (Signals en adelante) son la propia implementación, built-in del motor de este patrón. Como se ha visto, cualquier script asociado a un objeto puede declarar una señal, con o sin argumentos con la siguiente sentencia:
+
+=signal nombre_señal=
+=signal nombre_señal_con_argumentos(arg1,arg2,arg3)=
+
+Una vez declaradas en el script, tiene un acceso global dentro del mismo y cualquier método o función puede emitir una señal del siguiente modo:
+
+=self.emit_signal("nombre_señal")=
+
+En este punto, cualquier nodo que haya conectado esta señal, llamará al método asociado a la conexión, ejecutando ese método a modo de callback pudiendo reaccionar a acciones y comportamientos, como por ejemplo, cuando se termina una animación, un Timer, un NPC entra en pantalla. Para poder establecer conexiones de este modo, es necesario que el nodo u objeto que conecta la señal (o que se utiliza de puente para realizar la conexión) tenga acceso a una referencia del objeto emisor, es el único acoplamiento que existe en el caso de las señales
+
+=objeto_que_emite.connect("nombre_señal",nodo_al_que_se_conecta_la_señal,"metodo_al_que_se_conecta")=
+
+Algunos aspectos adicionales a destacar son:
+
+1. Los nodos propios de Godot ya vienen con sus propias señales de serie. Por ejemplo, un nodo Timer tiene una señal "timeout" que emite cuando el Timer llega a 0
+
+2. Se puede conectar señales de manera gráfica desde el inspector del Editor de Godot o por código mediante una llamada a  de un objeto connect(). Este segundo método proporciona mayor libertad para realizar conexiones complejas
+
+3. Un objeto que si tiene acceso al emisor puede hacer de puente para conectar la señal a otro nodo del árbol de escena al que el primero no tiene acceso directo o no resulta conveniente.
+
+*** Events un Singleton de intermediario
+
+Por regla general, la documentación y las buenas prácticas de desarrollo en Godot aconsejan llamar a métodos con referencias directas a los nodos y objetos hacia abajo, mientras que para llamar a nodos que se encuentran arriba, lo ideal es utilizar señales. En la introducción vimos brevemente como se organiza el árbol de escenas de Godot y los nodos. Se compone de estructuras de nodos que tienen otros nodos como hijos y así sucesivamente. Esto hace que a veces resulte difícil establecer conexiones en tiempo de compilación de manera directa. Además en ocasiones resulta imposible ya que algunos nodos se instancian en tiempo de ejecución.
+
+Una solución de diseño para este problema es crear una clase especial, a la que llamaremos Events que declara todas las señales que vamos a utilizar. Después se crea un Singleton de este clase o se instancia como objeto parte de otro Singleton (En el caso del proyecto, Events es un objeto que pertenece al Singleton *Main*) Garantizando que estará presente en todo momento en el árbol de escenas y accesible desde cualquier punto.
+
+Una vez hecho esto, ya se puede acceder a Events para emitir y conectar señales a conveniencia
+
+#+BEGIN_SRC gdscript
+  Main.EVENTS.emit_signal("test")
+  Main.EVENTS.connect("test",self,"_on_test")
+#+END_SRC
+
+De esta manera, ya podemos realizar todo tipo de conexiones que se necesiten, a diferentes alturas y entre diferentes nodos, pasando todas por un mismo punto. Sin embargo, la flexibilidad que aporta este diseño viene a expensas de dos contrapartidas notables. La primera es desde el punto de vista de la organización del código. Conectando señales de manera estándar asegura que el nodo que emite la señal es el que la declara. Con un simple vistazo al código de ese nodo, es posible ver que señales emite y para que qué. Al declararse todo en esta clase externa Events, se pierde cierto significado de que hace cada elemento, esto se puede suplir con comentarios pero no tienen el mismo efecto. Esto lleva al segundo problema: depuración más complicada. Similar al problema típico de los Singletons, el hecho de que se puedan llamar desde cualquier parte hace que a veces sea difícil y complejo encontrar un fragmento de código que esta causando un error al llamar al Singleton. Si no hay acceso global, es mucho más sencillo aislar ese fragmento y localizar rápidamente el error.
+
+No existe un diseño perfecto, todos tienen cualidades y defectos 
+
+** Máquinas de estados para controlar cambiar el comportamiento según el input
+** Sistema de guardado, funciomamiento y componentes
+*** Introducción
+*** Funcionamiento
+*** Componentes
+**** SaveSystem
+**** SaveGlobals
+**** SaveFile
+*** Transición de niveles con Travel
+** Sistema de Dialogo
+*** Objetos Dialog
+    El objeto *Dialog* traduce la estructura portable en JSON de los dialogos a un objeto para su uso en el juego por parte de DialogManager. Funciona a modo de stack o pila, con un atributo que contiene toda la estructura en forma de diccionario y otro que contiene el bloque actual en el que se ha quedado el dialogo.
+
+    Posee una api con la que otras clases pueden interactuar, hacer avanzar la pila y otras operaciones. Los objetos de este tipo se inicializan especificando en el editor el path hacia el recurso json que utilizará el objeto. Cuando entra en escena, carga el archivo, hace el parse del JSON e inicializa el objeto. Dialog dispone de métodos para poder cambiar el recurso e inicializar otro en tiempo de ejecución.
+*** DialogManager y gestión de los dialogos
+Esta clase es la encargada de procesar la lógica de los diálogos. Dentro del árbol de nodos pertenece al nivel. Cada nivel o escena puede tener un DialogManager. Si una escena no tiene, entonces no se podrán procesar diálogos y aunque haya objetos actioanble que los activen, nada sucederá.
+
+DialogManager funciona como una FSM (FiniteStateMachine). Cuando no esta activa se encuentra en modo idle a la espera de un dialogo. Cuando el jugador interacciona con un objeto Actionable que contiene un dialogo , este dispara la señal de empezar el dialogo. El DialogManager que transporta una referencia al actionable que la ha lanzado, recoge el objeto de dialogo (que es la parte que le interesa del Actionable) y empieza el bucle del dialogo, el movimiento del jugador se detiene. Dependiendo del tipo de nodo de dialogo, si es simple o de decisión, DialogManager entrará en un estado diferente para procesar el nodo. Cuando termina el dialogo, se emite la señal y se devuelve el control al jugador.
+
+*** Display
+    Uno de los primeros prototipos del sistema de dialogo tenía más o menos la siguiente estructura:
+
+    Un detalle relevante de este prototipo inicial es como la lógica del diálogo se encuentra acoplado con la animación que lo dibuja en pantalla. Es decir, la apariencia gráfica de los diálogos forma parte de como se procesas y no se pueden separar. Construir de este modo el sistema puede ser una opción válida, en especial si es específico para un caso concreto de uso o no se tiene pensado que sea extensible. Pero así, se estaría desaprovechando una oportunidad de crear un sistema más reutilizable.
+
+    En el videojuego narrativo /Night in the woods/ los diálogos de texto aparecen en bocadillos sobre la cabeza de cada uno de los personajes, como si fuese un cómic. En la visual novel /ESCISM/ los textos se dibujan en una terminal de ordenador en una pantalla, mientras que en el RPG /Fallout New Vegas/ los dialogos surguen en una caja de texto en la parte inferior de la pantalla. Todos los juegos anteriores pertenecen a géneros distintos pero tienen en común que el dialogo es una mecánica de juego clave.
+
+    Si conseguimos separar la lógica del dialogo de como se muestra, podremos reciclar el mismo sistema para otros juegos. No solo eso, en el mismo juego podremos emplearlo en contextos diferentes que requieran alterar como se muestran y se animan en pantalla.
+
+    Para el caso de Maven, los diálogos se dibujan lentamente sobre la cabeza de los personajes, no obstante, en versiones iniciales del desarrollo el texto aparecía en un panel de interfaz situado en la parte inferior de la pantalla a la manera de las Visual Novels
+
+    La clase *Display* ofrece esta funcionalidad. Una interfaz común que dispone de unos métodos para dibujar texto y mostrarlo por pantalla. Como lo haga recae en el nodo que implemente Dispaly. De este modo abstraemos el como se muestra gráficamente los dialogos. DialogManager puede interactuar con diversos Displays en escena, a los que les suministra línea de dialogo que estos consumen y hacen avanzar el dialogo.
+
+    El funcionamiento es el siguiente. Cada bloque de un dialogo tiene un atributo Display, que es el que usará para mostrarse. Este Display se especifica cuando se crean los dialogos. Por ejemplo, el personaje del jugador tiene un Display asociado llamado Player. Cuando DialogManager avanza un bloque y requiere mostrar el dialogo por pantalla, llama a todos los nodos que estan dentro del grupo /display/ dentro de la escena actual, busca el display requerido y lo utiliza para mostrar el dialogo. Si no encuentra dicho display porque no esta en la escena, siempre se puede especificar un display de respaldo o por defecto, que siempre esta presente y se puede utilizar. Cuando el display consume el bloque de texto asociado, devuelve el control a DisplayManager para que siga avanzando o termine el dialogo.
+    
+*** ChoiceDisplay
+    *ChoiceDisplay* es un caso especial de Display pensado para proporcionar un elemento de interfaz al jugador para tomar decisiones en aquellos dialogos que lo requieran. El sistema de dialogo que se ha construido para este proyecto ha sido ideado con soporte para dialogo con branching, es decir: dialogos e interacciones que permiten al jugador tomar decisiones y en base a esos inputs obtener respuestas diferentes de dialogo o que ocurran distintos eventos o modificaciones del entorno. Esta característica suele ser clave en muchos videojuegos RPG
+
+    Este nodo proporciona dicho soporte aunque se podría implementar de otro modo. La forma es de un panel que contiene un ItemList en el que se dibujan las diferentes opciones de dialogo en orden. El jugador puede elegir una opción haciendo click sobre ella con el ratón o seleccionandola con las teclas y pulsando Enter (En los controles del mando, se utiliza el stick y los botones). ChoiceDisplay funciona como una caja negra en cuanto a que solo recibe la información que tiene que mostrar, proporciona al jugador un elemento gráfico para que tome la decisión y después comunica hacia DialogManager el puntero de la decisión que se ha tomado para que este pueda gestionar el siguiente nodo de dialogo.
+** SimpleDialogTool
+*** Introducción y propósito
+    Desde las fases iniciales del diseño del juego, se optó por el formato JSON para almacenar la información de los diálogos sin procesar. Se escogió JSON por su versatilidad a la hora de guardar diferentes tipos de datos, la portabilidad (por si se decidiese cambiar de framework o sistema de trabajo) y porque se trataba de texto simple, por lo que lo convertían en un candidato ideal. No obstante, esta decisión acarreaba consigo una complicación: ¿Como se debería escribir los diferentes dialogos del juego?
+
+    La primera idea sería en JSON directamente. En seguida quedó descartada. Aunque se proporcionase una guía de estilo para escribir los dialogos, resulta de un formato poco agradable para dicha tarea y propenso a generar errores, pues requiere que todas las claves tenga el mismo nombre y este correctamente formateado. Redactar largas conversaciones en JSON  llevaría a cometer muchos errores de sintácticos a nivel de código y distraería a la persona que debe escribir de dicha tarea ya que su atención se dividiría entre el texto y la estricta sintaxis. Además, los equipos que desarrollan videojuegos a menudo se integran por personas de diferentes trasfondos, y no necesariamente se ha de saber programar para poder ocuparse del área narrativa de un videojuego.
+
+    Existe toda una gama de herramientas para hacer frente a este problema. Algunas implementan soluciones como lenguajes sintácticamente ligeros que luego son interpretados por un VM. Son el caso del motor para Visual Novels /RenPy/ hecho en Python o la herramineta /Yarn/ en C# Otras herramientas toman la aproximación de conectar diferentes nodos de información de manera gráfica y después generar un archivo con la información preparada para ser leída por el programa. Ejemplos de ello son /Twine/, /Ink/ o /Wiskers/. El programa que planteamos se basa en esta última aproximación.
+
+    SimpleDialogTool (En adelante SDT) es un programa de edición de diálogos gráfico construido en Godot que permite construir y después exportar dialogos a JSON y otros formatos. La herramienta trabaja con el esquema de dialogo pensado para el juego pero se podría extender y o modificar a otros sistemas. En cierta manera se trata de una herramienta agnóstica ya que no tiene en cuenta como se implemente después el sistema de diálogo, tan solo genera un JSON en base a la conexión entre los diferentes nodos.
+
+    A nivel interno hace uso de los nodos de la clase /GraphNode/ que representan los diferentes nodos de diálogo y de la clase /GraphEdit/ que proporciona el tablero y el fondo para realizar las conexiones.
+
+
+    
+
+*** Funcionamiento
+**** Controles y flujo de trabajo
+**** Tipos de Nodo
+     Los nodos que se pueden crear en SDT para construir los diferentes dialogos se llaman DialogNode. Existen de cuatro tipos: BeginNode, SimpleNode, ChoiceNode y EndNode. BeginNode es el nodo inicial y antecede a todos los demás. Solo puede haber uno en un proyecto e internamente tiene índice 0.
+**** Exportación
+** Conclusiones
+
+
+** ANEXOS
+   

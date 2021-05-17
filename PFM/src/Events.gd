@@ -23,4 +23,10 @@ signal player_resume # Reanudar proceso del input del jugador
 signal change_animation(new_animation,flip)
 
 
+# Levels
+signal level_entered(level_name)
 
+# SAVE SYSTEM
+
+signal save_game(savegame_name)
+signal load_game(savegame_name)

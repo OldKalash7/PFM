@@ -1,0 +1,118 @@
+% Created 2021-05-12 mié 17:27
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{kalaix}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={kalaix},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 27.2 (Org mode 9.4.4)}, 
+ pdflang={English}}
+\begin{document}
+
+\tableofcontents
+
+\section{Borrador Trabajo Final de Módulo}
+\label{sec:org2df177a}
+
+
+\subsection{La interfaz \emph{Actionable}}
+\label{sec:org297fb24}
+
+Los diferentes items presentes en el juego han de producir algún tipo de respuesta o desencadenar un comportamiento según como el jugador interactúe con ellos. Para construir este diseño, la idea inicial podría pasar por dotar a una clase base a la que llamaremos \textbf{Item} de una serie de métodos y señales para que todos los demás items puedan sobreescribir esos métodos según como procedan. Este diseño inicial presenta dos problemas (incluidos muchos otros efectos secundarios que solo se podrían dejar ver en fases tardías del desarrollo).
+
+En primer lugar, si se establecen los métodos en la clase base, estamos dotando obligatoriamente a todos los items de esos métodos de interacción, aunque no los sobresescriban. Resulta innecesario y además abre la puerta a posibles errores o comportamientos no esperados en cuanto se llame a uno de esos métodos en un item que no los sobrescribe. Se podría crear una clase de item distinta, no interactuable, pero llevaría a una duplicidad innecesaria
+
+El segundo problema surge cuando necesitamos que otros objetos y o clases dispongan también de una API que les permita interactuar con el jugador, por ejemplo, NPC's. La solución inicial de la herencia ya no es válida puesto que todos los personajes heredan de Actor y este de KinematicBody2D y no existe herencia múltiple en GDScript.
+
+Una solución a este problema es implementar una interfaz o clase abstracta a la manera de implements de Java o delegate de C\# Sin embargo, GDScript no proporciona esta funcionalidad. En su lugar recurre a un paradigma conocido como "duck typing" que consiste en preguntar a una clase si dispone de X método y en caso afirmativo, llamarlo, para evitar un error.
+
+\#+BEGIN\textsubscript{SRC} gdscript
+if node.has\textsubscript{method}('test'):
+    node.test()
+else:
+    print(node.name + ' No tiene el método solicitado')
+
+\#+END\textsubscript{SRC}+
+
+
+
+
+
+\subsection{El patrón Observer, las Signals de Godot y su uso en la clase Events}
+\label{sec:org6f02604}
+
+El patrón de diseño \emph{Observer} es uno de los más utilizados en el desarrollo de videojuegos. Se basa en el siguiente principio:
+
+[cita de GameDesignPatterns]
+
+El diseño básico es de el objeto observado o interesado se le proporciona un objeto que extiende Observer, es decir un Observador concreto. Observer dispone de un método abstracto onNotify, que cada observador concreto sobreescribe según sus necesidades. En cuanto se cumpla la condición requerida en el objeto Observado, esté llamará a su observador y le pedirá que ejecuté onNotify a modo de callback.
+
+Su gran utilidad reside en que permite separar y desacoplar código o sistemas de los que depende un mismo sujeto, pero no es ideal que vayan necesariamente juntos. O cuando se trabaja a más bajo nivel, separar código del motor (físicas, renderizado, input) del código de la lógica del juego o scripting. Algunos ejemplos paradigmáticos son un sistema de logros que registra determinados hitos alcanzados por el jugador o el HUD y otros elementos de la UI que no se quieren hacer dependientes de Player
+
+Supongamos este último caso. Tenemos un personaje jugador que tiene un método para recibir daño que se llama cada vez que un NPC alcanza al personaje.
+
+\begin{verbatim}
+func get_hit(damage : int) -> void:
+
+   # Procesar la lógica
+   if (life_points - damage) <= 0:
+      ## Mostrar en el hud que los puntos de vida del jugador han bajado
+      # Si ha muerto la puntuación es o 0 o negativa, en cuyo caso hay que convertirla
+      # a 0 porqué no se puede tener -2 de vida. Se necesita un cast a String porque los controles
+      # de la interfaz no aceptan enteros
+      health_display.text = 0 as String
+      die()
+   else:
+      life_points -= damage
+      health_display.text = life_points as String
+\end{verbatim}
+
+Como podemos ver, a nuestro método de procesar la lógica de recibir daño se le suman dos líneas repetidas (o colocar otra estructura de selección antes de la que procesa la lógica) para actualizar por pantalla los puntos de vida que le quedan al personaje y así el jugador pueda saberlo para tener feedback. De este pequeño fragmento se pueden extraer tres conclusiones rápidas. Primero: health\textsubscript{display} no deja de ser un frontend de life\textsubscript{points} para mostrarlo por pantalla cuando cambia, hay relación pero es más bien un relación pasiva que directa e inmediata. Segundo: esta manera de escribirlo requiere tener una referencia directa a esa porción de interfaz, por lo que ya se está generado dependencia. Tercero: aunque parezca un ejemplo inocente, la cantidad de código del método puede crecer rápidamente a medida que se sumen otros sistemas o componentes, volviendo la clase Player inmantenible, puesto que cada vez que se quiera hacer un pequeño cambio en la lógica es necesario navegar por un mar de código que referencia cosas distintas y no tiene nada que ver con como se procesa esa lógica. Ahora comparemos el siguiente ejemplo implementado con signals de Godot.
+
+
+
+\begin{verbatim}
+
+signal damaged(damage)
+
+class_name Player
+
+    func get_hit(damage : int) -> void:
+
+	self.emit_signal("damaged",damage)
+
+	if (life_points - damage) <= 0:
+	    die()
+	else:
+	    life_points -= damage
+\end{verbatim}
+
+
+
+
+
+\subsubsection{Signals}
+\label{sec:orga061517}
+\subsubsection{Events un Singleton de intermediario}
+\label{sec:org58368dd}
+
+\subsection{Máquinas de estados para controlar cambiar el comportamiento según el input}
+\label{sec:orgf5a7409}
+\end{document}

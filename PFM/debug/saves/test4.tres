@@ -1,0 +1,18 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://resources/SaveFile.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+game_version = "0.1"
+data = {
+"GLOBALS": {
+"current_level": "Green_Room",
+"visited_levels": [  ]
+},
+"Green_Room": {
+"current_player_instance_": {
+"position": Vector2( 490.112, 441.507 )
+}
+}
+}

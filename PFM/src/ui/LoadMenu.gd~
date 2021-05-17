@@ -1,0 +1,30 @@
+extends LoadSaveGameMenu
+
+
+class_name LoadMenu
+
+
+var load_button_control : Button
+var back_button_control : Button
+var save_list_control : ItemList
+
+
+func _ready():
+	
+	# Init controls
+	save_list_control = get_node("Panel/VBoxContainer/SaveGamesList")
+	load_button_control = get_node("Panel/VBoxContainer/HBoxContainer/Cargar")
+	back_button_control = get_node("Panel/VBoxContainer/HBoxContainer/Atras")
+
+	# Connect signals
+
+	load_button_control.connect("pressed",self,"_on_save_pressed")
+	back_button_control.connect("pressed",self,"_on_back_pressed")
+
+
+
+# Callbacks
+
+func _on_save_pressed() -> void:
+	pass
+

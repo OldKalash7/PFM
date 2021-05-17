@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/walls and roofs.png-4fcc25902606bbc2673940e823997727.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://assets/raw/walls and roofs.png"
+dest_files=[ "res://.import/walls and roofs.png-4fcc25902606bbc2673940e823997727.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=false
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0

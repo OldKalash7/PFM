@@ -1,0 +1,46 @@
+extends LoadSaveGameMenu
+
+
+class_name SaveMenu
+
+var save_list_control : ItemList
+var back_button_control : Button
+var save_button_control : Button
+var savegame_line_control : LineEdit
+
+func _ready():
+
+	# Init controls
+	save_button_control = get_node("Panel/VBoxContainer/HBoxContainer/Save")
+	back_button_control = get_node("Panel/VBoxContainer/HBoxContainer/Atras")
+	savegame_line_control = get_node("Panel/VBoxContainer/HBoxContainer/SaveGameName")
+	save_list_control = get_node("Panel/VBoxContainer/SaveGameList")
+	
+	# Connect signals
+	back_button_control.connect("pressed",self,"_on_back_pressed")
+	save_button_control.connect("pressed",self,"_onsave_pressed")
+
+
+
+# Callbacks
+
+
+func _on_open_save_menu() -> void:
+	# Clear previous list
+	
+	save_list_control.clear()
+
+	var save_list : Array = refresh_contents()
+
+	for save in save_list:
+		save_list_control.add_item(save,null,true)
+		
+	show_menu(true)
+	
+
+func _on_back_pressed() -> void:
+	show_menu(false)
+
+
+func _on_save_pressed() -> void:
+	pass

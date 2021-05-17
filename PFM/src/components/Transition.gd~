@@ -1,0 +1,16 @@
+extends Control
+
+
+# Base class that controls different visual transition effects between levels and cutscenes
+class_name Transition
+
+
+export(String, "CutoffTransition", "Test") var transition_type : String
+
+var transition_node : TransitionEffect
+
+func _ready():
+	transition_node = get_node(transition_type)
+	#transition_node.play_in()
+	#transition_node.play_out()
+	

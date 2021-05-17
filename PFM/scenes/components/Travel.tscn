@@ -1,10 +1,17 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/components/Travel.gd" type="Script" id=1]
 
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 20.2754, 20.5188 )
+
 [node name="Travel" type="Area2D"]
+monitorable = false
+collision_layer = 2
 script = ExtResource( 1 )
+enabled = true
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
 
 [node name="SpawnPosition" type="Position2D" parent="."]

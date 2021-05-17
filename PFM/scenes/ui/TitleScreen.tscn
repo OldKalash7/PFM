@@ -1,21 +1,36 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://resources/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/TitleScreen.gd" type="Script" id=2]
+[ext_resource path="res://scenes/ui/LoadSaveGameMenu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/raw/parallax-forest.png" type="Texture" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=1]
 
 [node name="TitleScreen" type="Control"]
+anchor_top = 0.00330336
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 1.0033
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 4 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Label" type="Label" parent="."]
-margin_top = 40.0
-margin_right = 510.0
-margin_bottom = 75.0
+anchor_right = 0.998
+anchor_bottom = 0.097
+margin_right = 0.279968
+margin_bottom = 0.0799942
 theme = ExtResource( 1 )
 text = "PROJECT MAVEN"
 align = 1
@@ -23,20 +38,33 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ItemList" type="ItemList" parent="."]
-anchor_top = 0.098
-anchor_bottom = 0.098
-margin_left = 62.0
-margin_top = 0.159996
-margin_right = 381.0
-margin_bottom = 185.16
+[node name="MenuList" type="ItemList" parent="."]
+anchor_top = 0.131
+anchor_right = 0.433
+anchor_bottom = 0.556
+margin_top = -0.160007
+margin_right = -0.120026
+margin_bottom = -0.160034
+theme = ExtResource( 1 )
+custom_styles/bg = SubResource( 1 )
 items = [ "Continuar", null, true, "Nueva partida", null, false, "Cargar partida", null, false, "Opciones", null, false, "Salir", null, false ]
+auto_height = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="LoadMenu" parent="." instance=ExtResource( 3 )]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.5
+margin_top = -107.5
+margin_right = 160.5
+margin_bottom = 107.5
+
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
-visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

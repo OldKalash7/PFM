@@ -1,17 +1,32 @@
 extends Control
 
+var load_menu_control : LoadSaveGameMenu
+var menu_list_control : ItemList
 
 func _ready():
-	if !Main.current_save.empty():
-		print("hay_save")
-	else:
-		print("no_hay_save")
+
+	# Init controls
+	load_menu_control = get_node("LoadMenu")
+	menu_list_control = get_node("MenuList")
+
+	# Connect signals
+
+	menu_list_control.connect("item_activated",self,"_on_item_selected")
 		
 
 func _on_Exit():
 	Main.exit()
 
 
+# Callbacks
+
+func _on_item_selected(index : int) -> void:
+
+	match index:
+		2:
+			load_menu_control.open_load_menu()
+		_:
+			pass
 
 func _on_load_game_selected(save_game_name : String) -> void:
 	# Get the level the save was me on
