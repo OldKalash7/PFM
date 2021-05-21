@@ -25,7 +25,6 @@ shader_param/mask = ExtResource( 1 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "fade_out"
-length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:material:shader_param/cutoff")
 tracks/0/interp = 1
@@ -33,10 +32,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2 ),
+"times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 1.0, 0.0 ]
+"values": [ 0.0, 1.0 ]
 }
 
 [node name="CutoffTransition" type="ColorRect"]

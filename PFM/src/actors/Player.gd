@@ -6,7 +6,7 @@ signal player_ready(self_instance)
 
 class_name Player
 
-
+onready var animation : AnimatedSprite = get_node("AnimatedSprite")
 export (String) var URI = "current_player_instance_" + name
 var linear_velocity : Vector2
 
@@ -28,19 +28,26 @@ func on_player_pause() -> void:
 	var state_machine = get_node("StateMachine")
 	#state_machine.set_process(false)
 	state_machine.set_process_input(false)
+	state_machine.set_physics_process(false)
+	
+	match animation.animation:
+		"up_walk":
+			animation.play("up_idle")
+		"down_walk":
+			animation.play("down_idle")
+		"side_walk":
+			animation.play("side_idle")
 
 
 func on_player_resume() -> void:
 	var state_machine = get_node("StateMachine")
 	#state_machine.set_process(false)
 	state_machine.set_process_input(true)
-
+	state_machine.set_physics_process(true)
 
 
 func on_animation_change(new_animation : String, flip : bool) -> void:
 	
-	var animation : AnimatedSprite = get_node("AnimatedSprite")
-
 	assert(animation != null)
 	
 	animation.flip_h = flip

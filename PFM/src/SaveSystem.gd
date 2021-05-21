@@ -102,7 +102,7 @@ func load_level(savegame_path : String) -> Node:
 	savegame.set_level_name(Main.SAVE_GLOBALS.current_level)
 
 	# Get the path for the level from the list of levels in Main
-	print("DEBUG PATH " +Main.levels[Main.SAVE_GLOBALS.current_level])
+	print("DEBUG PATH " + Main.levels[Main.SAVE_GLOBALS.current_level])
 
 	var level : Node = load_level_from_disk(Main.levels[Main.SAVE_GLOBALS.current_level]).instance()
 	var nodes_to_load : Array = level.get_children()

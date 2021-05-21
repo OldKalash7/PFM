@@ -2,5 +2,5 @@
 
 [ext_resource path="res://src/components/Actionable.gd" type="Script" id=1]
 
-[node name="DialogActionable" type="Node"]
+[node name="Actionable" type="Node"]
 script = ExtResource( 1 )

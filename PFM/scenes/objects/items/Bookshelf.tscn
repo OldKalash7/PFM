@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/items/bookshelf.gd" type="Script" id=1]
+[ext_resource path="res://resources/furniture.tres" type="Texture" id=2]
+[ext_resource path="res://scenes/components/DialogueActionable.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 17.6881, 17.3744 )
+
+[node name="Bookshelf" type="Area2D"]
+collision_layer = 2
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -1.90735e-06 )
+scale = Vector2( 0.858994, 0.745491 )
+texture = ExtResource( 2 )
+
+[node name="DialogueActionable" parent="." instance=ExtResource( 3 )]

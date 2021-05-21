@@ -1,0 +1,6 @@
+extends Actionable
+
+
+export(String, FILE, "*.json") var dialogue
+
+

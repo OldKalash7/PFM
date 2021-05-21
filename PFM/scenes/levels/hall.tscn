@@ -1,3 +1,128 @@
-[gd_scene format=2]
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/tiles/base_tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/components/Travel.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/components/Transition.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/ui/PauseMenu.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/components/Spawn.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/levels/Hall.gd" type="Script" id=7]
+[ext_resource path="res://scenes/ui/SaveGameMenu.tscn" type="PackedScene" id=8]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
 [node name="Hall" type="Node2D"]
+script = ExtResource( 7 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 664.0
+margin_bottom = 381.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Floor" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 17, 14, 0, 18, 14, 0, 19, 14, 0, 20, 23, 65536, 21, 23, 65536, 65553, 14, 0, 65554, 14, 0, 65555, 14, 0, 65556, 23, 65536, 65557, 23, 65536, 131089, 14, 0, 131090, 14, 0, 131091, 14, 0, 131092, 23, 65536, 131093, 23, 65536, 196625, 14, 0, 196626, 14, 0, 196627, 14, 0, 196628, 23, 65536, 196629, 23, 65536, 262161, 14, 0, 262162, 14, 0, 262163, 14, 0, 262164, 23, 65536, 262165, 23, 65536, 327697, 14, 0, 327698, 14, 0, 327699, 14, 0, 327700, 23, 65536, 327701, 23, 65536, 393233, 14, 0, 393234, 14, 0, 393235, 14, 0, 393236, 23, 65536, 393237, 23, 65536, 458769, 14, 0, 458770, 14, 0, 458771, 14, 0, 458772, 14, 0, 458773, 14, 0, 524305, 14, 0, 524306, 14, 0, 524307, 14, 0, 524308, 14, 0, 524309, 14, 0, 589841, 14, 0, 589842, 14, 0, 589843, 14, 0, 589844, 14, 0, 589845, 14, 0, 655377, 14, 0, 655378, 14, 0, 655379, 14, 0, 655380, 14, 0, 655381, 14, 0, 720913, 14, 0, 720914, 14, 0, 720915, 14, 0, 720916, 14, 0, 720917, 14, 0, 786449, 14, 0, 786450, 14, 0, 786451, 14, 0, 786452, 14, 0, 786453, 14, 0, 851985, 14, 0, 851986, 14, 0, 851987, 14, 0, 851988, 14, 0, 851989, 14, 0, 917521, 14, 0, 917522, 14, 0, 917523, 14, 0, 917524, 14, 0, 917525, 14, 0, 983057, 14, 0, 983058, 14, 0, 983059, 14, 0, 983060, 14, 0, 983061, 14, 0, 1048593, 14, 0, 1048594, 14, 0, 1048595, 14, 0, 1048596, 14, 0, 1048597, 14, 0, 1114127, 14, 0, 1114128, 14, 0, 1114129, 14, 0, 1114130, 14, 0, 1114131, 14, 0, 1114132, 14, 0, 1114133, 14, 0, 1114134, 14, 0, 1114135, 14, 0, 1179663, 14, 0, 1179664, 14, 0, 1179665, 14, 0, 1179666, 14, 0, 1179667, 14, 0, 1179668, 14, 0, 1179669, 14, 0, 1179670, 14, 0, 1179671, 14, 0, 1245199, 14, 0, 1245200, 14, 0, 1245201, 14, 0, 1245202, 14, 0, 1245203, 14, 0, 1245204, 14, 0, 1245205, 14, 0, 1245206, 14, 0, 1245207, 14, 0, 1310735, 14, 0, 1310736, 14, 0, 1310737, 14, 0, 1310738, 14, 0, 1310739, 14, 0, 1310740, 14, 0, 1310741, 14, 0, 1310742, 14, 0, 1310743, 14, 0, 1376271, 14, 0, 1376272, 14, 0, 1376273, 14, 0, 1376274, 14, 0, 1376275, 14, 0, 1376276, 14, 0, 1376277, 14, 0, 1376278, 14, 0, 1376279, 14, 0, 1441807, -1073741810, 0, 1441808, -1073741810, 0, 1441809, -1073741810, 0, 1441810, -1073741810, 0, 1441811, -1073741810, 0, 1441812, -1073741810, 0, 1441813, -1073741810, 0, 1441814, -1073741810, 0, 1441815, -1073741810, 0, 1507343, -1073741810, 0, 1507344, -1073741810, 0, 1507345, -1073741810, 0, 1507346, -1073741810, 0, 1507347, -1073741810, 0, 1507348, -1073741810, 0, 1507349, -1073741810, 0, 1507350, -1073741810, 0, 1507351, -1073741810, 0 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 318.898, 305.125 )
+
+[node name="AnimatedSprite" parent="Player" index="0"]
+frame = 4
+
+[node name="Camera2D" parent="Player" index="2"]
+limit_left = 0
+limit_top = 0
+limit_right = 640
+limit_bottom = -600
+
+[node name="AnimationTree" parent="Player" index="6"]
+parameters/playback = SubResource( 1 )
+
+[node name="HallLibraryDoor" parent="." instance=ExtResource( 3 )]
+position = Vector2( 243.376, 188.728 )
+travel_to_level = "library"
+spawn_name = "from_hall_door"
+transition_path = NodePath("../TransitionLayer/Transition")
+
+[node name="HallKitchenDoor" parent="." instance=ExtResource( 3 )]
+position = Vector2( 377.498, 188.728 )
+travel_to_level = "kitchen"
+spawn_name = "from_hall"
+transition_path = NodePath("../TransitionLayer/Transition")
+
+[node name="HallStairs" parent="." instance=ExtResource( 3 )]
+position = Vector2( 341.298, 11.3785 )
+travel_to_level = "bedroom"
+spawn_name = "from_hall"
+
+[node name="Hitbox" parent="HallStairs" index="0"]
+position = Vector2( -5.82703, -3.17839 )
+
+[node name="HallExteriorDoor" parent="." instance=ExtResource( 3 )]
+position = Vector2( 310.876, 332.862 )
+travel_to_level = "exterior"
+transition_path = NodePath("../TransitionLayer/Transition")
+
+[node name="Hitbox" parent="HallExteriorDoor" index="0"]
+position = Vector2( 0, 12.263 )
+
+[node name="HallDiningDoor" parent="." instance=ExtResource( 3 )]
+position = Vector2( 290.044, 16.9908 )
+travel_to_level = "dinning"
+spawn_name = "from_hall"
+
+[node name="TransitionLayer" type="CanvasLayer" parent="."]
+layer = 25
+
+[node name="Transition" parent="TransitionLayer" instance=ExtResource( 4 )]
+
+[node name="UI" type="CanvasLayer" parent="."]
+pause_mode = 2
+layer = 25
+
+[node name="PauseMenu" parent="UI" instance=ExtResource( 5 )]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -77.5002
+margin_top = -79.9999
+margin_right = 77.5002
+margin_bottom = 79.9999
+
+[node name="SaveMenu" parent="UI" instance=ExtResource( 8 )]
+visible = false
+
+[node name="Travels" type="Node" parent="."]
+
+[node name="Spawns" type="Node" parent="."]
+
+[node name="Spawn" parent="Spawns" instance=ExtResource( 6 )]
+position = Vector2( 310.876, 305.125 )
+spawn_name = "from_exterior"
+
+[node name="Spawn2" parent="Spawns" instance=ExtResource( 6 )]
+position = Vector2( 285.779, 188.728 )
+spawn_name = "from_library"
+
+[node name="Spawn3" parent="Spawns" instance=ExtResource( 6 )]
+position = Vector2( 341.298, 188.728 )
+spawn_name = "from_kitchen"
+
+[node name="Spawn4" parent="Spawns" instance=ExtResource( 6 )]
+position = Vector2( 335.471, 46.6177 )
+spawn_name = "from_bedroom"
+
+[node name="Spawn5" parent="Spawns" instance=ExtResource( 6 )]
+position = Vector2( 296.498, 51.9692 )
+spawn_name = "from_dinning"
+
+[editable path="Player"]
+[editable path="HallStairs"]
+[editable path="HallExteriorDoor"]

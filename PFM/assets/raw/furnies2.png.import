@@ -1,0 +1,17 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/furnies2.png-579d9e2b74f18d81616831836cdfe410.res"
+group_file="res://resources/atlas_muebles_test.png"
+valid=true
+[deps]
+
+
+source_file="res://assets/raw/furnies2.png"
+dest_files=[ "res://.import/furnies2.png-579d9e2b74f18d81616831836cdfe410.res" ]
+
+[params]
+
+atlas_file="res://resources/atlas_muebles_test.png"
+import_mode=0

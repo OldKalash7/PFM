@@ -31,8 +31,6 @@ func _ready():
 # Cambia a un nuevo estado
 func transition() -> void:
 	
-	print("DEBUG --> TRANSITION")
-	
 	# Logica de los dialogos aqui
 
 	if actionable.dialog.current_entrie_has_choices():
@@ -42,13 +40,11 @@ func transition() -> void:
 		print("NORMAL MODE")
 		dialog_state = avaliable_states.get_node("NORMAL_STATE")
 
-	print(dialog_state.name)
 	dialog_state.enter(actionable.dialog)
 	dialog_state.process_dialog()
 
 
 func on_dialog_advance() -> void:
-	print("on_dialog_advance")
 	dialog_state.exit()
 	transition()
 

@@ -21,7 +21,7 @@ func refresh_contents() -> Array:
 
 		while file_name != "":
 			if !dir.current_is_dir():
-				save_list.append(file_name)
+				save_list.append(file_name.get_basename())
 			file_name = dir.get_next()
 		dir.list_dir_end()
 		

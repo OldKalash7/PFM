@@ -12,6 +12,7 @@ export (bool) var volatile : bool
 export (bool) var empty_level : bool
 export (String) var travel_to_level : String
 export (String) var travel_node : String
+export (String) var spawn_name : String
 export (NodePath) var transition_path : NodePath
 var transition : Transition 
 
@@ -25,34 +26,38 @@ func travel_to() -> void:
 
 	if enabled:
 		# Play FADE IN ANIMATION
-		play_transition()
+		#play_transition()
 
 		# Decide to store the information of this level or not
 		if !volatile:
-			save_level_data()
+			#save_level_data()
+			pass
 			
 		# Load a new instance of the level
-		var level : Node = load(Main.levels[travel_to_level]).instance()
+		#var level : Node = load(Main.levels[travel_to_level]).instance()
+		var level : Resource = load(Main.levels[travel_to_level])
+		#yield(transition,"transintion_finished")
 		
-		yield(transition,"transintion_finished")
+		
 		# If the player is visiting a new level or we want a to reinitialize a level
 		if Main.SAVE_GLOBALS.visited_levels.find(travel_to_level) == -1 || empty_level:
-			pass
+			print("visiting for the first time")
 
-			# The player has already visited
+		# The player has already visited
 		elif Main.SAVE_GLOBALS.visited_levels.find(travel_to_level) != -1 && !empty_level:
-			var level_data : Dictionary = get_level_data()
+			#var level_data : Dictionary = get_level_data()
 			# Load the level data
+			pass
+			#if level.is_in_group("store"):
+			#	level.restore(level_data[level.URI])
 
-			if level.is_in_group("store"):
-				level.restore(level_data[level.URI])
-
-			for node in level.get_children():
-				if node.is_in_group("store"):
-					node.restore(level_data[node.URI])
+			#for node in level.get_children():
+			#	if node.is_in_group("store"):
+			#		node.restore(level_data[node.URI])
 			
-		get_tree().get_current_scene().queue_free()
-		get_tree().get_root().add_child(level)
+		#get_tree().get_current_scene().queue_free()
+		Main.spawn_location = spawn_name
+		get_tree().change_scene_to(level)
 
 
 func play_transition() -> void:

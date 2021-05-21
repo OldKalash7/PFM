@@ -51,14 +51,14 @@ func _calculate_linear_velocity() -> void:
 	if Input.is_action_pressed("move_right"):
 		Main.EVENTS_LIST.emit_signal("change_animation","side_walk",true)
 		player.linear_velocity.x += 1
-	if Input.is_action_pressed("move_up"):
+	elif Input.is_action_pressed("move_up"):
 		Main.EVENTS_LIST.emit_signal("change_animation","up_walk",false)
 		player.linear_velocity.y -= 1
-	if Input.is_action_pressed("move_down"):
+	elif Input.is_action_pressed("move_down"):
 		Main.EVENTS_LIST.emit_signal("change_animation","down_walk",false)
 		player.linear_velocity.y += 1
-	if Input.is_action_pressed("move_left"):
+	elif Input.is_action_pressed("move_left"):
 		Main.EVENTS_LIST.emit_signal("change_animation","side_walk",false)
 		player.linear_velocity.x -= 1
-	if player.linear_velocity == Vector2.ZERO:
+	elif player.linear_velocity == Vector2.ZERO:
 		get_parent().change_state_to("IDLE_STATE",{"transicion de estado": "test"})

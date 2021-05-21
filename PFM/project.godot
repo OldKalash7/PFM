@@ -74,7 +74,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/actors/player_states/IdleState.gd"
 }, {
-"base": "Node2D",
+"base": "Area2D",
 "class": "Item",
 "language": "GDScript",
 "path": "res://src/components/Item.gd"
@@ -123,6 +123,11 @@ _global_script_classes=[ {
 "class": "PlayerState",
 "language": "GDScript",
 "path": "res://src/actors/player_states/PlayerState.gd"
+}, {
+"base": "Position2D",
+"class": "Position",
+"language": "GDScript",
+"path": "res://src/components/Spawn.gd"
 }, {
 "base": "Node",
 "class": "Save",
@@ -203,6 +208,7 @@ _global_script_class_icons={
 "PauseMenu": "",
 "Player": "",
 "PlayerState": "",
+"Position": "",
 "Save": "",
 "SaveFile": "",
 "SaveGlobals": "",

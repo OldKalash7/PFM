@@ -12,7 +12,7 @@ margin_top = 0.89167
 bg_color = Color( 0.196078, 0.596078, 0.552941, 1 )
 
 [sub_resource type="DynamicFont" id=3]
-size = 18
+size = 11
 font_data = ExtResource( 1 )
 
 [resource]

@@ -6,14 +6,24 @@ class_name Item
 
 
 func _ready():
-	pass
+	self.connect("body_entered",self,"_on_body_enters")
+	self.connect("body_exits",self,"_on_body_exits")
 
 
 func _on_player_interacts() -> void:
-	pass
+	print("Override this function")
 
 func _on_player_goes_away() -> void:
-	pass
+	print("Override this function")
 
 
+func _on_body_enters(body) -> void:
+	if body.name == "Player":
+		_on_player_interacts()
+		
+
+
+func _on_body_exits(body)-> void:
+	if body.name == "Player":
+		_on_player_goes_away()
 

@@ -38,16 +38,13 @@ func exit() -> void:
 		Main.EVENTS_LIST.disconnect("line_displayed",self,"on_line_displayed")
 
 
-
-	
-	
-
-
 func process_dialog() -> void:
 	
 	# Mostrar la linea
 	display = Main.get_node_by_name(displays,dialog.get_name_for_current_display())
 	display.display(dialog.get_curent_entrie_line())
+	choice_displayer.display_choiches(dialog.get_current_entrie_decisions())
+	set_process_input(true)
 
 
 func process_decision_callbacks(decision_index) -> void:
@@ -72,8 +69,9 @@ func get_available_displays() -> Array:
 
 # TODO Esto deberia poder arreglarse con un yield pero no funciona
 func on_timeout() -> void:
-	choice_displayer.display_choiches(dialog.get_current_entrie_decisions())
-	set_process_input(true)
+	#choice_displayer.display_choiches(dialog.get_current_entrie_decisions())
+	#set_process_input(true)
+	pass
 
 
 func on_choice_selected(index : int) -> void:

@@ -10,13 +10,17 @@ onready var EVENTS_LIST : Events = Events.new()
 onready var EVENTS_GAME : GameEvents = GameEvents.new()
 onready var SAVE_GLOBALS : SaveGlobals = SaveGlobals.new()
 
+# Contains the levels of the game, all the scenes in the folder levels plus
+# the path of each of them
 var levels : Dictionary 
-
+# Holds the name of the spawn location when switching levels
+var spawn_location : String 
 
 
 func _init():
 
 	_load_levels()
+	
 
 
 func exit() -> void:

@@ -141,6 +141,13 @@ No existe un diseño perfecto, todos tienen cualidades y defectos
 **** SaveFile
 *** Transición de niveles con Travel
 ** Sistema de Dialogo
+*** Estructura lógica de los nodos de dialogo
+
+    #+BEGIN_SRC
+
+    #+END_SRC
+
+    
 *** Objetos Dialog
     El objeto *Dialog* traduce la estructura portable en JSON de los dialogos a un objeto para su uso en el juego por parte de DialogManager. Funciona a modo de stack o pila, con un atributo que contiene toda la estructura en forma de diccionario y otro que contiene el bloque actual en el que se ha quedado el dialogo.
 
@@ -169,6 +176,11 @@ DialogManager funciona como una FSM (FiniteStateMachine). Cuando no esta activa 
     *ChoiceDisplay* es un caso especial de Display pensado para proporcionar un elemento de interfaz al jugador para tomar decisiones en aquellos dialogos que lo requieran. El sistema de dialogo que se ha construido para este proyecto ha sido ideado con soporte para dialogo con branching, es decir: dialogos e interacciones que permiten al jugador tomar decisiones y en base a esos inputs obtener respuestas diferentes de dialogo o que ocurran distintos eventos o modificaciones del entorno. Esta característica suele ser clave en muchos videojuegos RPG
 
     Este nodo proporciona dicho soporte aunque se podría implementar de otro modo. La forma es de un panel que contiene un ItemList en el que se dibujan las diferentes opciones de dialogo en orden. El jugador puede elegir una opción haciendo click sobre ella con el ratón o seleccionandola con las teclas y pulsando Enter (En los controles del mando, se utiliza el stick y los botones). ChoiceDisplay funciona como una caja negra en cuanto a que solo recibe la información que tiene que mostrar, proporciona al jugador un elemento gráfico para que tome la decisión y después comunica hacia DialogManager el puntero de la decisión que se ha tomado para que este pueda gestionar el siguiente nodo de dialogo.
+
+** Propuestas de mejora para ProjectMaven
+
+
+    
 ** SimpleDialogTool
 *** Introducción y propósito
     Desde las fases iniciales del diseño del juego, se optó por el formato JSON para almacenar la información de los diálogos sin procesar. Se escogió JSON por su versatilidad a la hora de guardar diferentes tipos de datos, la portabilidad (por si se decidiese cambiar de framework o sistema de trabajo) y porque se trataba de texto simple, por lo que lo convertían en un candidato ideal. No obstante, esta decisión acarreaba consigo una complicación: ¿Como se debería escribir los diferentes dialogos del juego?
@@ -189,6 +201,34 @@ DialogManager funciona como una FSM (FiniteStateMachine). Cuando no esta activa 
 **** Tipos de Nodo
      Los nodos que se pueden crear en SDT para construir los diferentes dialogos se llaman DialogNode. Existen de cuatro tipos: BeginNode, SimpleNode, ChoiceNode y EndNode. BeginNode es el nodo inicial y antecede a todos los demás. Solo puede haber uno en un proyecto e internamente tiene índice 0.
 **** Exportación
+    Desde la barra de tareas del editor de SDT podemos acceder al menú de exportación son sus diferentes opciones. Actualmente existe soporte para tres tipos. La primera opción exportará un archivo JSON con los datos de los nodos de dialogo. La segunda opción exportará directamente un archivo GDScript, que contendrá una variable de tipo hash map con la información.
+
+    La última opción funciona un poco diferente a las anteriores ya que no exporta los nodos de dialogo. En su lugar exportará todas las callbacks que esten presentes en el proyecto actual a un archivo con una sintaxis de GDScript válida. Generando un archivo de estas características:
+
+    #+BEGIN_SRC gdscript
+    extends Node
+
+    signal callback1
+    signal callback2
+    signal callback3
+  #+END_SRC
+  Esto permitiria después cargarlo como un recurso dentro del proyecto del juego con la palabra clave =preload= de manera que la clase que gestione esas callbacks tenga acceso a estas en tiempo de compilación sin necesidad de que los desarrolladores tengan que añadir toda las declaraciones signal en la cabecera del script
+
+*** Propuestas de mejora de SDT
+
+    Ahora mismo, SDT se encuentra en una fase muy inicial de su desarrollo, en un esbozo o prototipo de su funcionalidad básica que es conectar nodos generando un dialogo para luego exportarlo a otro formato. El objetivo de SDT proporcionar una interfaz y un sistema sencillos para crear dialogos de manera rápida sin demasiadas complicaciones. En este aspecto, SDT no aspira a convertirse en Yarn o Ink y dar cabida a todos los posibles casos de usuario. En su lugar, pretende convertirse en una alternativa más minimalista, para aquellos que no necesiten tanta potencia, a los ejemplos anteriores.
+    
+No obstante, a SDT todavía le falta desarrollar algunos puntos y mejorar otros para alcanzar la madurez como herramienta. Planteamos algunos de estos puntos:
+
++ Soporte para guardar proyectos en edición. Actualmente esta opción está presente pero no se reconstruyen las conexiones entre nodos cuando se vuelve a cargar el proyecto para editarlo.
+
++ Mejoras en la interfaz y en la experiencia de usuario en los nodos, los widgets como la barra de herramientas y las vistas en general.
+
++ Creación de un parser o analizador, que compruebe si los nodos están sintácticamente bien conectados y que avise en tiempo real al usuario cuando haya nodos sin conectar o mal conectados. Adicionalmente, restringir acciones al usuario que no deberían estar permitidas siguiendo las reglas de construcción de los diálogos.
+
++ Mejorar la gestión de ficheros, haciendo que el editor sea consciente de las extensiones de archivo y de cuando el usuario ha modificado un archivo para avisar de que lo guarde si intenta salir.
+
++ De cara al futuro, explorar la posibilidad de implementar el concepto de /Personaje/ y /Escenas/ similar a lo presentado por /Dialogic/ para dar soporte una edición más rica. Así mismo, implementar soporte para imágenes para poder vincularlas a un nodo o una escena particular.
 ** Conclusiones
 
 
