@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/components/Travel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/levels/Library.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://scenes/components/Spawn.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/components/DialogManager.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/ui/SaveGameMenu.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/objects/items/test_cube.tscn" type="PackedScene" id=12]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
@@ -102,9 +103,6 @@ position = Vector2( -18.8077, -28.5262 )
 [node name="Player" parent="." instance=ExtResource( 6 )]
 position = Vector2( 61.4306, 187.288 )
 
-[node name="AnimatedSprite" parent="Player" index="0"]
-frame = 0
-
 [node name="Camera2D" parent="Player" index="2"]
 limit_left = 0
 limit_top = 0
@@ -132,6 +130,11 @@ scale = Vector2( 1.88268, 1.46404 )
 raw_dialog_file = "res://assets/dialogs/test.json"
 
 [node name="Items" type="Node" parent="."]
+
+[node name="CubeTest" parent="Items" groups=[
+"restore",
+] instance=ExtResource( 12 )]
+position = Vector2( 168, 122 )
 
 [editable path="Player"]
 [editable path="Player/PlayerDisplay"]

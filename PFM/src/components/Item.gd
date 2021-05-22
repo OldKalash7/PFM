@@ -7,7 +7,7 @@ class_name Item
 
 func _ready():
 	self.connect("body_entered",self,"_on_body_enters")
-	self.connect("body_exits",self,"_on_body_exits")
+	self.connect("body_exited",self,"_on_body_exits")
 
 
 func _on_player_interacts() -> void:

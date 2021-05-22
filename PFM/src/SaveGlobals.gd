@@ -41,7 +41,7 @@ func visit_level(level_name : String) -> void:
 
 
 # Store data of the level for persistance
-func store_level_data(level_name : String, level_data : Array) -> void:
+func store_level_data(level_name : String, level_data : Dictionary) -> void:
 	visited_levels_data[level_name] = level_data
 
 	

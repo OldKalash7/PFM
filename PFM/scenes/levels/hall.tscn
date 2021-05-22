@@ -32,7 +32,7 @@ tile_data = PoolIntArray( 17, 14, 0, 18, 14, 0, 19, 14, 0, 20, 23, 65536, 21, 23
 position = Vector2( 318.898, 305.125 )
 
 [node name="AnimatedSprite" parent="Player" index="0"]
-frame = 4
+frame = 3
 
 [node name="Camera2D" parent="Player" index="2"]
 limit_left = 0

@@ -5,6 +5,9 @@ extends Area2D
 
 class_name Travel
 
+
+signal player_travel_requested(travel)
+
 var spawn_position : Position2D
 export(String) var URI : String
 export (bool) var enabled : bool
@@ -17,6 +20,7 @@ export (NodePath) var transition_path : NodePath
 var transition : Transition 
 
 func _ready():
+	self.connect("player_travel_requested",get_tree().get_current_scene(),"on_player_travel_requested")
 	self.connect("body_entered",self,"_on_body_enters")
 	self.connect("body_exited",self,"_on_body_exits")
 	transition  = get_node(transition_path)
@@ -25,8 +29,10 @@ func _ready():
 func travel_to() -> void:
 
 	if enabled:
+		
 		# Play FADE IN ANIMATION
 		#play_transition()
+		#yield(transition,"transintion_finished")
 
 		# Decide to store the information of this level or not
 		if !volatile:
@@ -36,15 +42,14 @@ func travel_to() -> void:
 		# Load a new instance of the level
 		#var level : Node = load(Main.levels[travel_to_level]).instance()
 		var level : Resource = load(Main.levels[travel_to_level])
-		#yield(transition,"transintion_finished")
+
 		
 		
 		# If the player is visiting a new level or we want a to reinitialize a level
-		if Main.SAVE_GLOBALS.visited_levels.find(travel_to_level) == -1 || empty_level:
-			print("visiting for the first time")
+
 
 		# The player has already visited
-		elif Main.SAVE_GLOBALS.visited_levels.find(travel_to_level) != -1 && !empty_level:
+		if Main.SAVE_GLOBALS.visited_levels.find(travel_to_level) != -1 && !empty_level:
 			#var level_data : Dictionary = get_level_data()
 			# Load the level data
 			pass
@@ -90,4 +95,5 @@ func _on_body_exits(body) -> void:
 
 func _input(event) -> void:
 	if Input.is_action_pressed("enter"):
-		travel_to()
+		emit_signal("player_travel_requested",self)
+		#travel_to()

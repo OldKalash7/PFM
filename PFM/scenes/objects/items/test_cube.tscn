@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/items/test_cube.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 13.9993, 9.7321 )
+
+[node name="CubeTest" type="Area2D"]
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -11.7052
+margin_top = -7.7731
+margin_right = 11.2948
+margin_bottom = 8.2269
+__meta__ = {
+"_edit_use_anchors_": false
+}
