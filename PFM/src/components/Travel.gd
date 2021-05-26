@@ -96,4 +96,5 @@ func _on_body_exits(body) -> void:
 func _input(event) -> void:
 	if Input.is_action_pressed("enter"):
 		emit_signal("player_travel_requested",self)
-		#travel_to()
+		print('player request travel')
+		

@@ -21,6 +21,11 @@ func _ready():
 	save_button_control.connect("pressed",self,"_on_save_pressed")
 
 
+func _input(event):
+	if event.is_action_released("escape") && visible:
+		_on_back_pressed()
+		accept_event()
+		
 
 # Callbacks
 
@@ -57,3 +62,16 @@ func _on_save_pressed() -> void:
 	else:
 		print("No se ha especificado un nombre para la savegame")
 		
+	_refresh_item_list()
+
+
+func _refresh_item_list() -> void:
+	
+	save_list_control.clear()
+
+	var save_list : Array = refresh_contents()
+
+	for save in save_list:
+		save_list_control.add_item(save,null,true)
+	
+	savegame_line_control.clear()

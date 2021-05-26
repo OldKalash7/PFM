@@ -28,10 +28,15 @@ func _ready():
 	
 	# Has the level been visited previously?
 	if Main.SAVE_GLOBALS.visited_levels.find(level_name) == -1:
-		print("visiting for the first time")
+		pass
 	else:
-		print("not the first time here")
-		_restore_level()
+		match Main.load_mode:
+			Main.LOAD_MODES.NEW:
+				pass
+			Main.LOAD_MODES.RESTORE:
+				_restore_level()
+			Main.LOAD_MODES.LOAD:
+				_load_level_from_save_game()
 		
 
 	spawn_group = get_node("Spawns")
@@ -87,3 +92,15 @@ func _store_level() -> void:
 		
 	# Save the level data on save globals
 	Main.SAVE_GLOBALS.store_level_data(level_name,nodes_content_dictionary)
+
+
+func _load_level_from_save_game() -> void:
+	var save_file : SaveFile = Main.current_save_file
+	var nodes_to_load : Array = get_tree().get_nodes_in_group("persist")
+	
+	for node in nodes_to_load:
+		if node.has_method("load"):
+			node.load(save_file)
+			
+	# RESET del load mode para volver al restore de los niveles
+	Main.load_mode = Main.LOAD_MODES.RESTORE

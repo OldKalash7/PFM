@@ -5,16 +5,19 @@ extends Actionable
 export(String, FILE, "*.json") var raw_dialog_file
 
 var dialog: Dialog
-
+var dialog_loaded : bool
 
 func _ready():
 	
 	if !raw_dialog_file.empty():
 		dialog = Dialog.new(parse_dialog((raw_dialog_file)))
-
+	
+	dialog_loaded = !raw_dialog_file.empty()
+	
 
 func action() -> void:
-	Main.EVENTS_LIST.emit_signal("dialog_started",dialog,self)
+	if dialog_loaded:
+		Main.EVENTS_LIST.emit_signal("dialog_started",dialog,self)
 	
 
 

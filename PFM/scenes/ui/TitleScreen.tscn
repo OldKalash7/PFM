@@ -1,11 +1,16 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://resources/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/TitleScreen.gd" type="Script" id=2]
 [ext_resource path="res://scenes/ui/LoadSaveGameMenu.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/raw/parallax-forest.png" type="Texture" id=4]
+[ext_resource path="res://scenes/ui/OptionsMenu.tscn" type="PackedScene" id=5]
 
 [sub_resource type="StyleBoxEmpty" id=1]
+content_margin_left = 0.0
+content_margin_right = 0.0
+content_margin_top = 0.0
+content_margin_bottom = 0.0
 
 [node name="TitleScreen" type="Control"]
 anchor_top = 0.00330336
@@ -42,11 +47,13 @@ __meta__ = {
 anchor_top = 0.131
 anchor_right = 0.433
 anchor_bottom = 0.556
-margin_top = -0.160007
-margin_right = -0.120026
-margin_bottom = -0.160034
+margin_top = -0.15984
+margin_right = 2.88
+margin_bottom = -61.1593
 theme = ExtResource( 1 )
 custom_styles/bg = SubResource( 1 )
+custom_colors/guide_color = Color( 0.380392, 0.560784, 0.831373, 0 )
+custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
 items = [ "Continuar", null, true, "Nueva partida", null, false, "Cargar partida", null, false, "Opciones", null, false, "Salir", null, false ]
 auto_height = true
 __meta__ = {
@@ -64,17 +71,21 @@ margin_top = -107.5
 margin_right = 160.5
 margin_bottom = 107.5
 
-[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+[node name="ExitDialog" type="ConfirmationDialog" parent="."]
+visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -191.245
-margin_top = -42.7551
-margin_right = 186.755
-margin_bottom = 47.2449
-window_title = "Por favor, Confirma..."
+margin_left = -183.0
+margin_top = -73.5
+margin_right = 195.0
+margin_bottom = 16.5
+window_title = "Salir del juego"
 dialog_text = "Salir del juego?"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="OptionsMenu" parent="." instance=ExtResource( 5 )]
+visible = false

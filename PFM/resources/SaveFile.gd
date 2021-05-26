@@ -17,37 +17,43 @@ extends Resource
 class_name SaveFile
 
 const  GLOBALS_NAME : String = "GLOBALS"
+const GAME_STATE_MANAGER : String = "GAME_STATE_MANAGER"
+
 export (String) var game_version : String
 export (Dictionary) var data : Dictionary
-var current_save : bool
-var level_name : String
 
 
-func initialize(level_name : String) -> void:
-	data[level_name] = {}
 
-	
-func set_current_save(current : bool) -> void:
-	current_save = current
+## STORE DATA FUNCTIONS ##
 
 
-func set_level_name(level_name : String) -> void:
-	self.level_name = level_name
-
-	
-func store_data(node_data : Dictionary) -> void:
-	data[level_name] = node_data
-	print(data[level_name]["current_player_instance_"])
+func store_data(node_uri : String,node_data : Dictionary) -> void:
+	data[node_uri] = node_data	
 
 
-func retrieve_data(uri : String) -> Dictionary:
-	return data[level_name][uri]
-	
-
-
+# Store the content of SaveGlobals
 func store_globals(globals_data : Dictionary) -> void:
 	data[GLOBALS_NAME] = globals_data
 
 
+# Store the content of GameStateManager
+func store_game_state(game_state_data : Dictionary) -> void:
+	data[GAME_STATE_MANAGER] = game_state_data
+
+
+## RETRIEVE DATA FUNCTIONS ##
+
+
+# Retrieve data from of a node based on the URI of the node
+func retrieve_data(uri : String) -> Dictionary:
+	return data[uri]
+
+
+# Retrieve  data of SaveGlobals
 func retrieve_globals() -> Dictionary:
 	return data[GLOBALS_NAME]
+
+
+# Retrieve GameStateManager data
+func retrieve_game_state() -> Dictionary:
+	return data[GAME_STATE_MANAGER]

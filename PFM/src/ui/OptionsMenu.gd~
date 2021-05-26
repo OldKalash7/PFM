@@ -1,0 +1,17 @@
+extends Panel
+
+
+class_name OptionsMenu
+
+
+func _ready():
+	show_in_screen(false)
+
+func _gui_input(event):
+	pass
+
+
+func show_in_screen(show : bool) -> void:
+	self.visible = show
+
+	

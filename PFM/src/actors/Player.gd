@@ -62,15 +62,14 @@ func _unhandled_key_input(event):
 # Funciones de guardado
 func save(save_file : Resource) -> void:
 	var save_dic : Dictionary
-	var store_dic : Dictionary
 
 	save_dic['position'] = global_position
 
-	store_dic[URI] = save_dic
-
 
 	# Store on save_file dictionary
-	save_file.store_data(store_dic)
+	save_file.store_data(URI,save_dic)
+	
+
 
 
 func load(save_file : Resource) -> void:

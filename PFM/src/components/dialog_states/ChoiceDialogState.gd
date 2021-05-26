@@ -43,6 +43,7 @@ func process_dialog() -> void:
 	# Mostrar la linea
 	display = Main.get_node_by_name(displays,dialog.get_name_for_current_display())
 	display.display(dialog.get_curent_entrie_line())
+	yield(Main.EVENTS_LIST,"line_displayed")
 	choice_displayer.display_choiches(dialog.get_current_entrie_decisions())
 	set_process_input(true)
 

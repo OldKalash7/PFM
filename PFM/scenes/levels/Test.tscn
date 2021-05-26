@@ -118,7 +118,7 @@ __meta__ = {
 position = Vector2( 806.993, 450.259 )
 
 [node name="AnimatedSprite" parent="Player" index="0"]
-frame = 3
+frame = 0
 
 [node name="Camera2D" parent="Player" index="2"]
 limit_left = 0
@@ -141,27 +141,6 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-
-[node name="HSeparator" parent="PauseMenu/Panel/VBoxContainer" index="0"]
-margin_right = 111.0
-
-[node name="Title" parent="PauseMenu/Panel/VBoxContainer" index="1"]
-margin_right = 111.0
-
-[node name="HSeparator2" parent="PauseMenu/Panel/VBoxContainer" index="2"]
-margin_right = 111.0
-
-[node name="Continue" parent="PauseMenu/Panel/VBoxContainer" index="3"]
-margin_right = 111.0
-
-[node name="Save" parent="PauseMenu/Panel/VBoxContainer" index="4"]
-margin_right = 111.0
-
-[node name="Options" parent="PauseMenu/Panel/VBoxContainer" index="5"]
-margin_right = 111.0
-
-[node name="Exit" parent="PauseMenu/Panel/VBoxContainer" index="6"]
-margin_right = 111.0
 
 [editable path="DialogManager"]
 [editable path="DialogManager/States/CHOICE_STATE/ChoiceDisplayer"]

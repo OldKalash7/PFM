@@ -1,3 +1,66 @@
-[gd_scene format=2]
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/tiles/base_tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/components/DialogManager.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/objects/items/Bath.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/objects/items/WC.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/tiles/walls.tres" type="TileSet" id=6]
+[ext_resource path="res://assets/tiles/furniture.tres" type="TileSet" id=7]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
 [node name="Bathroom" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 640.0
+margin_bottom = 360.0
+color = Color( 0.145098, 0.117647, 0.117647, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DialogManager" parent="." instance=ExtResource( 3 )]
+position = Vector2( -16, 0 )
+
+[node name="Floor" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+show_collision = true
+format = 1
+tile_data = PoolIntArray( 393232, 35, 0, 393233, 35, 0, 393234, 35, 0, 393235, 35, 0, 393236, 35, 0, 393237, 35, 0, 393238, 35, 0, 393239, 35, 0, 393240, 35, 0, 393241, 35, 0, 458768, 35, 0, 458769, 35, 0, 458770, 35, 0, 458771, 35, 0, 458772, 35, 0, 458773, 35, 0, 458774, 35, 0, 458775, 35, 0, 458776, 35, 0, 458777, 35, 0, 524304, 35, 0, 524305, 35, 0, 524306, 35, 0, 524307, 35, 0, 524308, 35, 0, 524309, 35, 0, 524310, 35, 0, 524311, 35, 0, 524312, 35, 0, 524313, 35, 0, 589840, 35, 0, 589841, 35, 0, 589842, 35, 0, 589843, 35, 0, 589844, 35, 0, 589845, 35, 0, 589846, 35, 0, 589847, 35, 0, 589848, 35, 0, 589849, 35, 0, 655376, 35, 0, 655377, 35, 0, 655378, 35, 0, 655379, 35, 0, 655380, 35, 0, 655381, 35, 0, 655382, 35, 0, 655383, 35, 0, 655384, 35, 0, 655385, 35, 0, 720912, 35, 0, 720913, 35, 0, 720914, 35, 0, 720915, 35, 0, 720916, 35, 0, 720917, 35, 0, 720918, 35, 0, 720919, 35, 0, 720920, 35, 0, 720921, 35, 0, 786448, 35, 0, 786449, 35, 0, 786450, 35, 0, 786451, 35, 0, 786452, 35, 0, 786453, 35, 0, 786454, 35, 0, 786455, 35, 0, 786456, 35, 0, 786457, 35, 0, 851984, 35, 0, 851985, 35, 0, 851986, 35, 0, 851987, 35, 0, 851988, 35, 0, 851989, 35, 0, 851990, 35, 0, 851991, 35, 0, 851992, 35, 0, 851993, 35, 0 )
+
+[node name="Walls" type="TileMap" parent="."]
+tile_set = ExtResource( 6 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 327695, 4, 0, 327696, 7, 0, 327697, 0, 1, 327698, 0, 1, 327699, 0, 1, 327700, 0, 1, 327701, 0, 1, 327702, 0, 1, 327703, 0, 1, 327704, 0, 1, 327705, 6, 0, 327706, 4, 1, 393231, 4, 0, 393232, 4, 1, 393241, 4, 0, 393242, 4, 1, 458767, 4, 0, 458768, 4, 1, 458777, 4, 0, 458778, 4, 1, 524303, 4, 0, 524304, 4, 1, 524313, 4, 0, 524314, 4, 1, 589849, 4, 0, 589850, 4, 1, 655375, 4, 0, 655376, 4, 1, 655385, 4, 0, 655386, 4, 1, 720911, 4, 0, 720912, 4, 1, 720921, 4, 0, 720922, 4, 1, 786447, 4, 0, 786448, 4, 1, 786457, 4, 0, 786458, 4, 1, 851983, 4, 65536, 851984, 0, 1, 851985, 0, 1, 851986, 0, 1, 851987, 0, 1, 851988, 0, 1, 851989, 0, 1, 851990, 0, 1, 851991, 0, 1, 851992, 0, 1, 851993, 0, 1, 851994, 4, 65537 )
+
+[node name="Furniture" type="TileMap" parent="."]
+tile_set = ExtResource( 7 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 589839, -1073741815, 0 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 320, 176 )
+
+[node name="AnimatedSprite" parent="Player" index="0"]
+frame = 1
+
+[node name="Camera2D" parent="Player" index="2"]
+limit_left = 0
+limit_top = 0
+
+[node name="AnimationTree" parent="Player" index="6"]
+parameters/playback = SubResource( 1 )
+
+[node name="Objects" type="Node" parent="."]
+
+[node name="Bath" parent="Objects" instance=ExtResource( 4 )]
+position = Vector2( 400, 152 )
+
+[node name="WC" parent="Objects" instance=ExtResource( 5 )]
+position = Vector2( 408, 96 )
+
+[editable path="Player"]

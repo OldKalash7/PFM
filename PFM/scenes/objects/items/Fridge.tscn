@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/raw/furnies.png" type="Texture" id=1]
+[ext_resource path="res://src/items/fridge.gd" type="Script" id=2]
+[ext_resource path="res://scenes/components/DialogueActionable.tscn" type="PackedScene" id=3]
+
+[node name="Fridge" type="Area2D"]
+collision_layer = 2
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 96, 144, 16, 32 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 0, -10.6186 )
+polygon = PoolVector2Array( -9.01403, 25.102, 7.97571, 25.102, -0.047226, 31.2372 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2( 0, -3.125 )
+polygon = PoolVector2Array( -10.75, 0.25, 10.625, 0.125, 10.625, 10.75, -10.375, 10.5 )
+
+[node name="DialogueActionable" parent="." instance=ExtResource( 3 )]
+raw_dialog_file = "res://assets/dialogs/key.json"

@@ -5,7 +5,7 @@
 [ext_resource path="res://scenes/components/DialogueActionable.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 17.6881, 17.3744 )
+extents = Vector2( 17.308, 8.12872 )
 
 [node name="Bookshelf" type="Area2D"]
 collision_layer = 2
@@ -20,3 +20,9 @@ scale = Vector2( 0.858994, 0.745491 )
 texture = ExtResource( 2 )
 
 [node name="DialogueActionable" parent="." instance=ExtResource( 3 )]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( -6.60101, 0.241312, 6.58792, 0.101006, 6.86853, 6.83578, -6.60101, 6.83578 )

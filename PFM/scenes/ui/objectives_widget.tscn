@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://resources/main_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/ui/ObjectivesWidget.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[node name="ObjectivesWidget" type="Control"]
+anchor_left = 0.012
+anchor_right = 0.6
+anchor_bottom = 0.178
+margin_left = -7.68
+margin_bottom = -0.0800018
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_right = 384.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tree" type="Tree" parent="MarginContainer"]
+margin_right = 384.0
+margin_bottom = 64.0
+__meta__ = {
+"_edit_use_anchors_": false
+}

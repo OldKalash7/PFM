@@ -7,12 +7,12 @@ script = ExtResource( 1 )
 game_version = "0.1"
 data = {
 "GLOBALS": {
-"current_level": "Green_Room",
-"visited_levels": [  ]
-},
-"Green_Room": {
-"current_player_instance_": {
-"position": Vector2( 490.112, 441.507 )
+"current_level": "library",
+"visited_levels": [ "library" ],
+"visited_levels_data": {
 }
+},
+"current_player_instance_": {
+"position": Vector2( 61.4306, 187.288 )
 }
 }

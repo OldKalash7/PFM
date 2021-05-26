@@ -4,7 +4,11 @@ extends Node
 
 const SAVE_PATH_FOLDER : String = "res://debug/saves/"
 const LEVELS_PATH : String = "res://scenes/levels/"
-#onready var current_save : String = "test_sav.tres"
+
+enum LOAD_MODES {NEW = 0, RESTORE = 1, LOAD = 2}
+
+var load_mode : int
+var current_save_file : SaveFile
 
 onready var EVENTS_LIST : Events = Events.new()
 onready var EVENTS_GAME : GameEvents = GameEvents.new()
@@ -20,7 +24,10 @@ var spawn_location : String
 func _init():
 
 	_load_levels()
-	
+
+
+func game_initialization() -> void:
+	load_mode = LOAD_MODES.RESTORE
 
 
 func exit() -> void:

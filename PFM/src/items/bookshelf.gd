@@ -16,5 +16,6 @@ func _on_player_goes_away() -> void:
 
 func _input(event) -> void:
 	if Input.is_action_pressed("enter"):
-		#actionable.action()
+		set_process_input(false)
+		actionable.action()
 		pass

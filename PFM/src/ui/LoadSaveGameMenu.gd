@@ -5,10 +5,9 @@ class_name LoadSaveGameMenu
 
 
 
-
+var file_paths : Dictionary
 
 func refresh_contents() -> Array:
-
 
 	var save_list : Array
 	
@@ -21,6 +20,7 @@ func refresh_contents() -> Array:
 
 		while file_name != "":
 			if !dir.current_is_dir():
+				file_paths[file_name.get_basename()] = file_name
 				save_list.append(file_name.get_basename())
 			file_name = dir.get_next()
 		dir.list_dir_end()
@@ -29,6 +29,7 @@ func refresh_contents() -> Array:
 
 func show_menu(show : bool) -> void:
 	self.visible = show
+
 
 # Callbacks
 

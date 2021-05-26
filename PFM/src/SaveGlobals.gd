@@ -61,7 +61,7 @@ func save(save_file : Resource) -> void:
 
 	save_dic['visited_levels'] = visited_levels
 	save_dic['current_level'] = current_level
-
+	save_dic['visited_levels_data'] = visited_levels_data
 	save_file.store_globals(save_dic)
 
 
@@ -70,3 +70,4 @@ func load_globals(save_file : Resource) -> void:
 
 	visited_levels = save_dic['visited_levels'] 
 	current_level = save_dic['current_level']
+	visited_levels_data = save_dic['visited_levels_data'] 

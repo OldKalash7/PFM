@@ -31,40 +31,40 @@ __meta__ = {
 
 [node name="Titulo" type="Label" parent="Panel/VBoxContainer"]
 margin_right = 357.0
-margin_bottom = 22.0
+margin_bottom = 14.0
 text = "GUARDAR PARTIDA"
 align = 1
 
 [node name="SaveGamesList" type="ItemList" parent="Panel/VBoxContainer"]
-margin_top = 26.0
+margin_top = 18.0
 margin_right = 357.0
-margin_bottom = 192.0
+margin_bottom = 200.0
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
-margin_top = 196.0
+margin_top = 204.0
 margin_right = 357.0
 margin_bottom = 228.0
 alignment = 1
 
 [node name="SaveGameName" type="LineEdit" parent="Panel/VBoxContainer/HBoxContainer"]
-margin_right = 193.0
-margin_bottom = 32.0
+margin_right = 245.0
+margin_bottom = 24.0
 size_flags_horizontal = 3
 
 [node name="Atras" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
-margin_left = 197.0
-margin_right = 264.0
-margin_bottom = 32.0
+margin_left = 249.0
+margin_right = 294.0
+margin_bottom = 24.0
 text = "Atras"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Save" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
-margin_left = 268.0
+margin_left = 298.0
 margin_right = 357.0
-margin_bottom = 32.0
+margin_bottom = 24.0
 text = "Guardar"
 __meta__ = {
 "_edit_use_anchors_": false
