@@ -51,6 +51,10 @@ func _enter_tree():
 # Initialize the level
 func initialize() -> void:
 	
+	# Update GameState
+	
+	GameStateManager.update()
+	
 	# Spawn the player at the desired location
 	for spawn in get_node("Spawns").get_children():
 		if spawn.spawn_name == Main.spawn_location:
@@ -58,6 +62,10 @@ func initialize() -> void:
 	
 	#get_tree().get_current_scene().get_node("TransitionLayer/Transition").play_in()
 
+
+# Virtual method for each specific level to do their logic
+func update_level() -> void:
+	pass
 
 func _restore_level() -> void:
 	var restore_nodes : Array = get_tree().get_nodes_in_group("restore")

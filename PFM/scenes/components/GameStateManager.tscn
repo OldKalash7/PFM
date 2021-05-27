@@ -1,14 +1,28 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/GameStateManager.gd" type="Script" id=1]
+[ext_resource path="res://src/components/game_state_states/Beginning.gd" type="Script" id=2]
+[ext_resource path="res://src/components/game_state_states/FindKey.gd" type="Script" id=3]
+[ext_resource path="res://src/components/game_state_states/ExitHouse.gd" type="Script" id=4]
+[ext_resource path="res://scenes/components/QuestActionable.tscn" type="PackedScene" id=5]
 
 [node name="GameStateManager" type="Node"]
 script = ExtResource( 1 )
+default_state = "Beginning"
 
 [node name="States" type="Node" parent="."]
 
 [node name="Beginning" type="Node" parent="States"]
+script = ExtResource( 2 )
+doors_loocked_dialog = "res://assets/dialogs/locked_door.json"
+hall_exterior_door_dialog = "res://assets/dialogs/hall_door_needs_key.json"
+start_quest_name = "go_outside"
 
-[node name="LookingForKey" type="Node" parent="States"]
+[node name="FindKey" type="Node" parent="States"]
+script = ExtResource( 3 )
 
-[node name="KeyFound" type="Node" parent="States"]
+[node name="QuestActionable" parent="States/FindKey" instance=ExtResource( 5 )]
+quest_path = "res://assets/quests/quest_find_key.json"
+
+[node name="ExitHouse" type="Node" parent="States"]
+script = ExtResource( 4 )

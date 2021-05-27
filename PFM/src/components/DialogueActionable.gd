@@ -18,6 +18,7 @@ func _ready():
 func action() -> void:
 	if dialog_loaded:
 		Main.EVENTS_LIST.emit_signal("dialog_started",dialog,self)
+		print(self.name)
 	
 
 
@@ -32,6 +33,12 @@ func parse_dialog(dialog_file_name : String) -> Dictionary:
 	file.close()
 
 	return raw_dialogue
-		
+
+
+func change_dialog(dialog_file_path : String) -> void:
+	dialog_loaded = !dialog_file_path.empty()
+	if dialog_loaded:
+		dialog = Dialog.new(parse_dialog((dialog_file_path)))
+	
 
 

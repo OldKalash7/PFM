@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/tiles/base_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
@@ -8,15 +8,21 @@
 [ext_resource path="res://scenes/components/Spawn.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/levels/Hall.gd" type="Script" id=7]
 [ext_resource path="res://scenes/ui/SaveGameMenu.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/travels/HouseExterior.gd" type="Script" id=9]
-[ext_resource path="res://scenes/components/DialogueActionable.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/tiles/walls.tres" type="TileSet" id=11]
 [ext_resource path="res://assets/tiles/furniture.tres" type="TileSet" id=12]
+[ext_resource path="res://scenes/ui/objectives_widget.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/components/DialogManager.tscn" type="PackedScene" id=14]
+[ext_resource path="res://resources/main_theme.tres" type="Theme" id=15]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
 [node name="Hall" type="Node2D"]
 script = ExtResource( 7 )
+
+[node name="DialogManager" parent="." instance=ExtResource( 14 )]
+
+[node name="Choices" parent="DialogManager/States/CHOICE_STATE/ChoiceDisplayer/ChoicesLayer" index="0"]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_right = 658.0
@@ -47,12 +53,16 @@ tile_data = PoolIntArray( -65518, 9, 0, 786447, -1073741815, 0, 786454, -1610612
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 318.898, 305.125 )
 
-[node name="AnimatedSprite" parent="Player" index="0"]
-frame = 4
-
 [node name="Camera2D" parent="Player" index="2"]
 limit_left = 0
 limit_smoothed = true
+
+[node name="ActorLine" parent="Player/PlayerDisplay" index="0"]
+margin_left = -89.0
+margin_top = -50.0
+margin_right = 89.0
+margin_bottom = -10.0
+theme = ExtResource( 15 )
 
 [node name="AnimationTree" parent="Player" index="6"]
 parameters/playback = SubResource( 1 )
@@ -77,20 +87,14 @@ spawn_name = "from_hall"
 [node name="Hitbox" parent="HallStairs" index="0"]
 position = Vector2( -5.82703, -3.17839 )
 
-[node name="HallExteriorDoor" parent="." instance=ExtResource( 3 )]
-position = Vector2( 310.876, 332.862 )
-script = ExtResource( 9 )
-enabled = false
-
-[node name="Hitbox" parent="HallExteriorDoor" index="0"]
-position = Vector2( 0, 12.263 )
-
-[node name="DialogueActionable" parent="HallExteriorDoor" instance=ExtResource( 10 )]
-raw_dialog_file = "res://assets/dialogs/test.json"
-
 [node name="HallDiningDoor" parent="." instance=ExtResource( 3 )]
 position = Vector2( 290.044, 16.9908 )
 travel_to_level = "dinning"
+spawn_name = "from_hall"
+
+[node name="HallExteriorDoor" parent="." instance=ExtResource( 3 )]
+position = Vector2( 296.498, 360 )
+travel_to_level = "exterior"
 spawn_name = "from_hall"
 
 [node name="TransitionLayer" type="CanvasLayer" parent="."]
@@ -116,6 +120,9 @@ margin_bottom = 79.9999
 [node name="SaveMenu" parent="UI" instance=ExtResource( 8 )]
 visible = false
 
+[node name="ObjectivesWidget" parent="UI" instance=ExtResource( 13 )]
+visible = false
+
 [node name="Spawns" type="Node" parent="."]
 
 [node name="Spawn" parent="Spawns" instance=ExtResource( 6 )]
@@ -138,6 +145,9 @@ spawn_name = "from_bedroom"
 position = Vector2( 296.498, 51.9692 )
 spawn_name = "from_dinning"
 
+[editable path="DialogManager"]
+[editable path="DialogManager/States/CHOICE_STATE/ChoiceDisplayer"]
 [editable path="Player"]
+[editable path="Player/PlayerDisplay"]
+[editable path="HallLibraryDoor"]
 [editable path="HallStairs"]
-[editable path="HallExteriorDoor"]

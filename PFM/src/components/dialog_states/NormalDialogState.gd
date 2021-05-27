@@ -48,6 +48,7 @@ func process_callbacks() -> void:
 		
 		for i in callbacks:
 			# Procesar
+			print(i)
 			Main.EVENTS_GAME.emit_signal(i)
 
 
@@ -57,6 +58,9 @@ func _input(event) -> void:
 		
 		# Desconecta el input para que el jugador solo pulse enter una vez
 		set_process_input(false)
+		
+		# Procesar los callbacks que contenga
+		process_callbacks()
 		
 		# Llamar a DialogManager para que se ocupe de la transicion al siguiente estado
 

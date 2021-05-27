@@ -13,6 +13,7 @@ export(String) var URI : String
 export (bool) var enabled : bool
 export (bool) var volatile : bool
 export (bool) var empty_level : bool
+export (bool) var dialog_mode : bool
 export (String) var travel_to_level : String
 export (String) var travel_node : String
 export (String) var spawn_name : String
@@ -34,18 +35,9 @@ func travel_to() -> void:
 		#play_transition()
 		#yield(transition,"transintion_finished")
 
-		# Decide to store the information of this level or not
-		if !volatile:
-			#save_level_data()
-			pass
-			
 		# Load a new instance of the level
 		#var level : Node = load(Main.levels[travel_to_level]).instance()
 		var level : Resource = load(Main.levels[travel_to_level])
-
-		
-		
-		# If the player is visiting a new level or we want a to reinitialize a level
 
 
 		# The player has already visited
@@ -94,7 +86,12 @@ func _on_body_exits(body) -> void:
 		set_process_input(false)
 
 func _input(event) -> void:
-	if Input.is_action_pressed("enter"):
+	if Input.is_action_pressed("enter") && enabled:
 		emit_signal("player_travel_requested",self)
 		print('player request travel')
+	elif Input.is_action_pressed("enter") && dialog_mode:
+		print("dialog_mode")
+		set_process_input(false)
+		get_node("DialogueActionable").action()
+	
 		

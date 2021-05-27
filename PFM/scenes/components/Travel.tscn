@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/components/Travel.gd" type="Script" id=1]
+[ext_resource path="res://scenes/components/DialogueActionable.tscn" type="PackedScene" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 20.2754, 20.5188 )
 
-[node name="Travel" type="Area2D"]
+[node name="Travel" type="Area2D" groups=[
+"travel",
+]]
 monitorable = false
 collision_layer = 2
 script = ExtResource( 1 )
@@ -14,3 +17,5 @@ enabled = true
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 modulate = Color( 0.796078, 0.768627, 0, 1 )
 shape = SubResource( 1 )
+
+[node name="DialogueActionable" parent="." instance=ExtResource( 2 )]

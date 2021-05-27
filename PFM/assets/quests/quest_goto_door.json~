@@ -1,0 +1,10 @@
+{
+    "0":{
+            "type":"normal",
+            "display":"Player", 
+            "line":"Esto es una mesa, no creo que sea importante ahora.",
+            "callbacks": [],
+            "pointer": 1
+        },
+
+}

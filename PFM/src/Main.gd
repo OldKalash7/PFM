@@ -13,6 +13,7 @@ var current_save_file : SaveFile
 onready var EVENTS_LIST : Events = Events.new()
 onready var EVENTS_GAME : GameEvents = GameEvents.new()
 onready var SAVE_GLOBALS : SaveGlobals = SaveGlobals.new()
+onready var QUEST_FACTORY : QuestFactory = QuestFactory.new()
 
 # Contains the levels of the game, all the scenes in the folder levels plus
 # the path of each of them

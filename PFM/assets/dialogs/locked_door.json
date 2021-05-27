@@ -1,0 +1,20 @@
+
+{
+    "0":{
+            "type":"normal",
+            "display":"Player", 
+            "line":"This door does not lead outside.",
+            "callbacks": [],
+            "pointer": 1
+        },
+    "1":{   "type":"normal",
+            "display":"Player", 
+            "line":"I should check the front door",
+            "callbacks": [],
+            "repete": true,
+	    "restart":false,
+            "pointer": -1
+
+        }
+}
+

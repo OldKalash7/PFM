@@ -1,0 +1,6 @@
+{
+    "name":"go_outside",
+    "objective":"Go outside the house",
+    "description": "Exit the house. You can use the front door."
+
+}
