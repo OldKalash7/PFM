@@ -19,18 +19,19 @@
 [node name="Hall" type="Node2D"]
 script = ExtResource( 7 )
 
-[node name="DialogManager" parent="." instance=ExtResource( 14 )]
-
-[node name="Choices" parent="DialogManager/States/CHOICE_STATE/ChoiceDisplayer/ChoicesLayer" index="0"]
-visible = false
-
-[node name="ColorRect" type="ColorRect" parent="."]
-margin_right = 658.0
-margin_bottom = 441.0
+[node name="Background" type="ColorRect" parent="."]
+margin_top = -172.0
+margin_right = 978.0
+margin_bottom = 630.0
 color = Color( 0.145098, 0.117647, 0.117647, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="DialogManager" parent="." instance=ExtResource( 14 )]
+
+[node name="Choices" parent="DialogManager/States/CHOICE_STATE/ChoiceDisplayer/ChoicesLayer" index="0"]
+visible = false
 
 [node name="Floor" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -41,17 +42,22 @@ tile_data = PoolIntArray( 16, 14, 0, 17, 14, 0, 18, 14, 0, 19, 14, 0, 20, 14, 0,
 [node name="Walls" type="TileMap" parent="."]
 tile_set = ExtResource( 11 )
 cell_size = Vector2( 16, 16 )
+show_collision = true
 format = 1
-tile_data = PoolIntArray( -65521, 4, 0, -65520, 7, 0, -65519, 0, 1, -65517, 0, 1, -65516, 0, 1, -65515, 3, 0, -65514, 4, 1, 15, 4, 0, 16, 4, 1, 21, 4, 0, 22, 4, 1, 65551, 4, 0, 65552, 4, 1, 65557, 4, 0, 65558, 4, 1, 131087, 4, 0, 131088, 4, 1, 131093, 4, 0, 131094, 4, 1, 196623, 4, 0, 196624, 4, 1, 196629, 4, 0, 196630, 4, 1, 262159, 4, 0, 262160, 4, 1, 262165, 4, 0, 262166, 4, 1, 327695, 4, 0, 327696, 4, 1, 327701, 4, 0, 327702, 4, 1, 393231, 4, 0, 393232, 4, 1, 393237, 4, 0, 393238, 4, 1, 458767, 4, 0, 458768, 4, 1, 458773, 4, 0, 458774, 4, 1, 524303, 4, 0, 524304, 4, 1, 524309, 4, 0, 524310, 4, 1, 589839, 4, 0, 589840, 4, 1, 589845, 4, 0, 589846, 4, 1, 655375, 4, 0, 655376, 4, 1, 655381, 4, 0, 655382, 4, 1, 720911, 4, 0, 720918, 4, 1, 851983, 4, 0, 851990, 4, 1, 917519, 4, 0, 917520, 4, 1, 917525, 4, 0, 917526, 4, 1, 983055, 4, 0, 983056, 4, 1, 983061, 4, 0, 983062, 4, 1, 1048590, 4, 0, 1048591, 7, 0, 1048592, 4, 65537, 1048597, 4, 65536, 1048598, 0, 1, 1048599, 0, 1, 1048600, 4, 65537, 1114126, 4, 0, 1114127, 4, 1, 1114135, 4, 0, 1114136, 4, 1, 1179662, 4, 0, 1179663, 4, 1, 1179671, 4, 0, 1179672, 4, 1, 1245198, 4, 0, 1245199, 4, 1, 1245207, 4, 0, 1245208, 4, 1, 1310734, 4, 0, 1310735, 4, 1, 1310743, 4, 0, 1310744, 4, 1, 1376270, 4, 0, 1376271, 4, 1, 1376279, 4, 0, 1376280, 4, 1, 1441806, 4, 65536, 1441807, 3, 0, 1441808, 0, 1, 1441809, 0, 1, 1441811, 0, 1, 1441812, 0, 1, 1441813, 0, 1, 1441814, 3, 0, 1441815, 3, 0, 1441816, 4, 65537 )
+tile_data = PoolIntArray( -65521, 4, 0, -65520, 7, 0, -65519, 0, 1, -65517, 0, 1, -65516, 0, 1, -65515, 3, 0, -65514, 4, 1, 15, 4, 0, 16, 4, 1, 21, 4, 0, 22, 4, 1, 65551, 4, 0, 65552, 4, 1, 65557, 4, 0, 65558, 4, 1, 131087, 4, 0, 131088, 4, 1, 131093, 4, 0, 131094, 4, 1, 196623, 4, 0, 196624, 4, 1, 196629, 4, 0, 196630, 4, 1, 262159, 4, 0, 262160, 4, 1, 262165, 4, 0, 262166, 4, 1, 327695, 4, 0, 327696, 4, 1, 327701, 4, 0, 327702, 4, 1, 393231, 4, 0, 393232, 4, 1, 393237, 4, 0, 393238, 4, 1, 458767, 4, 0, 458768, 4, 1, 458773, 4, 0, 458774, 4, 1, 524303, 4, 0, 524304, 4, 1, 524309, 4, 0, 524310, 4, 1, 589839, 4, 0, 589840, 4, 1, 589845, 4, 0, 589846, 4, 1, 655375, 4, 0, 655376, 4, 1, 655381, 4, 0, 655382, 4, 1, 720911, 4, 0, 720912, 4, 1, 720917, 4, 0, 720918, 4, 1, 851983, 4, 0, 851984, 4, 1, 851989, 4, 0, 851990, 4, 1, 917519, 4, 0, 917520, 4, 1, 917525, 4, 0, 917526, 4, 1, 983055, 4, 0, 983056, 4, 1, 983061, 4, 0, 983062, 4, 1, 1048590, 4, 0, 1048591, 7, 0, 1048592, 4, 65537, 1048597, 4, 65536, 1048598, 0, 1, 1048599, 0, 1, 1048600, 4, 65537, 1114126, 4, 0, 1114127, 4, 1, 1114135, 4, 0, 1114136, 4, 1, 1179662, 4, 0, 1179663, 4, 1, 1179671, 4, 0, 1179672, 4, 1, 1245198, 4, 0, 1245199, 4, 1, 1245207, 4, 0, 1245208, 4, 1, 1310734, 4, 0, 1310735, 4, 1, 1310743, 4, 0, 1310744, 4, 1, 1376270, 4, 0, 1376271, 4, 1, 1376279, 4, 0, 1376280, 4, 1, 1441806, 4, 65536, 1441807, 3, 0, 1441808, 0, 1, 1441809, 0, 1, 1441811, 0, 1, 1441812, 0, 1, 1441813, 0, 1, 1441814, 3, 0, 1441815, 3, 0, 1441816, 4, 65537 )
 
 [node name="Furniture" type="TileMap" parent="."]
 tile_set = ExtResource( 12 )
 cell_size = Vector2( 16, 16 )
+show_collision = true
 format = 1
 tile_data = PoolIntArray( -65518, 9, 0, 786447, -1073741815, 0, 786454, -1610612727, 0, 1441810, 9, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 318.898, 305.125 )
+
+[node name="AnimatedSprite" parent="Player" index="0"]
+frame = 3
 
 [node name="Camera2D" parent="Player" index="2"]
 limit_left = 0
@@ -68,32 +74,24 @@ theme = ExtResource( 15 )
 parameters/playback = SubResource( 1 )
 
 [node name="HallLibraryDoor" parent="." instance=ExtResource( 3 )]
-position = Vector2( 243.376, 188.728 )
+position = Vector2( 257.695, 200.395 )
 travel_to_level = "library"
 spawn_name = "from_hall_door"
 transition_path = NodePath("../TransitionLayer/Transition")
 
 [node name="HallKitchenDoor" parent="." instance=ExtResource( 3 )]
-position = Vector2( 377.498, 188.728 )
+position = Vector2( 336.49, 200.395 )
 travel_to_level = "kitchen"
 spawn_name = "from_hall"
 transition_path = NodePath("../TransitionLayer/Transition")
 
-[node name="HallStairs" parent="." instance=ExtResource( 3 )]
-position = Vector2( 341.298, 11.3785 )
-travel_to_level = "bedroom"
-spawn_name = "from_hall"
-
-[node name="Hitbox" parent="HallStairs" index="0"]
-position = Vector2( -5.82703, -3.17839 )
-
 [node name="HallDiningDoor" parent="." instance=ExtResource( 3 )]
-position = Vector2( 290.044, 16.9908 )
+position = Vector2( 296.498, 3.30462 )
 travel_to_level = "dinning"
 spawn_name = "from_hall"
 
 [node name="HallExteriorDoor" parent="." instance=ExtResource( 3 )]
-position = Vector2( 296.498, 360 )
+position = Vector2( 296.498, 350.995 )
 travel_to_level = "exterior"
 spawn_name = "from_hall"
 
@@ -101,6 +99,9 @@ spawn_name = "from_hall"
 layer = 25
 
 [node name="Transition" parent="TransitionLayer" instance=ExtResource( 4 )]
+anchor_left = 7.45058e-10
+anchor_top = 0.0666667
+anchor_bottom = 1.06667
 
 [node name="UI" type="CanvasLayer" parent="."]
 pause_mode = 2
@@ -125,29 +126,46 @@ visible = false
 
 [node name="Spawns" type="Node" parent="."]
 
-[node name="Spawn" parent="Spawns" instance=ExtResource( 6 )]
-position = Vector2( 310.876, 305.125 )
+[node name="FromExterior" parent="Spawns" instance=ExtResource( 6 )]
+position = Vector2( 296.498, 323.099 )
 spawn_name = "from_exterior"
 
-[node name="Spawn2" parent="Spawns" instance=ExtResource( 6 )]
-position = Vector2( 285.779, 188.728 )
+[node name="FromLibrary" parent="Spawns" instance=ExtResource( 6 )]
+position = Vector2( 286.279, 200.395 )
 spawn_name = "from_library"
 
-[node name="Spawn3" parent="Spawns" instance=ExtResource( 6 )]
-position = Vector2( 341.298, 188.728 )
+[node name="FromKitchen" parent="Spawns" instance=ExtResource( 6 )]
+position = Vector2( 309.5, 200.395 )
 spawn_name = "from_kitchen"
 
-[node name="Spawn4" parent="Spawns" instance=ExtResource( 6 )]
-position = Vector2( 335.471, 46.6177 )
-spawn_name = "from_bedroom"
-
-[node name="Spawn5" parent="Spawns" instance=ExtResource( 6 )]
-position = Vector2( 296.498, 51.9692 )
+[node name="FromDinning" parent="Spawns" instance=ExtResource( 6 )]
+position = Vector2( 296.498, 27.7157 )
 spawn_name = "from_dinning"
+
+[node name="Hitboxes" type="Node" parent="."]
+
+[node name="Wall2" type="StaticBody2D" parent="Hitboxes"]
+position = Vector2( 250.5, 235.969 )
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Hitboxes/Wall2"]
+position = Vector2( -11.073, 0 )
+polygon = PoolVector2Array( 21.2715, -24.1297, 20.7418, 23.0165, -1.24207, -23.8648 )
+
+[node name="Wall3" type="StaticBody2D" parent="Hitboxes"]
+position = Vector2( 250.425, 89.4904 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Hitboxes/Wall3"]
+position = Vector2( -7.9252, 18.5097 )
+polygon = PoolVector2Array( 19.0957, -105.194, 18.7807, 80.0145, 1.35199, 23.6508 )
+
+[node name="Wall1" type="StaticBody2D" parent="Hitboxes"]
+position = Vector2( 229.898, 323.099 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitboxes/Wall1"]
+polygon = PoolVector2Array( 15.352, -50.0992, 16.102, 27.4008, 1.35199, 23.6508 )
 
 [editable path="DialogManager"]
 [editable path="DialogManager/States/CHOICE_STATE/ChoiceDisplayer"]
 [editable path="Player"]
 [editable path="Player/PlayerDisplay"]
 [editable path="HallLibraryDoor"]
-[editable path="HallStairs"]

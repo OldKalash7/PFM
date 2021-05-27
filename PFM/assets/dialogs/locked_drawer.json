@@ -1,0 +1,36 @@
+
+{
+    "0":{
+            "type":"normal",
+            "display":"Player", 
+            "line":"I can see the key in the drawer.",
+            "callbacks": [],
+            "pointer": 1
+        },
+    "1":{   "type":"normal",
+            "display":"Player", 
+            "line":"The drawer is closed with a padlock.",
+            "callbacks": [],
+            "pointer": 2
+
+        },
+    "2":{   "type":"normal",
+            "display":"Player", 
+            "line":"The padlock needs a 3 digit combination.",
+            "callbacks": [],
+            "pointer": 3
+
+        },
+
+    "3":{   "type":"normal",
+            "display":"Player", 
+            "line":"I need to find the numbers to open it.",
+            "callbacks": [],
+            "repete": true,
+	    "restart":false,
+            "pointer": -1
+
+        }
+
+}
+

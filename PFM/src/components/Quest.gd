@@ -5,7 +5,7 @@ class_name Quest
 
 
 signal quest_created(quest)
-signal quest_updated(quest_tree_node, quest_status)
+signal quest_updated(quest_uri,quest_status)
 
 
 enum STATUS {CREATED = 0, ASSIGNED = 1, HOLD = 2, COMPLETED = 3, FAILED = 4}

@@ -60,6 +60,11 @@ _global_script_classes=[ {
 "path": "res://src/Events.gd"
 }, {
 "base": "Node",
+"class": "GameChangePool",
+"language": "GDScript",
+"path": "res://src/components/GameChangesPool.gd"
+}, {
+"base": "Node",
 "class": "GameEvents",
 "language": "GDScript",
 "path": "res://src/GameEvents.gd"
@@ -245,6 +250,7 @@ _global_script_class_icons={
 "DialogManager": "",
 "DialogState": "",
 "Events": "",
+"GameChangePool": "",
 "GameEvents": "",
 "GameState": "",
 "GameStateBeginning": "",

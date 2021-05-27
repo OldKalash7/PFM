@@ -9,7 +9,7 @@ class_name Travel
 signal player_travel_requested(travel)
 
 var spawn_position : Position2D
-export(String) var URI : String
+export (String) var URI : String = "current_player_instance_" + name
 export (bool) var enabled : bool
 export (bool) var volatile : bool
 export (bool) var empty_level : bool
@@ -94,4 +94,30 @@ func _input(event) -> void:
 		set_process_input(false)
 		get_node("DialogueActionable").action()
 	
-		
+
+
+# SAVE / LOAD AND STORE FUNCTIONS 
+
+
+func save(save_file : Resource) -> void:
+	var save_dic : Dictionary
+
+	save_dic['enabled'] = enabled
+	save_dic['dialog_mode'] = dialog_mode
+	save_dic['spawn_name'] = spawn_name
+	save_dic['travel_to_level'] = travel_to_level
+	save_dic['transition_path'] = transition_path
+	
+	# Store on save_file dictionary
+	save_file.store_data(URI,save_dic)
+
+
+func load(save_file : Resource) -> void:
+	var save_dic : Dictionary = save_file.retrieve_data(URI)
+
+	if !save_dic.empty():
+		enabled = save_dic['enabled']
+		dialog_mode = save_dic['dialog_mode']
+		spawn_name = save_dic['spawn_name']
+		travel_to_level = save_dic['travel_to_level']
+		transition_path = save_dic['transition_path']

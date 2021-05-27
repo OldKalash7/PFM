@@ -42,6 +42,29 @@ func _on_new_quest(quest : Quest) -> void:
 	quests.push_front(quest)
 	
 	
+func quest_exists(quest_uri : String) -> bool:
+	for quest in quests:
+		if quest.quest_uri == quest_uri:
+			return true
+	return false
+	
+
+func get_quest_by_name(quest_uri : String) -> Quest:
+	var quest : Quest = Quest.new("","","")
+	
+	for i in quests:
+		if i.quest_uri == quest_uri:
+			quest = i
+			return quest
+			
+	return quest
+
+func change_quest_status(quest_uri: String, new_status : int) -> void:
+	if quest_exists(quest_uri):
+		var quest : Quest = get_quest_by_name(quest_uri)
+		quest.quest_status = new_status
+		quest.emit_signal("quest_updated",quest.quest_uri, quest.quest_status)
+	
 	
 func is_quest_active(quest_name : String) -> bool:
 	for quest in quests:
@@ -53,7 +76,7 @@ func get_current_quest_info() -> Dictionary:
 	var quest_info : Dictionary
 	
 	for quest in quests:
-		if quest.quest_status == Quest.STATUS.ASSIGNED || quest.ques_status == Quest.STATUS.HOLD:
+		if quest.quest_status == Quest.STATUS.ASSIGNED:
 			quest_info[quest.quest_uri] = [quest.quest_objective,quest.quest_description]
 			
 	return quest_info

@@ -4,9 +4,10 @@
 [ext_resource path="res://scenes/components/DialogueActionable.tscn" type="PackedScene" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 20.2754, 20.5188 )
+extents = Vector2( 16.8812, 10.8866 )
 
 [node name="Travel" type="Area2D" groups=[
+"persist",
 "travel",
 ]]
 monitorable = false
