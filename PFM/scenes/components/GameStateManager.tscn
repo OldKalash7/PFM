@@ -13,6 +13,9 @@ default_state = "Beginning"
 
 [node name="States" type="Node" parent="."]
 
+[node name="GameChangesPool" type="Node" parent="States"]
+script = ExtResource( 6 )
+
 [node name="Beginning" type="Node" parent="States"]
 script = ExtResource( 2 )
 doors_loocked_dialog = "res://assets/dialogs/locked_door.json"
@@ -29,6 +32,3 @@ quest_path = "res://assets/quests/quest_find_key.json"
 
 [node name="ExitHouse" type="Node" parent="States"]
 script = ExtResource( 4 )
-
-[node name="GameChangesPool" type="Node" parent="."]
-script = ExtResource( 6 )

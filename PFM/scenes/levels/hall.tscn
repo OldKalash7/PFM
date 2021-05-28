@@ -89,19 +89,26 @@ transition_path = NodePath("../TransitionLayer/Transition")
 position = Vector2( 296.498, 3.30462 )
 travel_to_level = "dinning"
 spawn_name = "from_hall"
+transition_path = NodePath("../TransitionLayer/Transition")
 
 [node name="HallExteriorDoor" parent="." instance=ExtResource( 3 )]
 position = Vector2( 296.498, 350.995 )
 travel_to_level = "exterior"
 spawn_name = "from_hall"
+transition_path = NodePath("../TransitionLayer/Transition")
 
 [node name="TransitionLayer" type="CanvasLayer" parent="."]
 layer = 25
 
 [node name="Transition" parent="TransitionLayer" instance=ExtResource( 4 )]
-anchor_left = 7.45058e-10
-anchor_top = 0.0666667
-anchor_bottom = 1.06667
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -459.5
+margin_top = -340.0
+margin_right = 459.5
+margin_bottom = 340.0
 
 [node name="UI" type="CanvasLayer" parent="."]
 pause_mode = 2
@@ -169,3 +176,5 @@ polygon = PoolVector2Array( 15.352, -50.0992, 16.102, 27.4008, 1.35199, 23.6508 
 [editable path="Player"]
 [editable path="Player/PlayerDisplay"]
 [editable path="HallLibraryDoor"]
+[editable path="HallKitchenDoor"]
+[editable path="HallDiningDoor"]

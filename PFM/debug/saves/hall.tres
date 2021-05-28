@@ -7,22 +7,16 @@ script = ExtResource( 1 )
 game_version = "0.1"
 data = {
 "GAME_STATE_MANAGER": {
-"current_state": Object(Node,"_import_path":NodePath(""),"pause_mode":0,"process_priority":0,"script":Resource( "res://src/components/game_state_states/FindKey.gd" ),"state_name":"","_dialog_drawer_changed":false,"_first_note_found":false,"_second_note_found":false,"_third_note_found":false)
+"current_state": Object(Node,"_import_path":NodePath(""),"pause_mode":0,"process_priority":0,"script":Resource( "res://src/components/game_state_states/Beginning.gd" ),"state_name":"","doors_loocked_dialog":"res://assets/dialogs/locked_door.json","hall_exterior_door_dialog":"res://assets/dialogs/hall_door_needs_key.json","start_quest_name":"go_outside","game_change_pool":Object(Node,"_import_path":NodePath(""),"pause_mode":0,"process_priority":0,"script":Resource( "res://src/components/GameChangesPool.gd" ),"changes":{
+"bedroom": [  ],
+"hall": [  ]
+})
+)
 ,
 "quests": [ {
-"quest_description": "You should check the house for the key",
-"quest_objective": "Find the key for the exit door",
-"quest_status": 1,
-"quest_uri": "find_key"
-}, {
-"quest_description": "You should check the house for the key",
-"quest_objective": "Find the key for the exit door",
-"quest_status": 1,
-"quest_uri": "find_key"
-}, {
 "quest_description": "Exit the house. You can use the front door.",
 "quest_objective": "Go outside the house",
-"quest_status": 2,
+"quest_status": 1,
 "quest_uri": "go_outside"
 } ]
 },
@@ -75,20 +69,18 @@ data = {
 }
 },
 "current_player_instance_Player": {
-"position": Vector2( 296.498, 300.146 )
+"position": Vector2( 296.498, 49.1843 )
 },
 "dialogue_actionable_instance_DialogueActionable": {
 "dialog": {
 "current_entrie": {
-"callbacks": [ "change_to_find_key" ],
+"callbacks": [  ],
 "display": "Player",
-"line": "It should be somewhere around the house.",
-"pointer": -1.0,
-"repete": true,
-"restart": false,
+"line": "It's looked.",
+"pointer": 1.0,
 "type": "normal"
 },
-"dialog_pointer": -1,
+"dialog_pointer": 0,
 "dialog_tree": {
 "0": {
 "callbacks": [  ],
@@ -114,14 +106,14 @@ data = {
 "type": "normal"
 }
 },
-"finished": true
+"finished": false
 },
 "dialog_loaded": true,
 "raw_dialog_file": ""
 },
 "travel_instance_HallDiningDoor": {
-"dialog_mode": false,
-"enabled": true,
+"dialog_mode": true,
+"enabled": false,
 "spawn_name": "from_hall",
 "transition_path": NodePath(""),
 "travel_to_level": "dinning"
@@ -134,15 +126,15 @@ data = {
 "travel_to_level": "exterior"
 },
 "travel_instance_HallKitchenDoor": {
-"dialog_mode": false,
-"enabled": true,
+"dialog_mode": true,
+"enabled": false,
 "spawn_name": "from_hall",
 "transition_path": NodePath("../TransitionLayer/Transition"),
 "travel_to_level": "kitchen"
 },
 "travel_instance_HallLibraryDoor": {
-"dialog_mode": false,
-"enabled": true,
+"dialog_mode": true,
+"enabled": false,
 "spawn_name": "from_hall_door",
 "transition_path": NodePath("../TransitionLayer/Transition"),
 "travel_to_level": "library"

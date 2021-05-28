@@ -24,7 +24,8 @@ func _init(name : String, objective : String, description : String):
 	
 	
 
-
+func set_quest_status(new_status : int) -> void:
+	quest_status = new_status
 
 func save() -> void:
 	pass

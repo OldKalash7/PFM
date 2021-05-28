@@ -158,6 +158,7 @@ spawn_name = "from_hall"
 position = Vector2( 16, 215.359 )
 travel_to_level = "hall"
 spawn_name = "from_kitchen"
+transition_path = NodePath("../TransitionLayer/Transition")
 
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 1024, 768 )
@@ -195,8 +196,10 @@ parameters/playback = SubResource( 1 )
 [node name="Objects" type="Node" parent="."]
 
 [node name="Fridge" parent="Objects" instance=ExtResource( 10 )]
-visible = false
-position = Vector2( 363.336, 244.884 )
+position = Vector2( 103.458, 155.5 )
+
+[node name="DialogueActionable" parent="Objects/Fridge" index="3"]
+raw_dialog_file = "res://assets/dialogs/house_door_unlocked.json"
 
 [node name="Hitboxes" type="Node" parent="."]
 

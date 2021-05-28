@@ -18,6 +18,7 @@ func enter( args : Dictionary) -> void:
 	# Launch new quest
 	get_node("FindKeyQuest").action()
 	GameStateManager.change_quest_status(exit_house_quest_name, Quest.STATUS.HOLD)
+	Main.EVENTS_GAME.connect("change_to_exit_house",self,"_on_change_to_exit_house")
 
 func exit() -> void:
 	pass
@@ -36,3 +37,7 @@ func unlock_doors() -> void:
 		if !travel.name == "HallExteriorDoor":
 			travel.enabled = true
 			travel.dialog_mode = false
+
+
+func _on_change_to_exit_house() -> void:
+	GameStateManager.change_state_to("ExitHouse",{})

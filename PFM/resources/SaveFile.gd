@@ -26,7 +26,7 @@ export (Dictionary) var data : Dictionary
 
 ## STORE DATA FUNCTIONS ##
 
-
+# Store data generic function
 func store_data(node_uri : String,node_data : Dictionary) -> void:
 	data[node_uri] = node_data	
 

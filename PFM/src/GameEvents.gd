@@ -9,6 +9,7 @@ class_name GameEvents
 
 signal vanish_test
 signal change_to_find_key
+signal change_to_exit_house
 
 
 

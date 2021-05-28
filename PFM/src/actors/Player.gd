@@ -7,11 +7,12 @@ signal player_ready(self_instance)
 class_name Player
 
 onready var animation : AnimatedSprite = get_node("AnimatedSprite")
-export (String) var URI = "current_player_instance_" + name
+export (String) var URI 
 var linear_velocity : Vector2
 
 
 func _ready():
+	URI = "current_player_instance_" + name
 	#$StateMachine._state = $StateMachine/IdleState
 	Main.EVENTS_LIST.connect("player_pause",self,"on_player_pause")
 	Main.EVENTS_LIST.connect("player_resume",self,"on_player_resume")

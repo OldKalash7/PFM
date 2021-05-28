@@ -26,6 +26,7 @@ func _ready():
 	# Init signals and other components
 	self.connect("level_restored",self,"_on_level_restored")
 	
+	
 	# Has the level been visited previously?
 	if Main.SAVE_GLOBALS.visited_levels.find(level_name) == -1:
 		pass
@@ -37,6 +38,7 @@ func _ready():
 				_restore_level()
 			Main.LOAD_MODES.LOAD:
 				_load_level_from_save_game()
+				GameStateManager.load_state(Main.current_save_file)
 		
 
 	spawn_group = get_node("Spawns")
@@ -53,7 +55,7 @@ func initialize() -> void:
 	
 	# Update GameState
 	
-	GameStateManager.update()
+	#GameStateManager.update()
 	
 	# Spawn the player at the desired location
 	for spawn in get_node("Spawns").get_children():

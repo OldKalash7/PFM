@@ -22,5 +22,9 @@ func play_in() -> void:
 	transition_node.play_in()
 
 
+func play_stop() -> void:
+	transition_node.play_stop()
+
+
 func _on_animation_finished(anim_name : String) -> void:
 	emit_signal("transintion_finished")

@@ -9,7 +9,7 @@ class_name Travel
 signal player_travel_requested(travel)
 
 var spawn_position : Position2D
-export (String) var URI : String = "current_player_instance_" + name
+export (String) var URI : String 
 export (bool) var enabled : bool
 export (bool) var volatile : bool
 export (bool) var empty_level : bool
@@ -21,6 +21,7 @@ export (NodePath) var transition_path : NodePath
 var transition : Transition 
 
 func _ready():
+	URI =  "travel_instance_" + name
 	self.connect("player_travel_requested",get_tree().get_current_scene(),"on_player_travel_requested")
 	self.connect("body_entered",self,"_on_body_enters")
 	self.connect("body_exited",self,"_on_body_exits")
@@ -32,11 +33,10 @@ func travel_to() -> void:
 	if enabled:
 		
 		# Play FADE IN ANIMATION
-		#play_transition()
-		#yield(transition,"transintion_finished")
+		play_transition()
+		
 
-		# Load a new instance of the level
-		#var level : Node = load(Main.levels[travel_to_level]).instance()
+		
 		var level : Resource = load(Main.levels[travel_to_level])
 
 
@@ -54,6 +54,7 @@ func travel_to() -> void:
 			
 		#get_tree().get_current_scene().queue_free()
 		Main.spawn_location = spawn_name
+		yield(transition,"transintion_finished")
 		get_tree().change_scene_to(level)
 
 
@@ -121,3 +122,29 @@ func load(save_file : Resource) -> void:
 		spawn_name = save_dic['spawn_name']
 		travel_to_level = save_dic['travel_to_level']
 		transition_path = save_dic['transition_path']
+		
+		
+# RESTORE / STORE FUNCTIONS
+func restore(restore_values : Dictionary) -> void:
+	print("Restore " +  self.name)
+	enabled = restore_values['enabled']
+	dialog_mode = restore_values['dialog_mode']
+	spawn_name = restore_values['spawn_name']
+	travel_to_level = restore_values['travel_to_level']
+	transition_path = restore_values['transition_path']
+	
+
+func store() -> Dictionary:
+	print("Store " + self.name )
+	
+	var store_dic : Dictionary
+	
+	# Store stuff
+	store_dic['enabled'] = enabled
+	store_dic['dialog_mode'] = dialog_mode
+	store_dic['spawn_name'] = spawn_name
+	store_dic['travel_to_level'] = travel_to_level
+	store_dic['transition_path'] = transition_path
+	
+	
+	return store_dic

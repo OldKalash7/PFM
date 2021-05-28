@@ -8,6 +8,7 @@ extents = Vector2( 16.8812, 10.8866 )
 
 [node name="Travel" type="Area2D" groups=[
 "persist",
+"restore",
 "travel",
 ]]
 monitorable = false

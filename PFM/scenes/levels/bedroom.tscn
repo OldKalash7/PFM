@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/tiles/base_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/components/Spawn.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://scenes/ui/SaveGameMenu.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/ui/OptionsMenu.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/components/DialogManager.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/components/Transition.tscn" type="PackedScene" id=14]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
@@ -62,6 +63,7 @@ spawn_name = "from_bathroom"
 position = Vector2( 189.337, 229.5 )
 travel_to_level = "dinning"
 spawn_name = "from_bedroom"
+transition_path = NodePath("../../TransitionLayer/Transition")
 
 [node name="Hitbox" parent="Travels/BedroomDinningDoor" index="0"]
 position = Vector2( 4.16306, 3.8891 )
@@ -70,12 +72,16 @@ position = Vector2( 4.16306, 3.8891 )
 position = Vector2( 407.882, 178 )
 travel_to_level = "bathroom"
 spawn_name = "from_bedroom"
+transition_path = NodePath("../../TransitionLayer/Transition")
 
 [node name="Hitbox" parent="Travels/BedroomBathromDoor" index="0"]
 position = Vector2( 22.22, 7.944 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 322.136, 171.556 )
+
+[node name="AnimatedSprite" parent="Player" index="0"]
+frame = 4
 
 [node name="Camera2D" parent="Player" index="2"]
 limit_left = 0
@@ -163,6 +169,11 @@ position = Vector2( 315.227, 83.9999 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitboxes/Bed"]
 polygon = PoolVector2Array( -3.62738, -11.5407, -3.62738, 5.94316, 14.4604, 6.45499, 14.4604, -11.5559 )
+
+[node name="TransitionLayer" type="CanvasLayer" parent="."]
+layer = 20
+
+[node name="Transition" parent="TransitionLayer" instance=ExtResource( 14 )]
 
 [editable path="Travels/BedroomDinningDoor"]
 [editable path="Travels/BedroomBathromDoor"]

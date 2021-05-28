@@ -20,7 +20,8 @@ var _finished : bool
 func _init(dialog_tree):
 	_dialog_pointer = 0
 	self._dialog_tree = dialog_tree
-	self._current_entrie = _dialog_tree[String(_dialog_pointer)]
+	if dialog_tree.has(String(_dialog_pointer)):
+		self._current_entrie = _dialog_tree[String(_dialog_pointer)]
 	_finished = false
 
 
@@ -32,12 +33,18 @@ func has_finished() -> bool:
 
 func set_dialog_tree(dialog_tree : Dictionary) -> void:
 	self._dialog_tree = dialog_tree
+	
+func set_finished(finished : bool) -> void:
+	self._finished = finished
 
 func set_dialog_pointer(index : int) -> void:
 	_dialog_pointer = index
 	
 func get_current_entrie() -> Dictionary:
 	return _current_entrie
+	
+func set_current_entrie(new_entrie : Dictionary) -> void:
+	_current_entrie = new_entrie
 
 func get_current_entrie_decisions() -> Dictionary:
 	return _current_entrie.get("decisiones")
@@ -57,7 +64,7 @@ func is_repeated_mode() -> bool:
 	# Repted mode es una flag que tiene la ultima entrie de dialogo y indica
 	# si se va mostrar en bucle por pantalla la opción repetida
 	if get_current_pointer() == -1:
-		return _current_entrie["repete"] == true
+		return _current_entrie["repeat"] == true
 	else:
 		return false
 
@@ -94,7 +101,8 @@ func advance_entrie() -> void:
 	# TODO revisar esto
 	_current_entrie = _dialog_tree[String(_current_entrie["pointer"])]
 	# TOOD cambiar dialog pointer, creo que no es necesario deberia irse fuera
-	_dialog_pointer = _current_entrie["pointer"]
+	if _current_entrie['type'] != "decision":
+		_dialog_pointer = _current_entrie["pointer"]
 	
 	if _dialog_pointer == -1:
 		_finished = true

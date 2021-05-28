@@ -17,5 +17,5 @@ func _start_custscene() -> void:
 	
 
 func _finish_cutscene() -> void:
-	GameStateManager.change_state_to("Beginning")
+	#GameStateManager.change_state_to("Beginning")
 	get_tree().change_scene_to(load(Main.levels[transition_to_level]))

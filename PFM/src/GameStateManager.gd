@@ -84,9 +84,33 @@ func get_current_quest_info() -> Dictionary:
 
 # SAVE / LOAD FUNCTIONS
 	
-func save(save_game : SaveFile) -> void:
-	pass
-
+func save(save_game : Resource) -> void:
+	var save_dic : Dictionary
+	var quests_to_save : Array
+	
+	save_dic['current_state'] = _state
+	
+	for i in quests:
+		quests_to_save.append(
+			{'quest_uri': i.quest_uri, 'quest_objective' : i.quest_objective, 'quest_status' : i.quest_status, 'quest_description' :i.quest_description}
+			
+			) 
+		
+	save_dic['quests'] = quests_to_save
+	
+	save_game.store_game_state(save_dic)
 
 func load_state(save_game : SaveFile) -> void:
-	pass 
+	var save_dic : Dictionary = save_game.retrieve_game_state()
+	var quests_to_load : Array
+	
+	_state = save_dic['current_state']
+	quests_to_load  = save_dic['quests']
+	
+	# Retrieve quest information
+	
+	for i in quests_to_load:
+		var quest = Quest.new(i['quest_uri'],i['quest_objective'], i['quest_description'])
+		quest.set_quest_status(i['quest_status'])
+		quests.append(quest)
+	

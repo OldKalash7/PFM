@@ -6,6 +6,7 @@ class_name StateMachine
 signal changed_to_new_state(state_name)
 
 export var default_state : String
+export (String) var URI : String = "state_machine_instance_" + name
 var state_pool : Dictionary
 var _state : State
 
@@ -46,3 +47,25 @@ func change_state_to(new_state_name : String, args : Dictionary) -> void:
 	_state.enter(args)
 	# Emitir señal diciendo que ha entrado en el nuevo estado
 	emit_signal("changed_to_new_state",_state.name)
+	
+	
+	# SAVE / LOAD AND STORE FUNCTIONS 
+
+
+func save(save_file : Resource) -> void:
+	var save_dic : Dictionary
+
+	save_dic['current_state'] = _state
+	save_dic['default_state'] = default_state
+	
+	# Store on save_file dictionary
+	save_file.store_data(URI,save_dic)
+
+
+func load(save_file : Resource) -> void:
+	var save_dic : Dictionary = save_file.retrieve_data(URI)
+
+	if !save_dic.empty():
+		_state = save_dic['current_state']
+		default_state = save_dic['default_state']
+		

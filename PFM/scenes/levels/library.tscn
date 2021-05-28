@@ -124,10 +124,10 @@ transition_path = NodePath("../TransitionLayer/Transition")
 [node name="TransitionLayer" type="CanvasLayer" parent="."]
 
 [node name="Transition" parent="TransitionLayer" instance=ExtResource( 7 )]
-anchor_left = 0.0167232
-anchor_top = 0.0502057
-anchor_right = 1.01672
-anchor_bottom = 1.05021
+anchor_left = -0.109375
+anchor_top = -0.0888889
+anchor_right = 1.10625
+anchor_bottom = 1.26389
 
 [node name="Spawns" type="Node" parent="."]
 

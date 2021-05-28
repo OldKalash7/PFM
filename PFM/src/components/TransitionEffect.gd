@@ -21,8 +21,15 @@ func play_in() -> void:
 		yield(animation_player,"animation_finished")
 	animation_player.play("fade_in")
 
+
 func play_out() -> void:
 	if animation_player.is_playing():
 		yield(animation_player,"animation_finished")
 	animation_player.play("fade_out")
+	
+	
+func play_stop():
+	if animation_player.is_playing():
+		yield(animation_player,"animation_finished")
+	animation_player.play("idle")
 

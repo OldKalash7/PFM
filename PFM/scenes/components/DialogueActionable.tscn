@@ -2,5 +2,8 @@
 
 [ext_resource path="res://src/components/DialogueActionable.gd" type="Script" id=1]
 
-[node name="DialogueActionable" type="Node"]
+[node name="DialogueActionable" type="Node" groups=[
+"persist",
+"restore",
+]]
 script = ExtResource( 1 )

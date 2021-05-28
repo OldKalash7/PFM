@@ -1,0 +1,15 @@
+{"0":{"callbacks":[],"display":"Player","line":"You open the door. Should you leave?","pointer":2,"type":"begin"}
+,
+"1":{
+	"callbacks":["trigger_leave_cutscene"],
+	"display":"Player",
+	"line":"You go outside",
+	"pointer":-1,
+	"repeat":false,
+	"restart":false,
+	"type":"end"},
+"2":{"decisiones":{
+	"0":["Exit the house",[],1],
+	"1":["Walk away",[],3]},
+	"display":"Player","line":"What i do?","type":"decision"},
+"3":{"callbacks":[],"display":"Player","line":"You stay in the house","pointer":-1,"repeat":true,"restart":false,"type":"end"}}

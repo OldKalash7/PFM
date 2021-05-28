@@ -1,18 +1,17 @@
 extends Node
 
 
-# se encarga de guardar algunos parametros globales para
+# Se encarga de guardar algunos parametros globales para
 class_name SaveGlobals
+
 
 var URI : String = "current_save_globals_" + name
 # The levels the player has already visited.
 # if the player attempts to travel to a level he has been on previously
 # it will trigger a load process 
 var visited_levels : Array
-
 # Data of the levels the player visits for persistence
 var visited_levels_data : Dictionary
-
 # The level the player is playing currently
 var current_level : String
 
@@ -29,7 +28,6 @@ func _level_entered(level_name : String) -> void:
 	# store it in visited levels
 	if !is_level_visited(level_name):
 		visit_level(level_name)
-	
 
 
 func is_level_visited(level_name : String) -> bool:

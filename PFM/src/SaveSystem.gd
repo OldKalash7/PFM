@@ -98,7 +98,7 @@ func load_level(savegame_path : String) -> void:
 	# Retrieve save globals
 	Main.SAVE_GLOBALS.load_globals(savegame)
 	# Retrieve GameStatemanager
-	GameStateManager.load_state(savegame)
+	#GameStateManager.load_state(savegame)
 	# Set the current save file
 	Main.current_save_file = savegame
 
@@ -106,26 +106,7 @@ func load_level(savegame_path : String) -> void:
 	# DELEGAR ESTO AL NIVEL 
 	var level : Resource = load_level_from_disk(Main.levels[Main.SAVE_GLOBALS.current_level])
 	get_tree().change_scene_to(level)
-	#var nodes_to_load : Array = level.get_children()
-
-	# Ejecutar los metodos de carga en cada nodo del nivel
-	# Trigger load in the tree
-	
-	#if level.is_in_group("persist"):
-	#	level.load(savegame)
-		
-	#for node in nodes_to_load:
-	#	if node.is_in_group("persist"):
-	#		node.load(savegame)
-
-	# Eliminar escena actual y cargar la nueva	
-	#get_tree().get_current_scene().queue_free()
-#	get_tree().get_root().add_child(level)
-#	get_tree().set_current_scene(level)
-	
-
 
 
 func load_level_from_disk(path : String) -> Resource:
 	return load(path)
-

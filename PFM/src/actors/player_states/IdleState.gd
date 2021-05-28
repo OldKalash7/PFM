@@ -9,7 +9,6 @@ class_name IdleState
 func enter( args : Dictionary) -> void:
 	#player.linear_velocity = Vector2.ZERO This fails
 	owner.linear_velocity = Vector2.ZERO
-	#print("Entrado en IDLE STATE")
 	
 	# Determinar que animación de idle hay que reproducir a partir de la última 
 	# animación que el nodo ha reproducido

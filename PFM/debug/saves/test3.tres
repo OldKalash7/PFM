@@ -75,20 +75,18 @@ data = {
 }
 },
 "current_player_instance_Player": {
-"position": Vector2( 296.498, 300.146 )
+"position": Vector2( 307.526, 210.15 )
 },
 "dialogue_actionable_instance_DialogueActionable": {
 "dialog": {
 "current_entrie": {
-"callbacks": [ "change_to_find_key" ],
+"callbacks": [  ],
 "display": "Player",
-"line": "It should be somewhere around the house.",
-"pointer": -1.0,
-"repete": true,
-"restart": false,
+"line": "It's looked.",
+"pointer": 1.0,
 "type": "normal"
 },
-"dialog_pointer": -1,
+"dialog_pointer": 0,
 "dialog_tree": {
 "0": {
 "callbacks": [  ],
@@ -114,14 +112,14 @@ data = {
 "type": "normal"
 }
 },
-"finished": true
+"finished": false
 },
 "dialog_loaded": true,
 "raw_dialog_file": ""
 },
 "travel_instance_HallDiningDoor": {
-"dialog_mode": false,
-"enabled": true,
+"dialog_mode": true,
+"enabled": false,
 "spawn_name": "from_hall",
 "transition_path": NodePath(""),
 "travel_to_level": "dinning"
@@ -134,15 +132,15 @@ data = {
 "travel_to_level": "exterior"
 },
 "travel_instance_HallKitchenDoor": {
-"dialog_mode": false,
-"enabled": true,
+"dialog_mode": true,
+"enabled": false,
 "spawn_name": "from_hall",
 "transition_path": NodePath("../TransitionLayer/Transition"),
 "travel_to_level": "kitchen"
 },
 "travel_instance_HallLibraryDoor": {
-"dialog_mode": false,
-"enabled": true,
+"dialog_mode": true,
+"enabled": false,
 "spawn_name": "from_hall_door",
 "transition_path": NodePath("../TransitionLayer/Transition"),
 "travel_to_level": "library"
