@@ -22,17 +22,18 @@ func push_changes(level_name : String, uri : String,changes : Array) -> void:
 func pop_changes(level_name : String) -> void:
 	
 	if self.changes.has(level_name):
-		print('pop_changes')
 		
-		var uri : String = changes[level_name][0]
-		print(uri)
-		var list_of_changes : Array = changes[level_name][1]
+		if !changes[level_name].empty():
 		
-		for i in list_of_changes:
-			i.call_func()
+			var uri : String = changes[level_name][0]
+			print(uri)
+			var list_of_changes : Array = changes[level_name][1]
+		
+			for i in list_of_changes:
+				i.call_func()
 				
-		emit_signal("changed_made",uri)
-		changes[level_name] = []
+			emit_signal("changed_made",uri)
+			changes[level_name] = []
 
 func save_changes(name_of_the_save_file : String) -> void:
 

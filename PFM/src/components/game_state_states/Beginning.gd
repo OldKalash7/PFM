@@ -21,15 +21,18 @@ func _ready():
 	state_name = name
 	game_change_pool = get_parent().get_node("GameChangesPool")
 	get_parent().get_node("GameChangesPool").connect("changed_made",self,"_on_change_made")
-func enter( args : Dictionary) -> void:
-	#  Connect signals
 	Main.EVENTS_GAME.connect("change_to_find_key",self,"_on_key_found")
 	
-	for i in changes.keys():
-		var uri : String = i
-		var level : String = changes[i][0]
-		var list_of_changes = changes[i][1]
-		game_change_pool.push_changes(level,uri,list_of_changes)
+	
+func enter( args : Dictionary) -> void:
+	#  Connect signals
+	
+	stack_changes()
+	#for i in changes.keys():
+	#	var uri : String = i
+	#	var level : String = changes[i][0]
+	#		var list_of_changes = changes[i][1]
+	#		game_change_pool.push_changes(level,uri,list_of_changes)
 		
 	#game_change_pool.push_changes('bedroom',[funcref(self,"activate_quest")])
 	#game_change_pool.push_changes('hall',[funcref(self,"lock_doors")])
@@ -57,6 +60,7 @@ func stack_changes() -> void:
 			list_of_changes = changes[i][1]
 			game_change_pool.push_changes(level,uri,list_of_changes)
 	
+
 func set_made_changes(made_changes : Array) -> void:
 	activated_changes = made_changes
 

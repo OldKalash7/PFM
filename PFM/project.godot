@@ -89,7 +89,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/components/game_state_states/ExitHouse.gd"
 }, {
-"base": "State",
+"base": "GameState",
 "class": "GameStateFindKey",
 "language": "GDScript",
 "path": "res://src/components/game_state_states/FindKey.gd"
