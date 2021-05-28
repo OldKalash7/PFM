@@ -3,7 +3,7 @@ extends Actionable
 # Con esta señal, un nodo tipo DialogManager recogeria el dialogo que se va a mostrar
 
 export(String, FILE, "*.json") var raw_dialog_file
-export (String) var URI 
+onready var URI : String = "dialogue_actionable_instance_" + get_parent().name
 
 var dialog: Dialog
 var dialog_loaded : bool
@@ -40,25 +40,43 @@ func change_dialog(dialog_file_path : String) -> void:
 	dialog_loaded = !dialog_file_path.empty()
 	if dialog_loaded:
 		dialog = Dialog.new(parse_dialog((dialog_file_path)))
+		print(URI + ' DIALOG CHANGED')
 	
 
 # RESTORE / STORE FUNCTIONS
 func restore(restore_values : Dictionary) -> void:
 	print("Restore " +  self.name)
 	raw_dialog_file = restore_values['raw_dialog_file']
-	dialog = restore_values['dialog']
-	dialog_loaded = restore_values['dialog_loaded']
+	if restore_values.has("dialog"):
+		var restored_dialog = Dialog.new({})
+		print('has_dialogue')
+		restored_dialog.set_dialog_tree(restore_values['dialog']['dialog_tree'])
+		restored_dialog.set_current_entrie(restore_values['dialog']['dialog_entrie'])
+		restored_dialog.set_dialog_pointer(restore_values['dialog']['dialog_pointer'])
+		print(restore_values['dialog']['dialog_pointer'])
+		restored_dialog.set_finished(restore_values['dialog']['dialog_finished'])
+		
+		dialog = restored_dialog
+		
+		dialog_loaded = restore_values['dialog_loaded']
 
 func store() -> Dictionary:
 	print("Store " + self.name )
 	
 	var store_dic : Dictionary
-	
+	var dialog_stored : Dictionary
 	# Store stuff
 	store_dic['raw_dialog_file'] = raw_dialog_file
-	store_dic['dialog'] = dialog
-	store_dic['dialog_loaded'] = dialog_loaded
+	store_dic['dialog_stored '] = dialog_stored 
 	
+	if dialog != null:
+		dialog_stored['dialog_pointer'] = dialog.get_current_pointer()
+		dialog_stored['dialog_entrie'] = dialog.get_current_entrie()
+		dialog_stored['dialog_tree'] = dialog.get_dialog_tree()
+		dialog_stored['dialog_finished'] = dialog.has_finished()
+		
+		store_dic['dialog'] = dialog_stored
+		store_dic['dialog_loaded'] = dialog_loaded
 	
 	return store_dic
 	
@@ -81,8 +99,8 @@ func save(save_file : Resource) -> void:
 		}
 		save_dic['dialog_loaded'] = dialog_loaded
 	
-		# Store on save_file dictionary
-		save_file.store_data(URI,save_dic)
+	# Store on save_file dictionary
+	save_file.store_data(URI,save_dic)
 	
 
 
@@ -92,12 +110,17 @@ func load(save_file : Resource) -> void:
 	
 	if !save_dic.empty():
 		save_dic['raw_dialog_file'] = raw_dialog_file
-		restored_dialog.set_dialog_tree(save_dic['dialog']["dialog_tree"])
-		restored_dialog.set_current_entrie(save_dic['dialog']["current_entrie"])
-		print("DEBUG --> SAVED ENTRIE ")
-		print(save_dic['dialog']["current_entrie"]) 
-		print(save_dic['dialog']["dialog_pointer"])
-		restored_dialog.set_dialog_pointer(save_dic['dialog']["dialog_pointer"])
-		restored_dialog.set_finished(save_dic['dialog']["finished"])
-		self.dialog = restored_dialog
 		save_dic['dialog_loaded'] = dialog_loaded
+		
+		if save_dic.has('dialog'):
+			print('SAVED_DIALOG_LOADED')
+			restored_dialog.set_dialog_tree(save_dic['dialog']["dialog_tree"])
+			restored_dialog.set_current_entrie(save_dic['dialog']["current_entrie"])
+			print("DEBUG --> SAVED ENTRIE ")
+			print(save_dic['dialog']["current_entrie"]) 
+			print(save_dic['dialog']["dialog_pointer"])
+			restored_dialog.set_dialog_pointer(save_dic['dialog']["dialog_pointer"])
+			restored_dialog.set_finished(save_dic['dialog']["finished"])
+			dialog = restored_dialog
+			print(dialog.get_current_pointer())
+		

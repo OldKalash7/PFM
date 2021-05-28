@@ -3,14 +3,14 @@
     "0":{
             "type":"normal",
             "display":"Player", 
-            "line":"It's looked.",
+            "line":"It's locked.",
             "callbacks": [],
             "pointer": 1
         },
 
     "1":{   "type":"normal",
             "display":"Player", 
-            "line":"I will need the key to open it",
+            "line":"I will need the key to open it.",
             "callbacks": [],
             "pointer": 2
 

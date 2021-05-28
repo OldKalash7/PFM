@@ -62,7 +62,7 @@ tile_data = PoolIntArray( 851977, 46, 0, 851979, 24, 0 )
 position = Vector2( 61.4306, 187.288 )
 
 [node name="AnimatedSprite" parent="Player" index="0"]
-frame = 0
+frame = 4
 
 [node name="CollisionShape2D" parent="Player" index="1"]
 position = Vector2( -0.235977, 0 )

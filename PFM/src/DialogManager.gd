@@ -65,7 +65,10 @@ func on_dialog_started(dialog_item,new_actionable) -> void:
 func on_dialog_finished() -> void:
 	Main.EVENTS_LIST.emit_signal("player_resume")
 	
-	if actionable.dialog.is_repeated_mode():
+	#if actionable.dialog.is_repeated_mode():
+	#	print('is repeat')
+	#	actionable.dialog.restart()
+	if actionable.dialog.is_restart_mode_on():
 		print('is repeat')
 		actionable.dialog.restart()
 

@@ -33,6 +33,8 @@ func _level_entered(level_name : String) -> void:
 func is_level_visited(level_name : String) -> bool:
 	return visited_levels.find(level_name) != -1
 
+func is_level_on_restore(level_name : String) -> bool:
+	return visited_levels_data.has(level_name)
 
 func visit_level(level_name : String) -> void:
 	visited_levels.append(level_name)

@@ -9,7 +9,6 @@
 
 [node name="GameStateManager" type="Node"]
 script = ExtResource( 1 )
-default_state = "Beginning"
 
 [node name="States" type="Node" parent="."]
 

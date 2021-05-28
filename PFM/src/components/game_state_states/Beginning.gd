@@ -9,6 +9,9 @@ export (String,FILE, "*.json") var hall_exterior_door_dialog : String
 export (String) var start_quest_name : String
 var game_change_pool : GameChangePool
 
+func _ready():
+	state_name = name
+
 func enter( args : Dictionary) -> void:
 	Main.EVENTS_GAME.connect("change_to_find_key",self,"_on_key_found")
 	game_change_pool = get_parent().get_node("GameChangesPool")
@@ -23,11 +26,7 @@ func exit() -> void:
 
 
 func update() -> void:
-	if Main.SAVE_GLOBALS.current_level == "bedroom" && !GameStateManager.is_quest_active(start_quest_name):
-		get_tree().get_current_scene().get_node("QuestActionableGotoDoor").action()
-		
-	if Main.SAVE_GLOBALS.current_level == "hall":
-		lock_doors()
+	pass
 
 
 

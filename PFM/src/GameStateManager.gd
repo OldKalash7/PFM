@@ -88,7 +88,7 @@ func save(save_game : Resource) -> void:
 	var save_dic : Dictionary
 	var quests_to_save : Array
 	
-	save_dic['current_state'] = _state
+	save_dic['current_state'] = _state.name
 	
 	for i in quests:
 		quests_to_save.append(
@@ -104,7 +104,7 @@ func load_state(save_game : SaveFile) -> void:
 	var save_dic : Dictionary = save_game.retrieve_game_state()
 	var quests_to_load : Array
 	
-	_state = save_dic['current_state']
+	_state = states.get_node(save_dic['current_state'])
 	quests_to_load  = save_dic['quests']
 	
 	# Retrieve quest information
@@ -114,3 +114,10 @@ func load_state(save_game : SaveFile) -> void:
 		quest.set_quest_status(i['quest_status'])
 		quests.append(quest)
 	
+
+func save_pool_changes(save_name : String) -> void:
+	get_node("States/GameChangesPool").save_changes(save_name)
+	
+	
+func load_pool_changes(save_name : String) -> void:
+	get_node("States/GameChangesPool").load_changes(save_name)

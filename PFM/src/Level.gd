@@ -38,7 +38,7 @@ func _ready():
 				_restore_level()
 			Main.LOAD_MODES.LOAD:
 				_load_level_from_save_game()
-				GameStateManager.load_state(Main.current_save_file)
+				#GameStateManager.load_state(Main.current_save_file)
 		
 
 	spawn_group = get_node("Spawns")
@@ -55,14 +55,12 @@ func initialize() -> void:
 	
 	# Update GameState
 	
-	#GameStateManager.update()
 	
 	# Spawn the player at the desired location
 	for spawn in get_node("Spawns").get_children():
 		if spawn.spawn_name == Main.spawn_location:
 			spawn.spawn()
-	
-	#get_tree().get_current_scene().get_node("TransitionLayer/Transition").play_in()
+
 
 
 # Virtual method for each specific level to do their logic
@@ -73,15 +71,16 @@ func _restore_level() -> void:
 	var restore_nodes : Array = get_tree().get_nodes_in_group("restore")
 	var level_data = Main.SAVE_GLOBALS.retrieve_level_data(level_name)
 	
-	for node in restore_nodes:
-		node.restore(level_data[node.name])
+	if Main.SAVE_GLOBALS.is_level_on_restore(level_name):
+		for node in restore_nodes:
+			node.restore(level_data[node.name])
 
-	self.emit_signal("level_restored")
+		self.emit_signal("level_restored")
 
 
 # Callback for when the level restoration is completed
 func _on_level_restored() -> void:
-	print("Level restored")
+	print("DEBUG --> "+ "LEVEL " + self.name + " restored")
 
 func on_player_travel_requested(travel : Travel) -> void:
 	print("Debug of " + self.name + " Player requested travel from "+ travel.name)
@@ -102,6 +101,7 @@ func _store_level() -> void:
 		
 	# Save the level data on save globals
 	Main.SAVE_GLOBALS.store_level_data(level_name,nodes_content_dictionary)
+	print("DEBUG --> "+ "LEVEL " + self.name + " stored")
 
 
 func _load_level_from_save_game() -> void:
@@ -110,6 +110,7 @@ func _load_level_from_save_game() -> void:
 	
 	for node in nodes_to_load:
 		if node.has_method("load"):
+			print(node.name)
 			node.load(save_file)
 			
 	# RESET del load mode para volver al restore de los niveles

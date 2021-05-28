@@ -7,7 +7,8 @@ class_name SaveSystem
 
 
 const SAVE_RESOURCE = preload("res://resources/SaveFile.gd")
-const SAVE_FOLDER : String = "res://debug/saves/"
+const STATE_POOL_NAME = "STATE_POOL_CHANGES"
+#const SAVE_FOLDER : String = "res://debug/saves/"
 # var SAVE_NAME : String = "_sav.tres"
 
 
@@ -39,6 +40,7 @@ func save(version : String) -> void:
 	# Call all nodes in persist group
 	for node in get_tree().get_nodes_in_group("persist"):
 		if node.has_method("save"):
+			print(node.URI)
 			# Every node in the persist group saves their data in a dictionary and then,
 			# stores that dictionary on the save_file data dictionary using the URI of their
 			# node as a Key to acces the values.
@@ -49,17 +51,19 @@ func save(version : String) -> void:
 	# Save SaveGlobals
 	Main.SAVE_GLOBALS.save(save_game)
 
+	# SAVE THE POOL OF CHANGES
+	#GameStateManager.save_pool_changes(STATE_POOL_NAME)
 	# Save GameStateManager
 	GameStateManager.save(save_game)
 
 	# Create directories if needed
 	var directory : Directory = Directory.new()
-	if !directory.dir_exists(SAVE_FOLDER):
-		directory.make_dir_recursive(SAVE_FOLDER)
+	if !directory.dir_exists(Main.SAVE_PATH_FOLDER):
+		directory.make_dir_recursive(Main.SAVE_PATH_FOLDER)
 
 	# Get save path
 	#var save_path : String = SAVE_FOLDER.plus_file("%" + SAVE_NAME % version)
-	var save_path : String = SAVE_FOLDER.plus_file(version + ".tres")
+	var save_path : String = Main.SAVE_PATH_FOLDER.plus_file(version + ".tres")
 	# Save file and get possible error during saving
 	var error := ResourceSaver.save(save_path, save_game)
 	# If there is an error while saving, log it to debug
@@ -71,7 +75,7 @@ func save(version : String) -> void:
 
 func load(version : String) -> void:
 	# Get path
-	var save_path : String = SAVE_FOLDER.plus_file(version)
+	var save_path : String = Main.SAVE_PATH_FOLDER.plus_file(version)
 	
 	var f : File = File.new()
 	# Check if the files exists
@@ -97,8 +101,10 @@ func load_level(savegame_path : String) -> void:
 	Main.load_mode = Main.LOAD_MODES.LOAD
 	# Retrieve save globals
 	Main.SAVE_GLOBALS.load_globals(savegame)
+	# LOAD THE POOL OF CHANGES
+	#GameStateManager.load_pool_changes(STATE_POOL_NAME)
 	# Retrieve GameStatemanager
-	#GameStateManager.load_state(savegame)
+	GameStateManager.load_state(savegame)
 	# Set the current save file
 	Main.current_save_file = savegame
 

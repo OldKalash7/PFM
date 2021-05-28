@@ -11,7 +11,8 @@ var state_pool : Dictionary
 var _state : State
 
 func _ready():
-	change_state_to(default_state, {0:"INITAL"})
+	if !default_state.empty():
+		change_state_to(default_state, {0:"INITAL"})
 
 # Los siguientes callbacks se delegan al State en cuestión,
 # De esta manera, se puede gestionar diferentes comportamientos
