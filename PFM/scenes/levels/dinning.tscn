@@ -73,6 +73,9 @@ tile_data = PoolIntArray( 458774, 25, 0, 524310, 24, 0 )
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 252, 192 )
 
+[node name="AnimatedSprite" parent="Player" index="0"]
+frame = 3
+
 [node name="Camera2D" parent="Player" index="2"]
 limit_left = -40
 limit_top = 0
@@ -105,10 +108,14 @@ transition_path = NodePath("../TransitionLayer/Transition")
 layer = 25
 
 [node name="Transition" parent="TransitionLayer" instance=ExtResource( 4 )]
-anchor_left = -0.184375
-anchor_top = -0.102778
-anchor_right = 1.1125
-anchor_bottom = 1.22778
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -415.0
+margin_top = -239.5
+margin_right = 415.0
+margin_bottom = 239.5
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 100

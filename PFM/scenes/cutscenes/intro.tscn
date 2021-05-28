@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/components/Display.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/components/DialogManager.tscn" type="PackedScene" id=2]
@@ -6,6 +6,28 @@
 [ext_resource path="res://scenes/components/Transition.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/cutscenes/IntroCutscene.gd" type="Script" id=5]
 [ext_resource path="res://resources/main_theme.tres" type="Theme" id=6]
+[ext_resource path="res://assets/shader_masks/from_center.png" type="Texture" id=7]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform float cutoff : hint_range(0.00,1.00);
+uniform float smoth : hint_range(0.00,1.00);
+uniform sampler2D mask : hint_albedo;
+
+void fragment(){
+	float value = texture(mask, UV).r;
+	float alpha = smoothstep(cutoff, cutoff + smoth,value *(1.0 - smoth)+ smoth);
+	COLOR = vec4(COLOR.rgb, alpha);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = SubResource( 1 )
+shader_param/cutoff = 1.0
+shader_param/smoth = 0.267
+shader_param/mask = ExtResource( 7 )
 
 [node name="Intro" type="Node2D"]
 script = ExtResource( 5 )
@@ -54,6 +76,9 @@ visible = false
 raw_dialog_file = "res://assets/dialogs/intro_cutscene.json"
 
 [node name="Transition" parent="." instance=ExtResource( 4 )]
+
+[node name="CutoffTransition" parent="Transition" index="0"]
+material = SubResource( 2 )
 
 [editable path="Frame/CutsceneDisplay"]
 [editable path="DialogManager"]

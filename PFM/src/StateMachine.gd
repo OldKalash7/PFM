@@ -20,19 +20,24 @@ func _ready():
 # misma clase
 
 func _process(delta : float):
-	_state.handle_process(delta)
+	if _state != null:
+		_state.handle_process(delta)
 
 func _physics_process(delta : float):
-	_state.handle_physics_process(delta)
+	if _state != null:
+		_state.handle_physics_process(delta)
 
 func _input(event):
-	_state.handle_input(event)
-
+	if _state != null:
+		_state.handle_input(event)
+	
 func _unhandled_input(event):
-	_state.handle_unhandled_input(event)
+	if _state != null:
+		_state.handle_unhandled_input(event)
 
 func _unhandled_key_input(event):
-	_state.handle_unhandled_key_input(event)
+	if _state != null:
+		_state.handle_unhandled_key_input(event)
 
 
 func change_state_to(new_state_name : String, args : Dictionary) -> void:

@@ -74,7 +74,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/GameEvents.gd"
 }, {
-"base": "Node",
+"base": "State",
 "class": "GameState",
 "language": "GDScript",
 "path": "res://src/components/GameState.gd"

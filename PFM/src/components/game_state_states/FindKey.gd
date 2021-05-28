@@ -26,8 +26,8 @@ func enter( args : Dictionary) -> void:
 	Main.EVENTS_GAME.connect("change_to_exit_house",self,"_on_change_to_exit_house")
 	Main.EVENTS_GAME.connect("found_code",self,"_on_found_code")
 	
-	game_change_pool.push_changes('library',[funcref(self,"put_library_dialog")])
-	game_change_pool.push_changes('kitchen',[funcref(self,"put_kitchen_dialog")])
+	#game_change_pool.push_changes('library',[funcref(self,"put_library_dialog")])
+	#game_change_pool.push_changes('kitchen',[funcref(self,"put_kitchen_dialog")])
 
 func exit() -> void:
 	pass

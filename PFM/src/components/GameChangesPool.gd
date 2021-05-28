@@ -4,6 +4,8 @@ extends Node
 class_name GameChangePool
 
 
+signal changed_made(uri)
+
 var changes : Dictionary
 
 
@@ -12,18 +14,25 @@ func _ready():
 	
 	
 	
-func push_changes(level_name : String, changes : Array) -> void:
-	self.changes[level_name] = changes
+func push_changes(level_name : String, uri : String,changes : Array) -> void:
+	self.changes[level_name] = [uri,changes]
 	print('pushed changes')
 	
 	
 func pop_changes(level_name : String) -> void:
-	if self.changes.has(level_name):
-		var level_changes : Array = changes[level_name]
 	
-		for i in level_changes:
+	if self.changes.has(level_name):
+		print('pop_changes')
+		
+		var uri : String = changes[level_name][0]
+		print(uri)
+		var list_of_changes : Array = changes[level_name][1]
+		
+		for i in list_of_changes:
 			i.call_func()
-			level_changes.remove(level_changes.find(i))
+				
+		emit_signal("changed_made",uri)
+		changes[level_name] = []
 
 func save_changes(name_of_the_save_file : String) -> void:
 

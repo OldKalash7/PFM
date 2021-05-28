@@ -97,7 +97,8 @@ func save(save_file : Resource) -> void:
 			"dialog_pointer": dialog.get_current_pointer(),
 			"finished": dialog.has_finished()
 		}
-		save_dic['dialog_loaded'] = dialog_loaded
+	save_dic['dialog_loaded'] = dialog_loaded
+	print(dialog_loaded)
 	
 	# Store on save_file dictionary
 	save_file.store_data(URI,save_dic)
@@ -110,7 +111,9 @@ func load(save_file : Resource) -> void:
 	
 	if !save_dic.empty():
 		save_dic['raw_dialog_file'] = raw_dialog_file
-		save_dic['dialog_loaded'] = dialog_loaded
+		#save_dic['dialog_loaded'] = dialog_loaded
+		dialog_loaded = true
+		print(save_dic['dialog_loaded'])
 		
 		if save_dic.has('dialog'):
 			print('SAVED_DIALOG_LOADED')

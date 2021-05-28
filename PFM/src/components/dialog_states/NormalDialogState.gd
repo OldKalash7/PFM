@@ -48,7 +48,7 @@ func process_callbacks() -> void:
 		
 		for i in callbacks:
 			# Procesar
-			print(i)
+			print("CALLBACK --> " + i)
 			Main.EVENTS_GAME.emit_signal(i)
 
 
