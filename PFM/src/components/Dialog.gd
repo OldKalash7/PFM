@@ -25,6 +25,7 @@ func _init(dialog_tree):
 	_finished = false
 
 
+
 # Métodos públicos
 
 
@@ -77,6 +78,7 @@ func is_restart_mode_on() -> bool:
 func restart() -> void:
 	_finished = false
 	_current_entrie = _dialog_tree["0"]
+	_dialog_pointer = 0
 
 	
 

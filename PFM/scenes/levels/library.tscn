@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scenes/components/Travel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/levels/Library.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://scenes/ui/OptionsMenu.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/tiles/walls.tres" type="TileSet" id=15]
 [ext_resource path="res://assets/tiles/furniture.tres" type="TileSet" id=16]
+[ext_resource path="res://scenes/objects/items/Book.tscn" type="PackedScene" id=17]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
@@ -59,6 +60,9 @@ tile_data = PoolIntArray( 851977, 46, 0, 851979, 24, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
 position = Vector2( 61.4306, 187.288 )
+
+[node name="AnimatedSprite" parent="Player" index="0"]
+frame = 0
 
 [node name="CollisionShape2D" parent="Player" index="1"]
 position = Vector2( -0.235977, 0 )
@@ -124,10 +128,14 @@ transition_path = NodePath("../TransitionLayer/Transition")
 [node name="TransitionLayer" type="CanvasLayer" parent="."]
 
 [node name="Transition" parent="TransitionLayer" instance=ExtResource( 7 )]
-anchor_left = -0.109375
-anchor_top = -0.0888889
-anchor_right = 1.10625
-anchor_bottom = 1.26389
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -389.0
+margin_top = -243.5
+margin_right = 389.0
+margin_bottom = 243.5
 
 [node name="Spawns" type="Node" parent="."]
 
@@ -166,6 +174,9 @@ polygon = PoolVector2Array( -15.5436, 1.12894, 14.3235, 1.2958, 14.4069, 11.7242
 "restore",
 ] instance=ExtResource( 12 )]
 position = Vector2( 168, 122 )
+
+[node name="Book" parent="Items" instance=ExtResource( 17 )]
+position = Vector2( 148.17, 212.34 )
 
 [node name="Hitboxes" type="Node" parent="."]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/levels/Kitchen.gd" type="Script" id=1]
 [ext_resource path="res://scenes/ui/PauseMenu.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://scenes/ui/objectives_widget.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/tiles/furniture.tres" type="TileSet" id=13]
 [ext_resource path="res://assets/tiles/walls.tres" type="TileSet" id=14]
+[ext_resource path="res://scenes/objects/items/Book.tscn" type="PackedScene" id=15]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
@@ -72,7 +73,7 @@ tile_data = PoolIntArray( 327683, 41, 0, 327688, 7, 0, 327689, 4, 0, 327690, 4, 
 tile_set = ExtResource( 13 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 327693, 13, 0, 327694, 13, 0, 393229, 13, 65536, 393230, 13, 65536, 655373, 25, 0, 655374, 25, 0, 720909, 12, 0 )
+tile_data = PoolIntArray( 327693, 13, 0, 327694, 13, 0, 393229, 13, 65536, 393230, 13, 65536, 655373, 25, 0, 655374, 25, 0, 786445, 12, 0 )
 
 [node name="TILES" type="Node" parent="."]
 
@@ -167,7 +168,7 @@ size = Vector2( 1024, 768 )
 position = Vector2( 215.776, 197.385 )
 
 [node name="AnimatedSprite" parent="Player" index="0"]
-frame = 4
+frame = 0
 
 [node name="Camera2D" parent="Player" index="2"]
 limit_left = -100
@@ -193,13 +194,16 @@ scale = Vector2( 0.591211, 0.554048 )
 [node name="AnimationTree" parent="Player" index="6"]
 parameters/playback = SubResource( 1 )
 
-[node name="Objects" type="Node" parent="."]
+[node name="Items" type="Node" parent="."]
 
-[node name="Fridge" parent="Objects" instance=ExtResource( 10 )]
+[node name="Fridge" parent="Items" instance=ExtResource( 10 )]
 position = Vector2( 103.458, 155.5 )
 
-[node name="DialogueActionable" parent="Objects/Fridge" index="3"]
+[node name="DialogueActionable" parent="Items/Fridge" index="3"]
 raw_dialog_file = "res://assets/dialogs/house_door_unlocked.json"
+
+[node name="Book" parent="Items" instance=ExtResource( 15 )]
+position = Vector2( 215, 194.854 )
 
 [node name="Hitboxes" type="Node" parent="."]
 
@@ -233,4 +237,4 @@ polygon = PoolVector2Array( -31.3083, -20.4646, -31.8702, 21.8626, 26.9384, 22.6
 [editable path="UI/PauseMenu"]
 [editable path="Player"]
 [editable path="Player/PlayerDisplay"]
-[editable path="Objects/Fridge"]
+[editable path="Items/Fridge"]

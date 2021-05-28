@@ -6,7 +6,7 @@ class_name QuestActionable
 
 export(String, FILE, "*.json") var quest_path : String
 var game_state : Node
-
+var game_change_pool : GameChangePool
 
 func _ready():
 	# Retrieve GameState from the tree

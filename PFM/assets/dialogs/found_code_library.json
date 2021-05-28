@@ -1,0 +1,1 @@
+{"0":{"callbacks":[],"display":"Player","line":"The book on the table is open.","pointer":1,"type":"begin"},"1":{"callbacks":[],"display":"Player","line":"Some of the pages have been torn appart.","pointer":2,"type":"normal"},"2":{"callbacks":["found_code"],"display":"Player","line":"Someone has underlined the number 7","pointer":-1,"repeat":false,"restart":false,"type":"end"}}

@@ -30,5 +30,7 @@ quest_path = "res://assets/quests/quest_find_key.json"
 
 [node name="QuestActionable" parent="States/FindKey" instance=ExtResource( 5 )]
 
+[node name="FindCodeQuest" parent="States/FindKey" instance=ExtResource( 5 )]
+
 [node name="ExitHouse" type="Node" parent="States"]
 script = ExtResource( 4 )

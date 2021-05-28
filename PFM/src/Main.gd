@@ -1,7 +1,9 @@
 extends Node
 
 
-const SAVE_PATH_FOLDER : String = "res://debug/saves/"
+#const SAVE_PATH_FOLDER : String = "res://debug/saves/"
+# user://
+const SAVE_PATH_FOLDER : String = "user://pmaven/saves/"
 const LEVELS_PATH : String = "res://scenes/levels/"
 
 enum LOAD_MODES {NEW = 0, RESTORE = 1, LOAD = 2}

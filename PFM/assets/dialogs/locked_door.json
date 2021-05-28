@@ -11,7 +11,7 @@
             "display":"Player", 
             "line":"I should check the front door",
             "callbacks": [],
-            "repete": true,
+            "repeat": true,
 	    "restart":false,
             "pointer": -1
 

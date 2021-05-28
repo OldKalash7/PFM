@@ -1,7 +1,6 @@
 extends DialogState
 
 
-
 class_name ChoiceDialogState
 
 
@@ -67,6 +66,7 @@ func on_line_displayed() -> void:
 # Obtiene un array con todos los objetos de tipo Display presentes en el treee
 func get_available_displays() -> Array:
 	return get_tree().get_nodes_in_group("displays")
+
 
 # TODO Esto deberia poder arreglarse con un yield pero no funciona
 func on_timeout() -> void:

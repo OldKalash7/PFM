@@ -64,6 +64,10 @@ func on_dialog_started(dialog_item,new_actionable) -> void:
 # Called when a dialog is finished, Unpauses player
 func on_dialog_finished() -> void:
 	Main.EVENTS_LIST.emit_signal("player_resume")
+	
+	if actionable.dialog.is_repeated_mode():
+		print('is repeat')
+		actionable.dialog.restart()
 
 	# Hide all displays
 

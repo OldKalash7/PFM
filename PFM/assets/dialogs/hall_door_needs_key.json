@@ -20,7 +20,7 @@
             "display":"Player", 
             "line":"It should be somewhere around the house.",
             "callbacks": ["change_to_find_key"],
-            "repete": true,
+            "repeat": true,
 	    "restart":false,
             "pointer": -1
 
