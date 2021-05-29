@@ -54,6 +54,7 @@ func restore(restore_values : Dictionary) -> void:
 		restored_dialog.set_current_entrie(restore_values['dialog']['dialog_entrie'])
 		restored_dialog.set_dialog_pointer(restore_values['dialog']['dialog_pointer'])
 		print(restore_values['dialog']['dialog_pointer'])
+		restored_dialog.set_repeat(restore_values['dialog']['repeating'])
 		restored_dialog.set_finished(restore_values['dialog']['dialog_finished'])
 		
 		dialog = restored_dialog
@@ -74,7 +75,7 @@ func store() -> Dictionary:
 		dialog_stored['dialog_entrie'] = dialog.get_current_entrie()
 		dialog_stored['dialog_tree'] = dialog.get_dialog_tree()
 		dialog_stored['dialog_finished'] = dialog.has_finished()
-		
+		dialog_stored['repeating'] = dialog.is_repeating()
 		store_dic['dialog'] = dialog_stored
 		store_dic['dialog_loaded'] = dialog_loaded
 	
