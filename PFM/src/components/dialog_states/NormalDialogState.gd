@@ -44,7 +44,7 @@ func process_callbacks() -> void:
 	var callbacks : Array = dialog.get_entrie_callbacks()
 
 	# Procesa las callbacks si hay
-	if callbacks != null && !callbacks.empty():
+	if callbacks != null && !callbacks.empty() && !dialog.is_repeating():
 		
 		for i in callbacks:
 			# Procesar

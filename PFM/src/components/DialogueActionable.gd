@@ -95,7 +95,8 @@ func save(save_file : Resource) -> void:
 			"dialog_tree": dialog.get_dialog_tree(),
 			"current_entrie": dialog.get_current_entrie(),
 			"dialog_pointer": dialog.get_current_pointer(),
-			"finished": dialog.has_finished()
+			"finished": dialog.has_finished(),
+			"repeating": dialog.is_repeating()
 		}
 	save_dic['dialog_loaded'] = dialog_loaded
 	print(dialog_loaded)
@@ -124,6 +125,7 @@ func load(save_file : Resource) -> void:
 			print(save_dic['dialog']["dialog_pointer"])
 			restored_dialog.set_dialog_pointer(save_dic['dialog']["dialog_pointer"])
 			restored_dialog.set_finished(save_dic['dialog']["finished"])
+			restored_dialog.set_repeat(save_dic['dialog']["repeating"])
 			dialog = restored_dialog
 			print(dialog.get_current_pointer())
 		

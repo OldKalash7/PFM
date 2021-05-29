@@ -14,6 +14,7 @@ var _dialog_tree : Dictionary
 var _current_entrie : Dictionary
 var _dialog_pointer : int
 var _finished : bool
+var _repeating : bool
 
 # Constructor
 
@@ -28,6 +29,11 @@ func _init(dialog_tree):
 
 # Métodos públicos
 
+func is_repeating() -> bool:
+	return _repeating
+	
+func set_repeat(repeat : bool) -> void:
+	_repeating = repeat
 
 func has_finished() -> bool:
 	return _finished

@@ -70,4 +70,4 @@ func on_dialog_finished() -> void:
 		print('is restart')
 		actionable.dialog.restart()
 	elif actionable.dialog.is_repeated_mode():
-		pass
+		actionable.dialog.set_repeat(true)
