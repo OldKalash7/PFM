@@ -34,6 +34,10 @@ func pop_changes(level_name : String) -> void:
 				
 			emit_signal("changed_made",uri)
 			changes[level_name] = []
+			
+func stack_single_change(level_name : String, change : Dictionary) -> void:
+	self.changes[level_name]
+	print(self.changes)
 
 func save_changes(name_of_the_save_file : String) -> void:
 

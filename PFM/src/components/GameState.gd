@@ -32,4 +32,6 @@ func set_made_changes(made_changes : Array) -> void:
 
 
 func get_made_changes() -> Array:
+
 	return activated_changes
+

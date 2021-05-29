@@ -13,8 +13,8 @@
 [ext_resource path="res://scenes/ui/OptionsMenu.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/ui/objectives_widget.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/components/DialogManager.tscn" type="PackedScene" id=13]
-[ext_resource path="res://src/items/Drawer.gd" type="Script" id=14]
-[ext_resource path="res://scenes/components/DialogueActionable.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/objects/items/Drawer.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/objects/items/Book.tscn" type="PackedScene" id=15]
 [ext_resource path="res://resources/main_theme.tres" type="Theme" id=16]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
@@ -73,9 +73,6 @@ tile_data = PoolIntArray( 458774, 25, 0, 524310, 24, 0 )
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 252, 192 )
 
-[node name="AnimatedSprite" parent="Player" index="0"]
-frame = 3
-
 [node name="Camera2D" parent="Player" index="2"]
 limit_left = -40
 limit_top = 0
@@ -126,10 +123,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -77.5002
-margin_top = -79.9999
-margin_right = 77.5002
-margin_bottom = 79.9999
+margin_left = -48.4998
+margin_top = -57.4999
+margin_right = 48.4998
+margin_bottom = 57.4999
 
 [node name="SaveMenu" parent="UI" instance=ExtResource( 6 )]
 visible = false
@@ -143,6 +140,8 @@ margin_bottom = 118.0
 
 [node name="ObjectivesWidget" parent="UI" instance=ExtResource( 12 )]
 visible = false
+margin_top = 1.0
+margin_bottom = 0.0
 
 [node name="Spawns" type="Node" parent="."]
 
@@ -165,15 +164,6 @@ scale = Vector2( 1.00713, 0.911958 )
 polygon = PoolVector2Array( -9.48265, -37.8997, -8.78055, 44.2898, 109.172, 45.4528, 106.364, -39.0627 )
 
 [node name="Objects" type="Node" parent="."]
-
-[node name="Drawer" type="Area2D" parent="Objects"]
-position = Vector2( 177, 64 )
-script = ExtResource( 14 )
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Objects/Drawer"]
-polygon = PoolVector2Array( -14.7926, 2.89488, -16.2641, 12.9856, 16.1104, 13.1959, 13.7979, 3 )
-
-[node name="DialogueActionable" parent="Objects/Drawer" instance=ExtResource( 15 )]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Objects"]
 
@@ -241,7 +231,19 @@ position = Vector2( -3.53554, 173.241 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Objects/Wall"]
 polygon = PoolVector2Array( 6.81441, -122.574, 6.81441, 113.6, -9.44905, 113.6, -3.08508, -125.402 )
 
+[node name="Items" type="Node" parent="."]
+
+[node name="Drawer" parent="Items" instance=ExtResource( 14 )]
+position = Vector2( 177.192, 67.2597 )
+
+[node name="CollisionPolygon2D" parent="Items/Drawer" index="0"]
+polygon = PoolVector2Array( -13.9779, -5.9198, -17.3511, 11.1448, 14.5953, 11.3432, 10.6268, -5.52295 )
+
+[node name="BookDinning" parent="Items" instance=ExtResource( 15 )]
+position = Vector2( 354.586, 137.151 )
+
 [editable path="DialogManager"]
 [editable path="DialogManager/States/CHOICE_STATE/ChoiceDisplayer"]
 [editable path="Player"]
 [editable path="Player/PlayerDisplay"]
+[editable path="Items/Drawer"]

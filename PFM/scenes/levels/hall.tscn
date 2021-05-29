@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/tiles/base_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://scenes/components/Spawn.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/levels/Hall.gd" type="Script" id=7]
 [ext_resource path="res://scenes/ui/SaveGameMenu.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/ui/OptionsMenu.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/tiles/walls.tres" type="TileSet" id=11]
 [ext_resource path="res://assets/tiles/furniture.tres" type="TileSet" id=12]
 [ext_resource path="res://scenes/ui/objectives_widget.tscn" type="PackedScene" id=13]
@@ -57,7 +58,7 @@ tile_data = PoolIntArray( -65518, 9, 0, 786447, -1073741815, 0, 786454, -1610612
 position = Vector2( 318.898, 305.125 )
 
 [node name="AnimatedSprite" parent="Player" index="0"]
-frame = 0
+frame = 3
 
 [node name="Camera2D" parent="Player" index="2"]
 limit_left = 0
@@ -75,24 +76,28 @@ parameters/playback = SubResource( 1 )
 
 [node name="HallLibraryDoor" parent="." instance=ExtResource( 3 )]
 position = Vector2( 257.695, 200.395 )
+enabled = false
 travel_to_level = "library"
 spawn_name = "from_hall_door"
 transition_path = NodePath("../TransitionLayer/Transition")
 
 [node name="HallKitchenDoor" parent="." instance=ExtResource( 3 )]
 position = Vector2( 336.49, 200.395 )
+enabled = false
 travel_to_level = "kitchen"
 spawn_name = "from_hall"
 transition_path = NodePath("../TransitionLayer/Transition")
 
 [node name="HallDiningDoor" parent="." instance=ExtResource( 3 )]
 position = Vector2( 296.498, 3.30462 )
+enabled = false
 travel_to_level = "dinning"
 spawn_name = "from_hall"
 transition_path = NodePath("../TransitionLayer/Transition")
 
 [node name="HallExteriorDoor" parent="." instance=ExtResource( 3 )]
 position = Vector2( 296.498, 350.995 )
+enabled = false
 travel_to_level = "exterior"
 spawn_name = "from_hall"
 transition_path = NodePath("../TransitionLayer/Transition")
@@ -130,6 +135,14 @@ visible = false
 
 [node name="ObjectivesWidget" parent="UI" instance=ExtResource( 13 )]
 visible = false
+margin_top = 1.0
+
+[node name="OptionsMenu" parent="UI" instance=ExtResource( 9 )]
+visible = false
+margin_left = -126.5
+margin_top = -118.0
+margin_right = 126.5
+margin_bottom = 118.0
 
 [node name="Spawns" type="Node" parent="."]
 

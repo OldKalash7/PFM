@@ -12,4 +12,4 @@
 	"0":["Exit the house",[],1],
 	"1":["Walk away",[],3]},
 	"display":"Player","line":"What i do?","type":"decision"},
-"3":{"callbacks":[],"display":"Player","line":"You stay in the house","pointer":-1,"repeat":true,"restart":false,"type":"end"}}
+"3":{"callbacks":[],"display":"Player","line":"You stay in the house","pointer":-1,"repeat":false,"restart":true,"type":"end"}}

@@ -24,16 +24,16 @@ func _ready():
 	
 	# Hide in screen on init
 	show_in_screen(false)
-	#set_process_input(false)
+	set_process_input(false)
 	
-func _gui_input(event):
-	pass
+
 
 
 func _input(event):
-	if event.is_action_released("escape") && visible:
+	if event.is_action_pressed("escape") && visible:
 		_on_exit_pressed()
 		accept_event()
+	
 
 
 func show_in_screen(show : bool) -> void:
@@ -43,20 +43,23 @@ func refresh_contents() -> void:
 	pass
 
 func store_changes() -> void:
-	ProjectSettings.set_setting("display/window/size/width", 1024)
-	ProjectSettings.set_setting("display/window/size/height", 768)
-
+	#ProjectSettings.set_setting("display/window/size/width", 1024)
+	#ProjectSettings.set_setting("display/window/size/height", 768)
+	pass
 
 # CALLBACKS
 
 func _on_open_options_menu() -> void:
 	show_in_screen(true)
-	#set_process_input(true)
+	set_process_input(true)
+	grab_focus()
 
 func _on_save_pressed() -> void:
 	store_changes()
 
 func _on_exit_pressed() -> void:
 	show_in_screen(false)
+	print('exit')
+	set_process_input(false)
 	emit_signal("closed")
 	#set_process_input(false)

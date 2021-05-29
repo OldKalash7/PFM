@@ -62,7 +62,7 @@ tile_data = PoolIntArray( 851977, 46, 0, 851979, 24, 0 )
 position = Vector2( 61.4306, 187.288 )
 
 [node name="AnimatedSprite" parent="Player" index="0"]
-frame = 4
+frame = 3
 
 [node name="CollisionShape2D" parent="Player" index="1"]
 position = Vector2( -0.235977, 0 )
@@ -113,7 +113,8 @@ margin_bottom = 58.5
 visible = false
 
 [node name="ObjectivesWidget" parent="UI" instance=ExtResource( 13 )]
-visible = false
+margin_top = 1.0
+margin_bottom = 0.0
 
 [node name="OptionsMenu" parent="UI" instance=ExtResource( 14 )]
 pause_mode = 2
@@ -175,7 +176,7 @@ polygon = PoolVector2Array( -15.5436, 1.12894, 14.3235, 1.2958, 14.4069, 11.7242
 ] instance=ExtResource( 12 )]
 position = Vector2( 168, 122 )
 
-[node name="Book" parent="Items" instance=ExtResource( 17 )]
+[node name="BookLibrary" parent="Items" instance=ExtResource( 17 )]
 position = Vector2( 148.17, 212.34 )
 
 [node name="Hitboxes" type="Node" parent="."]

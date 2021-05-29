@@ -63,6 +63,14 @@ func play_transition() -> void:
 	transition.play_in()
 
 
+func disable() -> void:
+	enabled = false
+	
+	
+func enable() -> void:
+	enabled = true
+
+
 func save_level_data() -> void:
 	var store_nodes : Array = get_tree().get_nodes_in_group("store")
 	var level_store_dic : Dictionary

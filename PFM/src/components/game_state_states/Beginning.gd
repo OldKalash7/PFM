@@ -63,17 +63,21 @@ func stack_changes() -> void:
 
 func set_made_changes(made_changes : Array) -> void:
 	activated_changes = made_changes
+		
 
 func lock_doors() -> void:
 	var travel_nodes : Array = get_tree().get_nodes_in_group("travel")
-	
+
 	for travel in travel_nodes:
-		travel.enabled = false
+		travel.dialog_mode = true
+		travel.disable()
+		print('LOCK')
+		print(travel.name)
 		if travel.name == "HallExteriorDoor":
 			travel.get_node("DialogueActionable").change_dialog(hall_exterior_door_dialog)
 		else:
 			travel.get_node("DialogueActionable").change_dialog(doors_loocked_dialog)
-		travel.dialog_mode = true
+		
 
 
 func activate_quest() -> void:
@@ -84,6 +88,7 @@ func _on_key_found() -> void:
 
 
 func _on_change_made(name_of_the_change : String) -> void:
-	activated_changes.append(name_of_the_change)
-	print("ACTIVATED CHANGES --> ")
-	print( activated_changes)
+	if changes.has(name_of_the_change):
+		activated_changes.append(name_of_the_change)
+		print("ACTIVATED CHANGES --> ")
+		print( activated_changes)

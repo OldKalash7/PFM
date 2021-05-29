@@ -53,9 +53,6 @@ func _enter_tree():
 # Initialize the level
 func initialize() -> void:
 	
-	# Update GameState
-	
-	
 	# Spawn the player at the desired location
 	for spawn in get_node("Spawns").get_children():
 		if spawn.spawn_name == Main.spawn_location:

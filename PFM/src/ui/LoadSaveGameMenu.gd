@@ -4,6 +4,8 @@ extends Control
 class_name LoadSaveGameMenu
 
 
+signal closed
+
 
 var file_paths : Dictionary
 
@@ -35,6 +37,7 @@ func show_menu(show : bool) -> void:
 
 func _on_back_pressed() -> void:
 	show_menu(false)
+	emit_signal("closed")
 
 
 

@@ -88,4 +88,5 @@ __meta__ = {
 }
 
 [node name="OptionsMenu" parent="." instance=ExtResource( 5 )]
+pause_mode = 2
 visible = false

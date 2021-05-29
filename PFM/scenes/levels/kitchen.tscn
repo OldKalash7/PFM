@@ -81,6 +81,17 @@ tile_data = PoolIntArray( 327693, 13, 0, 327694, 13, 0, 393229, 13, 65536, 39323
 pause_mode = 2
 layer = 128
 
+[node name="PauseMenu" parent="UI" instance=ExtResource( 2 )]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -48.4998
+margin_top = -57.4999
+margin_right = 48.4998
+margin_bottom = 57.4999
+
 [node name="SaveMenu" parent="UI" instance=ExtResource( 4 )]
 visible = false
 anchor_left = 0.5
@@ -93,18 +104,9 @@ margin_right = 179.0
 margin_bottom = 114.0
 
 [node name="ObjectivesWidget" parent="UI" instance=ExtResource( 12 )]
-visible = false
-
-[node name="PauseMenu" parent="UI" instance=ExtResource( 2 )]
-visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -48.4998
-margin_top = -57.4999
-margin_right = 48.4998
-margin_bottom = 57.4999
+margin_left = -7.0
+margin_top = 1.0
+margin_right = -3.32001
 
 [node name="OptionsMenu" parent="UI" instance=ExtResource( 16 )]
 visible = false
@@ -134,9 +136,6 @@ size = Vector2( 1024, 768 )
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( 215.776, 197.385 )
-
-[node name="AnimatedSprite" parent="Player" index="0"]
-frame = 4
 
 [node name="Camera2D" parent="Player" index="2"]
 limit_left = -100
@@ -170,7 +169,7 @@ position = Vector2( 103.458, 155.5 )
 [node name="DialogueActionable" parent="Items/Fridge" index="3"]
 raw_dialog_file = "res://assets/dialogs/house_door_unlocked.json"
 
-[node name="Book" parent="Items" instance=ExtResource( 15 )]
+[node name="BookKitchen" parent="Items" instance=ExtResource( 15 )]
 position = Vector2( 215, 194.854 )
 
 [node name="Hitboxes" type="Node" parent="."]

@@ -14,9 +14,12 @@ func _ready():
 	options_menu = get_node("OptionsMenu")
 	exit_dialog = get_node("ExitDialog")
 	
+	
 	# Connect signals
 	menu_list_control.connect("item_activated",self,"_on_item_selected")
 	options_menu.connect("closed",self,"_on_options_menu_closed")
+	load_menu_control.connect("closed",self,"_on_load_menu_closed")
+	exit_dialog.connect("confirmed",self,"_on_Exit")
 		
 
 func _on_Exit():
@@ -34,6 +37,7 @@ func _on_item_selected(index : int) -> void:
 			_start_new_game()
 		2:
 			load_menu_control.open_load_menu()
+			set_menu_mouse_filter(true)	
 		3:	
 			# Show options
 			options_menu.show_in_screen(true)
@@ -63,3 +67,6 @@ func set_menu_mouse_filter(ignore : bool) -> void:
 	elif !ignore:
 		menu_list_control.mouse_filter = MOUSE_FILTER_PASS
 		
+
+func _on_load_menu_closed() -> void:
+	set_menu_mouse_filter(false)	

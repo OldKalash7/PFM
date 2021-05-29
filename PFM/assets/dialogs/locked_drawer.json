@@ -25,8 +25,8 @@
     "3":{   "type":"normal",
             "display":"Player", 
             "line":"I need to find the numbers to open it.",
-            "callbacks": [],
-            "repete": true,
+            "callbacks": ["key_found"],
+            "repeat": true,
 	    "restart":false,
             "pointer": -1
 
