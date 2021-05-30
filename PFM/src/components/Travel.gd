@@ -95,10 +95,12 @@ func _on_body_exits(body) -> void:
 		set_process_input(false)
 
 func _input(event) -> void:
-	if Input.is_action_pressed("enter") && enabled:
+	if Input.is_action_just_pressed("enter") && enabled:
+		Main.EVENTS_LIST.emit_signal("player_pause")
+		set_process_input(false)
 		emit_signal("player_travel_requested",self)
 		print('player request travel')
-	elif Input.is_action_pressed("enter") && dialog_mode:
+	elif Input.is_action_just_pressed("enter") && dialog_mode:
 		print("dialog_mode")
 		set_process_input(false)
 		get_node("DialogueActionable").action()

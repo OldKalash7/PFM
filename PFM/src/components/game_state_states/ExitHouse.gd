@@ -19,7 +19,10 @@ func _ready():
 	changes = {
 	'change_unlocked_dialog_door' : ['hall',[funcref(self,"put_exterior_door_dialog")]],
 	}
-
+	
+	# CHANGE QUEST STATUS
+	GameStateManager.change_quest_status('go_outside',Quest.STATUS.ASSIGNED)
+	GameStateManager.change_quest_status('find_key',Quest.STATUS.COMPLETED)
 
 func enter( args : Dictionary) -> void:
 	stack_changes()

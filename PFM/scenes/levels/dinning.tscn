@@ -76,6 +76,9 @@ tile_data = PoolIntArray( 458774, 25, 0, 524310, 24, 0 )
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 252, 192 )
 
+[node name="AnimatedSprite" parent="Player" index="0"]
+frame = 2
+
 [node name="Camera2D" parent="Player" index="2"]
 limit_left = -40
 limit_top = 0
@@ -236,10 +239,7 @@ polygon = PoolVector2Array( 6.81441, -122.574, 6.81441, 113.6, -9.44905, 113.6, 
 
 [node name="Items" type="Node" parent="."]
 
-[node name="Drawer" parent="Items" groups=[
-"persist",
-"restore",
-] instance=ExtResource( 14 )]
+[node name="Drawer" parent="Items" instance=ExtResource( 14 )]
 position = Vector2( 177.192, 67.2597 )
 
 [node name="CollisionPolygon2D" parent="Items/Drawer" index="0"]
@@ -253,3 +253,4 @@ position = Vector2( 354.586, 137.151 )
 [editable path="Player"]
 [editable path="Player/PlayerDisplay"]
 [editable path="Items/Drawer"]
+[editable path="Items/BookDinning"]

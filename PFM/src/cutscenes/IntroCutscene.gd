@@ -12,11 +12,14 @@ func _ready():
 	
 	_start_custscene()
 
+# Start cutscene method
 func _start_custscene() -> void:
-	#actionable.action()
-	_finish_cutscene()
+	# Start dialog
+	actionable.action()
+	
 
 func _finish_cutscene() -> void:
 	#GameStateManager.change_state_to("Beginning")s
+	# Change state and change to level
 	GameStateManager.change_state_to("Beginning",{})
 	get_tree().change_scene_to(load(Main.levels[transition_to_level]))

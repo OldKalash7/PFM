@@ -139,11 +139,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/components/dialog_states/NormalDialogState.gd"
 }, {
-"base": "Node",
-"class": "ObjectiveTreeNode",
-"language": "GDScript",
-"path": "res://ObjectiveTreeNode.gd"
-}, {
 "base": "Control",
 "class": "ObjectivesWidget",
 "language": "GDScript",
@@ -276,7 +271,6 @@ _global_script_class_icons={
 "LoadSaveGameMenu": "",
 "MoveState": "",
 "NormalDialogState": "",
-"ObjectiveTreeNode": "",
 "ObjectivesWidget": "",
 "Observer": "",
 "OptionsMenu": "",

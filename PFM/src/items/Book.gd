@@ -20,3 +20,10 @@ func _unhandled_input(event):
 	if Input.is_action_just_pressed("enter"):
 		set_process_unhandled_input(false)
 		get_node("DialogueActionable").action()
+
+
+func save(save_file : SaveFile) -> void:
+	pass
+	
+func load(save_dic : Dictionary) -> void:
+	pass

@@ -73,7 +73,7 @@ position = Vector2( 360, 68 )
 visible = false
 
 [node name="DialogueActionable" parent="." instance=ExtResource( 3 )]
-raw_dialog_file = "res://assets/dialogs/intro_cutscene.json"
+raw_dialog_file = "res://assets/dialogs/new_intro.json"
 
 [node name="Transition" parent="." instance=ExtResource( 4 )]
 

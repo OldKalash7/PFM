@@ -72,7 +72,6 @@ margin_right = 160.5
 margin_bottom = 107.5
 
 [node name="ExitDialog" type="ConfirmationDialog" parent="."]
-visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

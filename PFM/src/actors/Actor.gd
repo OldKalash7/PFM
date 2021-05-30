@@ -5,7 +5,7 @@ extends KinematicBody2D
 
 class_name Actor
 
-var speed : float = 200
+var speed : float = 140
 
 
 
