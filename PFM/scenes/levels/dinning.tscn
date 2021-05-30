@@ -25,9 +25,12 @@ script = ExtResource( 10 )
 [node name="DialogManager" parent="." instance=ExtResource( 13 )]
 
 [node name="Choices" parent="DialogManager/States/CHOICE_STATE/ChoiceDisplayer/ChoicesLayer" index="0"]
-visible = false
-anchor_top = 0.807182
-anchor_bottom = 0.807182
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = -100.0
+margin_right = 330.0
+margin_bottom = -1.0
 
 [node name="Background" type="ColorRect" parent="."]
 margin_left = -131.0
@@ -233,7 +236,10 @@ polygon = PoolVector2Array( 6.81441, -122.574, 6.81441, 113.6, -9.44905, 113.6, 
 
 [node name="Items" type="Node" parent="."]
 
-[node name="Drawer" parent="Items" instance=ExtResource( 14 )]
+[node name="Drawer" parent="Items" groups=[
+"persist",
+"restore",
+] instance=ExtResource( 14 )]
 position = Vector2( 177.192, 67.2597 )
 
 [node name="CollisionPolygon2D" parent="Items/Drawer" index="0"]

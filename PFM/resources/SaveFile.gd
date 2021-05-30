@@ -8,8 +8,6 @@ extends Resource
 # Una estructura con la información de los nodos para reconstruir la escena i el estado de juego
 # como se encontraba cuando se sale. Data tiene la siguiente estructura
 #
-# DICTIONARY LEVEL_NAME { ARRAY OF DICTIONARY NODE_URI : {NODE_DATA}, ...  }
-#
 # Finalmente se guarda la información de SaveGlobals, que se encuentra sobre Main, esta clase
 # guarda información global sobre los niveles que se han visitado, el nivel actual etc... De manera que al reconstruir la partida se pueda determinar si que nivel se ha de cargar, si un nivel se entra por primera vez etc...
 

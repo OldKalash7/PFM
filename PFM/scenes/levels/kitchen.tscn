@@ -164,7 +164,11 @@ parameters/playback = SubResource( 1 )
 [node name="Items" type="Node" parent="."]
 
 [node name="Fridge" parent="Items" instance=ExtResource( 10 )]
-position = Vector2( 103.458, 155.5 )
+visible = false
+position = Vector2( 469.032, -65.1173 )
+
+[node name="CollisionPolygon2D" parent="Items/Fridge/StaticBody2D" index="0"]
+position = Vector2( 0, -4.99991 )
 
 [node name="DialogueActionable" parent="Items/Fridge" index="3"]
 raw_dialog_file = "res://assets/dialogs/house_door_unlocked.json"

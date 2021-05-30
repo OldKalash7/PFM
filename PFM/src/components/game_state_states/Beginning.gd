@@ -1,4 +1,4 @@
-extends State
+extends GameState
 
 
 class_name GameStateBeginning
@@ -7,15 +7,8 @@ class_name GameStateBeginning
 export (String,FILE, "*.json") var doors_loocked_dialog : String
 export (String,FILE, "*.json") var hall_exterior_door_dialog : String
 export (String) var start_quest_name : String
-var game_change_pool : GameChangePool
-
-var activated_changes : Array
 
 
-onready var changes : Dictionary = {
-	'activate_go_outside_quest' : ['bedroom',[funcref(self,"activate_quest")]],
-	'lock_doors' : ['hall',[funcref(self,"lock_doors")]]
-}
 
 func _ready():
 	state_name = name
@@ -23,6 +16,10 @@ func _ready():
 	get_parent().get_node("GameChangesPool").connect("changed_made",self,"_on_change_made")
 	Main.EVENTS_GAME.connect("change_to_find_key",self,"_on_key_found")
 	
+	changes  = {
+	'activate_go_outside_quest' : ['bedroom',[funcref(self,"activate_quest")]],
+	'lock_doors' : ['hall',[funcref(self,"lock_doors")]]
+	}
 	
 func enter( args : Dictionary) -> void:
 	#  Connect signals

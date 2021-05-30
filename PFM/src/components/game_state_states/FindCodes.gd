@@ -50,3 +50,11 @@ func _on_found_code() -> void:
 		GameStateManager.change_state_to("FoundKey",{})
 			#game_change_pool.stack_single_change({'unlocked_hall_door' : ['dinning',[funcref(self,"put_drawer_unlocked_dialog")]]})
 		
+
+func save_state_changes() -> Dictionary:
+	save_dictionary['codes_found_counter'] = codes_found_counter
+	return save_dictionary
+	
+
+func load_state_changes(restored_dictionary : Dictionary) -> void:
+	codes_found_counter = restored_dictionary['codes_found_counter']

@@ -27,3 +27,20 @@ func _on_body_exits(body)-> void:
 	if body.name == "Player":
 		_on_player_goes_away()
 
+
+
+# SAVE AND STORE FUNCTIONS
+
+func save(save_file : SaveFile) -> void:
+	pass
+	
+func load(save_dic : Dictionary) -> void:
+	pass
+	
+	
+func store() -> Dictionary:
+	return {}
+	
+
+func restore(restore_values : Dictionary) -> void:
+	pass

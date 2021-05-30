@@ -89,6 +89,7 @@ func save(save_game : Resource) -> void:
 	var quests_to_save : Array
 	
 	save_dic['current_state'] = _state.name
+	save_dic['state_internal_changes'] = _state.save_state_changes()
 	
 	for i in quests:
 		quests_to_save.append(
@@ -106,6 +107,7 @@ func load_state(save_game : SaveFile) -> void:
 	var quests_to_load : Array
 	
 	_state = states.get_node(save_dic['current_state'])
+	_state.load_state_changes(save_dic['state_internal_changes'])
 	_state.set_made_changes(save_dic['state_changes'])
 	quests_to_load  = save_dic['quests']
 	

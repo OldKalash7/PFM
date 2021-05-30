@@ -33,6 +33,12 @@ __meta__ = {
 
 [node name="Choices" parent="DialogManager/States/CHOICE_STATE/ChoiceDisplayer/ChoicesLayer" index="0"]
 visible = false
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 4.09474
+margin_top = -100.875
+margin_right = 333.095
+margin_bottom = -1.875
 
 [node name="Floor" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -58,7 +64,7 @@ tile_data = PoolIntArray( -65518, 9, 0, 786447, -1073741815, 0, 786454, -1610612
 position = Vector2( 318.898, 305.125 )
 
 [node name="AnimatedSprite" parent="Player" index="0"]
-frame = 3
+frame = 0
 
 [node name="Camera2D" parent="Player" index="2"]
 limit_left = 0
